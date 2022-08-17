@@ -11,7 +11,6 @@ namespace Core.UI.Popups
         private SavingsManager SavingsManager { get; }
 
 
-        // Inject
         public SettingsPopupViewPresenter(SavingsManager savingsManager)
             : base("Assets/Prefabs/Core/UI/SettingsPopup.prefab")
         {
@@ -23,6 +22,7 @@ namespace Core.UI.Popups
             base.SetupView(viewBase);
 
             SettingsPopupView.MusicToggle.isOn = SavingsManager.IsMusicEnabled;
+            SettingsPopupView.CoinsAmount.text = SavingsManager.Coins.ToString();
         }
 
         public void OnMusicToggleChanged()
