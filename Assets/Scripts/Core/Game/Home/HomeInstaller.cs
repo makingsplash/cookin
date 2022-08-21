@@ -8,14 +8,14 @@ namespace Core.Game.Home
     public class HomeInstaller : MonoInstaller
     {
         public UICamera UICamera;
-        public UIHandler UIHandler;
+        public UIRoot uiRoot;
         public GameObject GameStarter;
 
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<UICamera>().FromInstance(UICamera).AsSingle().NonLazy();
-            Container.Bind<UIHandler>().FromInstance(UIHandler).AsSingle().NonLazy();
+            Container.Bind<UIRoot>().FromInstance(uiRoot).AsSingle().NonLazy();
             Container.Bind<UIManager>().AsSingle().NonLazy();
         }
 

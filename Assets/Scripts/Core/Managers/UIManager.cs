@@ -10,13 +10,13 @@ namespace Core.Managers
     public class UIManager
     {
         private DiContainer Container { get; }
-        private UIHandler UIHandler { get; }
+        private UIRoot UIRoot { get; }
 
 
-        public UIManager(DiContainer container, UIHandler uiHandler)
+        public UIManager(DiContainer container, UIRoot uiRoot)
         {
             Container = container;
-            UIHandler = uiHandler;
+            UIRoot = uiRoot;
         }
 
         public void SpawnHomeHUD()
@@ -35,7 +35,7 @@ namespace Core.Managers
 
         private void CreateUIView(UIViewBasePresenter presenter)
         {
-            Addressables.InstantiateAsync(presenter.PrefabPath, UIHandler.transform.position, Quaternion.identity, UIHandler.transform).Completed +=
+            Addressables.InstantiateAsync(presenter.PrefabPath, UIRoot.transform.position, Quaternion.identity, UIRoot.transform).Completed +=
                 handle =>
                 {
                     UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
