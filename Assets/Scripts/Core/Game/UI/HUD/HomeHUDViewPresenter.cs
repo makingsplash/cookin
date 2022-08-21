@@ -1,21 +1,24 @@
-using Core.Managers;
+using Core.Game.Signals;
 using Core.UI.Elements;
+using Core.UI.Popups;
+using Zenject;
 
 namespace Core.Game.UI.HUD
 {
     public class HomeHUDViewPresenter : UIViewBasePresenter
     {
-        private UIManager UIManager { get; set; }
+        private SignalBus SignalBus { get; }
 
 
-        public HomeHUDViewPresenter(UIManager uiManager) : base("Assets/Prefabs/Game/HomeHUD.prefab")
+        public HomeHUDViewPresenter(SignalBus signalBus)
+            : base("Assets/Prefabs/Game/HomeHUD.prefab")
         {
-            UIManager = uiManager;
+            SignalBus = signalBus;
         }
 
         public void ProcessSettingsWidgetClick()
         {
-            UIManager.SpawnSettingsPopup();
+            SignalBus.Fire(new ShowPopupSignal(typeof(SettingsPopupViewPresenter)));
         }
     }
 }

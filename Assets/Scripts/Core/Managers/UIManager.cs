@@ -1,9 +1,9 @@
-using Core.Game.UI.HUD;
+using Core.Game.Signals;
 using Core.UI.Elements;
-using Core.UI.Popups;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
+using Elements_UIViewBasePresenter = Core.UI.Elements.UIViewBasePresenter;
 
 namespace Core.Managers
 {
@@ -11,26 +11,22 @@ namespace Core.Managers
     {
         private DiContainer Container { get; }
         private UIRoot UIRoot { get; }
+        private SignalBus SignalBus { get; }
 
-
-        public UIManager(DiContainer container, UIRoot uiRoot)
+        public UIManager(DiContainer container, UIRoot uiRoot, SignalBus signalBus)
         {
             Container = container;
             UIRoot = uiRoot;
+            SignalBus = signalBus;
+
+            SignalBus.Subscribe<ShowPopupSignal>(CreateUIViewPresenter);
         }
 
-        public void SpawnHomeHUD()
+        private void CreateUIViewPresenter(ShowPopupSignal signal)
         {
-            var popupPresenter = Container.Instantiate<HomeHUDViewPresenter>();
+            var presenter = Container.Instantiate(signal.PresenterType) as UIViewBasePresenter;
 
-            CreateUIView(popupPresenter);
-        }
-
-        public void SpawnSettingsPopup()
-        {
-            var popupPresenter = Container.Instantiate<SettingsPopupViewPresenter>();
-
-            CreateUIView(popupPresenter);
+            CreateUIView(presenter);
         }
 
         private void CreateUIView(UIViewBasePresenter presenter)
