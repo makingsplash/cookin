@@ -22,7 +22,7 @@ namespace Core.UI.Popups
             base.SetupView(viewBase);
 
             SettingsPopupView.MusicToggle.isOn = ProfileManager.IsMusicEnabled;
-            SettingsPopupView.CoinsAmount.text = ProfileManager.Coins.ToString();
+            SettingsPopupView.CoinsAmount.text = $"Coins: {ProfileManager.Coins.ToString()}";
         }
 
         public void OnMusicToggleChanged()
