@@ -39,6 +39,7 @@ namespace Core.Managers
                 handle =>
                 {
                     UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
+                    Container.Inject(viewBase);
                     presenter.SetupView(viewBase);
                 };
         }

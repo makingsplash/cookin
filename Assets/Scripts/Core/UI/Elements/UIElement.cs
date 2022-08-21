@@ -1,12 +1,15 @@
 using Core.UI.Camera;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Core.UI.Elements
 {
     [RequireComponent(typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster))]
     public abstract class UIElement : MonoBehaviour
     {
+        private UICamera UICamera { get; set; }
+
         private RectTransform _rectTransform;
         private Canvas _canvas;
         private CanvasGroup _canvasGroup;
@@ -34,21 +37,22 @@ namespace Core.UI.Elements
             }
         }
 
-        protected virtual void Awake()
+        [Inject]
+        private void Inject(UICamera uiCamera)
+        {
+            UICamera = uiCamera;
+        }
+
+        protected virtual void Start()
         {
             SetCamera();
         }
 
         private void SetCamera()
         {
-            if (_canvas == null)
-            {
-                return;
-            }
-
-            _canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            _canvas.worldCamera = UICamera.Instance.Camera;
-            _canvas.planeDistance = UICamera.UI_PLANE_DISTANCE;
+            Canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            Canvas.worldCamera = UICamera.Camera;
+            Canvas.planeDistance = UICamera.UI_PLANE_DISTANCE;
         }
     }
 }

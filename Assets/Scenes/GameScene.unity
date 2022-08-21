@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da081d264704bbcb1ca5a75a77761c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UICamera: {fileID: 519420033}
   UIHandler: {fileID: 1519521098}
   GameStarter: {fileID: 7539428266291598538, guid: 4fd0f40820beb42c78f1e067d775e7c8, type: 3}
 --- !u!1001 &1519521097

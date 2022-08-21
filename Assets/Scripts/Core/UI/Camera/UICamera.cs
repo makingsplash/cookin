@@ -1,11 +1,10 @@
-using Common;
 using UnityEngine;
+using Zenject;
 
 namespace Core.UI.Camera
 {
-
     [DefaultExecutionOrder(-100)]
-    public class UICamera : MonoSingleton<UICamera>
+    public class UICamera : MonoBehaviour, IInitializable
     {
         public static int UI_PLANE_DISTANCE = 100;
 
@@ -13,7 +12,7 @@ namespace Core.UI.Camera
 
         private Vector2Int _resolution;
 
-        protected override void Initialize()
+        public void Initialize()
         {
             _resolution = new Vector2Int(Screen.width, Screen.height);
 

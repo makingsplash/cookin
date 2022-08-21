@@ -14,7 +14,7 @@ namespace Core.Game.Home
 
         public override void InstallBindings()
         {
-            Container.Bind<UICamera>().FromInstance(UICamera).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<UICamera>().FromInstance(UICamera).AsSingle().NonLazy();
             Container.Bind<UIHandler>().FromInstance(UIHandler).AsSingle().NonLazy();
             Container.Bind<UIManager>().AsSingle().NonLazy();
         }
