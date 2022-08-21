@@ -1,11 +1,11 @@
 namespace Core.Managers
 {
-    public class SavingsManager
+    public class ProfileManager
     {
         public bool IsMusicEnabled;
         public int Coins;
 
-        public SavingsManager()
+        public ProfileManager()
         {
             IsMusicEnabled = true;
             Coins = 5;

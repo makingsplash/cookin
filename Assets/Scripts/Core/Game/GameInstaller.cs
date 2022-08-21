@@ -7,7 +7,7 @@ namespace Core.Game
     {
         public override void InstallBindings()
         {
-            Container.Bind<SavingsManager>().AsSingle().NonLazy();
+            Container.Bind<ProfileManager>().AsSingle().NonLazy();
         }
     }
 }

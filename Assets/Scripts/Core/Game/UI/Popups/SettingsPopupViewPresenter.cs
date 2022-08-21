@@ -8,28 +8,28 @@ namespace Core.UI.Popups
     public class SettingsPopupViewPresenter : PopupViewPresenter
     {
         private SettingsPopupView SettingsPopupView => (SettingsPopupView) View;
-        private SavingsManager SavingsManager { get; }
+        private ProfileManager ProfileManager { get; }
 
 
-        public SettingsPopupViewPresenter(SavingsManager savingsManager)
+        public SettingsPopupViewPresenter(ProfileManager profileManager)
             : base("Assets/Prefabs/Core/UI/SettingsPopup.prefab")
         {
-            SavingsManager = savingsManager;
+            ProfileManager = profileManager;
         }
 
         public override void SetupView(UIViewBase viewBase)
         {
             base.SetupView(viewBase);
 
-            SettingsPopupView.MusicToggle.isOn = SavingsManager.IsMusicEnabled;
-            SettingsPopupView.CoinsAmount.text = SavingsManager.Coins.ToString();
+            SettingsPopupView.MusicToggle.isOn = ProfileManager.IsMusicEnabled;
+            SettingsPopupView.CoinsAmount.text = ProfileManager.Coins.ToString();
         }
 
         public void OnMusicToggleChanged()
         {
-            SavingsManager.IsMusicEnabled = !SavingsManager.IsMusicEnabled;
+            ProfileManager.IsMusicEnabled = !ProfileManager.IsMusicEnabled;
 
-            if (SavingsManager.IsMusicEnabled)
+            if (ProfileManager.IsMusicEnabled)
             {
                 Debug.Log("[SoundController] Start playing background music");
             }
