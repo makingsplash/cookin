@@ -1,6 +1,5 @@
 using System;
 using Core.Game.Signals;
-using Core.UI.Elements;
 using Core.UI.Elements.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -8,7 +7,7 @@ using Zenject;
 
 namespace Core.UI
 {
-    public class UIManager : IDisposable
+    public class UIManager : IDisposable, ISignalListener
     {
         private DiContainer Container { get; }
         private UIRoot UIRoot { get; }
@@ -20,7 +19,7 @@ namespace Core.UI
             UIRoot = uiRoot;
             SignalBus = signalBus;
 
-            SignalBus.Subscribe<ShowPopupSignal>(CreateUIViewPresenter);
+            SignalsSubscribe();
         }
 
         private void CreateUIViewPresenter(ShowPopupSignal signal)
@@ -42,6 +41,16 @@ namespace Core.UI
         }
 
         public void Dispose()
+        {
+            SignalsUnsubscribe();
+        }
+
+        public void SignalsSubscribe()
+        {
+            SignalBus.Subscribe<ShowPopupSignal>(CreateUIViewPresenter);
+        }
+
+        public void SignalsUnsubscribe()
         {
             SignalBus.Unsubscribe<ShowPopupSignal>(CreateUIViewPresenter);
         }
