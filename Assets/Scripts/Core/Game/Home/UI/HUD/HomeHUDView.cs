@@ -1,6 +1,6 @@
-using Core.UI.Elements;
+using Core.UI.Elements.Base;
 
-namespace Core.Game.UI.HUD
+namespace Core.Game.Home.UI.HUD
 {
     public class HomeHUDView : UIViewBase
     {

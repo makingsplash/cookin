@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.UI.Elements
+namespace Core.UI.Elements.Base
 {
     public abstract class UIViewBasePresenter
     {

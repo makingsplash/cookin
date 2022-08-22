@@ -2,7 +2,7 @@ using Core.UI.Elements.Popup;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Core.UI.Popups
+namespace Core.Game.UI.Popups
 {
     public class SettingsPopupView : PopupView
     {

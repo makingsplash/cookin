@@ -1,4 +1,4 @@
-namespace Core.Managers
+namespace Core.PlayerProfile
 {
     public class ProfileManager
     {

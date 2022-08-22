@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Core.UI.Elements
+namespace Core.UI.Elements.Base
 {
     [RequireComponent(typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster))]
     public abstract class UIElement : MonoBehaviour

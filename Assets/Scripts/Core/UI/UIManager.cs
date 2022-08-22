@@ -1,13 +1,14 @@
+using System;
 using Core.Game.Signals;
 using Core.UI.Elements;
+using Core.UI.Elements.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
-using Elements_UIViewBasePresenter = Core.UI.Elements.UIViewBasePresenter;
 
-namespace Core.Managers
+namespace Core.UI
 {
-    public class UIManager
+    public class UIManager : IDisposable
     {
         private DiContainer Container { get; }
         private UIRoot UIRoot { get; }
@@ -38,6 +39,11 @@ namespace Core.Managers
                     Container.Inject(viewBase);
                     presenter.SetupView(viewBase);
                 };
+        }
+
+        public void Dispose()
+        {
+            SignalBus.Unsubscribe<ShowPopupSignal>(CreateUIViewPresenter);
         }
     }
 }

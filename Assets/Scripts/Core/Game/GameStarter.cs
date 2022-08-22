@@ -1,6 +1,6 @@
+using Core.Game.Home.UI.HUD;
 using Core.Game.Signals;
-using Core.Game.UI.HUD;
-using Core.Managers;
+using Core.UI;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +20,7 @@ namespace Core.Game
 
         private void Start()
         {
-            SignalBus.Fire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
+            SignalBus.TryFire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
         }
     }
 }

@@ -1,9 +1,9 @@
-using Core.Managers;
-using Core.UI.Elements;
+using Core.PlayerProfile;
+using Core.UI.Elements.Base;
 using Core.UI.Elements.Popup;
 using UnityEngine;
 
-namespace Core.UI.Popups
+namespace Core.Game.UI.Popups
 {
     public class SettingsPopupViewPresenter : PopupViewPresenter
     {

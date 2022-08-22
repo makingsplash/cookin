@@ -1,3 +1,5 @@
+using Core.UI.Elements.Base;
+
 namespace Core.UI.Elements.Popup
 {
     public abstract class PopupViewPresenter : UIViewBasePresenter

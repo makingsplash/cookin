@@ -1,9 +1,9 @@
 using Core.Game.Signals;
-using Core.UI.Elements;
-using Core.UI.Popups;
+using Core.Game.UI.Popups;
+using Core.UI.Elements.Base;
 using Zenject;
 
-namespace Core.Game.UI.HUD
+namespace Core.Game.Home.UI.HUD
 {
     public class HomeHUDViewPresenter : UIViewBasePresenter
     {
@@ -18,7 +18,7 @@ namespace Core.Game.UI.HUD
 
         public void ProcessSettingsWidgetClick()
         {
-            SignalBus.Fire(new ShowPopupSignal(typeof(SettingsPopupViewPresenter)));
+            SignalBus.TryFire(new ShowPopupSignal(typeof(SettingsPopupViewPresenter)));
         }
     }
 }

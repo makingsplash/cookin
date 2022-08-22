@@ -1,5 +1,5 @@
 using Core.Game.Signals;
-using Core.Managers;
+using Core.PlayerProfile;
 using Zenject;
 
 namespace Core.Game

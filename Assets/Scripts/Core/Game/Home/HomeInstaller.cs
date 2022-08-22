@@ -1,4 +1,4 @@
-using Core.Managers;
+using Core.UI;
 using Core.UI.Camera;
 using UnityEngine;
 using Zenject;
