@@ -1,8 +1,10 @@
 using System;
 using Core.Game.Signals;
+using Core.UI.Elements;
 using Core.UI.Elements.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Core.UI
@@ -13,36 +15,13 @@ namespace Core.UI
         private UIRoot UIRoot { get; }
         private SignalBus SignalBus { get; }
 
-        public UIManager(DiContainer container, UIRoot uiRoot, SignalBus signalBus)
+        public UIManager(DiContainer container, SignalBus signalBus, UIRoot uiRoot)
         {
             Container = container;
-            UIRoot = uiRoot;
             SignalBus = signalBus;
+            UIRoot = uiRoot;
 
             SignalsSubscribe();
-        }
-
-        private void CreateUIViewPresenter(ShowPopupSignal signal)
-        {
-            var presenter = Container.Instantiate(signal.PresenterType) as UIViewBasePresenter;
-
-            CreateUIView(presenter);
-        }
-
-        private void CreateUIView(UIViewBasePresenter presenter)
-        {
-            Addressables.InstantiateAsync(presenter.PrefabPath, UIRoot.transform.position, Quaternion.identity, UIRoot.transform).Completed +=
-                handle =>
-                {
-                    UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
-                    Container.Inject(viewBase);
-                    presenter.SetupView(viewBase);
-                };
-        }
-
-        public void Dispose()
-        {
-            SignalsUnsubscribe();
         }
 
         public void SignalsSubscribe()
@@ -53,6 +32,42 @@ namespace Core.UI
         public void SignalsUnsubscribe()
         {
             SignalBus.Unsubscribe<ShowPopupSignal>(CreateUIViewPresenter);
+        }
+
+        public AsyncOperationHandle CreateUIViewPresenter<T>()
+        {
+            var presenter = Container.Instantiate(typeof(T)) as UIViewBasePresenter;
+
+            AsyncOperationHandle asyncOperationHandle = CreateUIView(presenter);
+
+            return asyncOperationHandle;
+        }
+
+        private void CreateUIViewPresenter(ShowPopupSignal signal)
+        {
+            var presenter = Container.Instantiate(signal.PresenterType) as UIViewBasePresenter;
+
+            CreateUIView(presenter);
+        }
+
+        private AsyncOperationHandle<GameObject> CreateUIView(UIViewBasePresenter presenter)
+        {
+            AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.InstantiateAsync(presenter.PrefabPath, UIRoot.transform.position, Quaternion.identity, UIRoot.transform);
+
+            asyncOperationHandle.Completed +=
+                handle =>
+                {
+                    UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
+                    Container.Inject(viewBase);
+                    presenter.SetupView(viewBase);
+                };
+
+            return asyncOperationHandle;
+        }
+
+        public void Dispose()
+        {
+            SignalsUnsubscribe();
         }
     }
 }

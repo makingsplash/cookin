@@ -1,5 +1,8 @@
 using Core.UI.Elements.Base;
 
-public class UIRoot : UIElement
+namespace Core.UI.Elements
 {
+    public class UIRoot : UIElement
+    {
+    }
 }

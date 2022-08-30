@@ -1,6 +1,5 @@
-using Core.Game.Home.UI.HUD;
-using Core.Game.Signals;
-using Core.UI;
+using Core.Game.Context;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -8,19 +7,17 @@ namespace Core.Game
 {
     public class GameStarter : MonoBehaviour
     {
-        private UIManager UIManager { get; set; }
-        private SignalBus SignalBus { get; set; }
+        private ContextManager ContextManager {get; set; }
 
         [Inject]
-        private void Inject(UIManager uiManager, SignalBus signalBus)
+        private void Inject(ContextManager contextManager)
         {
-            UIManager = uiManager;
-            SignalBus = signalBus;
+            ContextManager = contextManager;
         }
 
         private void Start()
         {
-            SignalBus.TryFire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
+            ContextManager.Load<HomeContext>().Forget();
         }
     }
 }
