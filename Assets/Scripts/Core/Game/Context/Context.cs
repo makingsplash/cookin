@@ -1,11 +1,14 @@
+using Cysharp.Threading.Tasks;
+
 namespace Core.Game.Context
 {
     public abstract class Context
     {
-        public virtual string Scene { get; set; }
+        public virtual string Scene { get; }
 
-        public virtual void Load()
+        public virtual UniTask Setup()
         {
+            return new UniTask();
         }
     }
 }

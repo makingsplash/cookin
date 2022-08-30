@@ -11,6 +11,8 @@ namespace Core.Game.Context
         private DiContainer Container { get; }
         private SignalBus SignalBus { get; }
 
+        public Context Context { get; private set; }
+
         public ContextManager(DiContainer container, SignalBus signalBus)
         {
             Container = container;
@@ -19,11 +21,12 @@ namespace Core.Game.Context
 
         public async UniTask Load<TContext>() where TContext : Context
         {
-            Context context = Container.Instantiate<TContext>();
+            Context = Container.Instantiate<TContext>();
 
-            await Addressables.LoadSceneAsync(context.Scene);
+            await Addressables.LoadSceneAsync(Context.Scene);
 
-            // Use method, await creation?
+            await Context.Setup();
+
             SignalBus.TryFire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
         }
     }
