@@ -9,10 +9,12 @@ using Zenject;
 
 namespace Core.UI
 {
-    public class UIManager : IDisposable, ISignalListener
+    public class UIManager : IInitializable, ISignalListener, IDisposable
     {
         private DiContainer Container { get; }
+
         private UIRoot UIRoot { get; }
+
         private SignalBus SignalBus { get; }
 
         public UIManager(DiContainer container, SignalBus signalBus, UIRoot uiRoot)
@@ -20,7 +22,10 @@ namespace Core.UI
             Container = container;
             SignalBus = signalBus;
             UIRoot = uiRoot;
+        }
 
+        public void Initialize()
+        {
             SignalsSubscribe();
         }
 

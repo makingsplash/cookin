@@ -29,14 +29,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Game/TestGameObject.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 70f0f59ffc3ea42ae902e6322e0daa21
-    m_Address: Assets/Prefabs/Game/TestImages
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3f1f7886e10af40b7b857302e0f69589
-    m_Address: Assets/Scenes/HomeScene.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 532414028a91848c69e70fd3cb750945, type: 2}
   m_SchemaSet:

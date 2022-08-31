@@ -1,5 +1,3 @@
-using Core.Game.Home.UI.HUD;
-using Core.Game.Signals;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -25,9 +23,9 @@ namespace Core.Game.Context
 
             await Addressables.LoadSceneAsync(Context.Scene);
 
-            await Context.Setup();
+            Container.Inject(Context);
 
-            SignalBus.TryFire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
+            await Context.Setup();
         }
     }
 }
