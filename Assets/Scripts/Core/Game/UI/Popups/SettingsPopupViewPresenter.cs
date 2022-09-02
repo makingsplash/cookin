@@ -12,7 +12,7 @@ namespace Core.Game.UI.Popups
 
 
         public SettingsPopupViewPresenter(ProfileManager profileManager)
-            : base("Assets/Prefabs/Core/UI/SettingsPopup.prefab")
+            : base("Assets/GameAssets/Shared/Prefabs/SettingsPopup.prefab")
         {
             ProfileManager = profileManager;
         }

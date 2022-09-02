@@ -11,7 +11,7 @@ namespace Core.Game.Home.UI.HUD
 
 
         public HomeHUDViewPresenter(SignalBus signalBus)
-            : base("Assets/Prefabs/Game/HomeHUD.prefab")
+            : base("Assets/GameAssets/Home/Prefabs/HomeHUD.prefab")
         {
             SignalBus = signalBus;
         }
