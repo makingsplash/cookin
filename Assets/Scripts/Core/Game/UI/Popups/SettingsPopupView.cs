@@ -1,19 +1,34 @@
 using Core.UI.Elements.Popup;
-using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Game.UI.Popups
 {
     public class SettingsPopupView : PopupView
     {
-        public Toggle MusicToggle;
-        public TextMeshProUGUI CoinsAmount;
+        [SerializeField]
+        private Toggle soundsToggle;
+        [SerializeField]
+        private Toggle musicToggle;
+        [SerializeField]
+        private Button supportButton;
+        [SerializeField]
+        private Button closeButton;
 
         private SettingsPopupViewPresenter SettingsPopupViewPresenter => Presenter as SettingsPopupViewPresenter;
 
-        public void OnMusicToggleValueChanged()
+
+        public void Initialize(SettingsPopupViewPresenter presenter, bool isSoundsOn, bool isMusicOn)
         {
-            SettingsPopupViewPresenter.OnMusicToggleChanged();
+            base.Initialize(presenter);
+
+            soundsToggle.isOn = isSoundsOn;
+            musicToggle.isOn = isMusicOn;
+
+            soundsToggle.onValueChanged.AddListener(SettingsPopupViewPresenter.OnSoundsToggleChanged);
+            musicToggle.onValueChanged.AddListener(SettingsPopupViewPresenter.OnMusicToggleChanged);
+            supportButton.onClick.AddListener(SettingsPopupViewPresenter.OpenSupportPopup);
+            closeButton.onClick.AddListener(Close);
         }
     }
 }

@@ -4,9 +4,8 @@ namespace Core.UI.Elements.Popup
 {
     public abstract class PopupViewPresenter : UIViewBasePresenter
     {
-        protected PopupView _popupView;
+        private PopupView PopupView => View as PopupView;
 
-        // Inject
         public PopupViewPresenter(string prefabPath) : base(prefabPath)
         {
         }

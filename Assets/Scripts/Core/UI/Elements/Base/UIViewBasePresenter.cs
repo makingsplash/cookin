@@ -5,12 +5,7 @@ namespace Core.UI.Elements.Base
     public abstract class UIViewBasePresenter
     {
         public Action OnShow;
-        public Action OnHide;
-
-        public Action OnShown;
-        public Action OnHidden;
-
-        public Action OnDestroyed;
+        public Action OnClose;
 
         public string PrefabPath { get; }
 
@@ -21,10 +16,14 @@ namespace Core.UI.Elements.Base
             PrefabPath = prefabPath;
         }
 
-        public virtual void SetupView(UIViewBase viewBase)
+        public virtual void SetView(UIViewBase viewBase)
         {
             View = viewBase;
             View.Initialize(this);
+        }
+
+        public virtual void InitializeView()
+        {
         }
     }
 }

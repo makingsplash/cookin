@@ -14,42 +14,26 @@ namespace Core.UI.Elements.Base
             Presenter.OnShow?.Invoke();
 
             gameObject.SetActive(true);
-
-            Presenter.OnShown?.Invoke();
         }
 
-        public virtual void Hide()
+        public virtual void Close()
         {
-            Presenter.OnHide?.Invoke();
+            Presenter.OnClose?.Invoke();
 
             gameObject.SetActive(false);
 
-            Presenter.OnHidden?.Invoke();
+            Destroy(gameObject);
         }
 
         public virtual void Clear()
         {
             Presenter.OnShow = null;
-            Presenter.OnHide = null;
-
-            Presenter.OnShown = null;
-            Presenter.OnHidden = null;
-
-            Presenter.OnDestroyed = null;
+            Presenter.OnClose = null;
         }
 
         protected virtual void OnDestroy()
         {
-            Presenter.OnDestroyed?.Invoke();
-
             Clear();
-        }
-
-        public virtual void Close()
-        {
-            Presenter.OnHidden?.Invoke();
-
-            Destroy(gameObject);
         }
     }
 }

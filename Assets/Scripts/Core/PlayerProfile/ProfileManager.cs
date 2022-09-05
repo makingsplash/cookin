@@ -3,12 +3,12 @@ namespace Core.PlayerProfile
     public class ProfileManager
     {
         public bool IsMusicEnabled;
-        public int Coins;
+        public bool IsSoundsEnabled;
 
         public ProfileManager()
         {
-            IsMusicEnabled = true;
-            Coins = 5;
+            IsMusicEnabled = false;
+            IsSoundsEnabled = true;
         }
     }
 }

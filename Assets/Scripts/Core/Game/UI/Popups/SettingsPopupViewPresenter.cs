@@ -1,5 +1,4 @@
 using Core.PlayerProfile;
-using Core.UI.Elements.Base;
 using Core.UI.Elements.Popup;
 using UnityEngine;
 
@@ -12,31 +11,49 @@ namespace Core.Game.UI.Popups
 
 
         public SettingsPopupViewPresenter(ProfileManager profileManager)
-            : base("Assets/GameAssets/Shared/Prefabs/SettingsPopup.prefab")
+            : base("Assets/GameAssets/Home/Prefabs/SettingsPopup.prefab")
         {
             ProfileManager = profileManager;
         }
 
-        public override void SetupView(UIViewBase viewBase)
+        public override void InitializeView()
         {
-            base.SetupView(viewBase);
+            base.InitializeView();
 
-            SettingsPopupView.MusicToggle.isOn = ProfileManager.IsMusicEnabled;
-            SettingsPopupView.CoinsAmount.text = $"Coins: {ProfileManager.Coins.ToString()}";
+            SettingsPopupView.Initialize(this, ProfileManager.IsSoundsEnabled, ProfileManager.IsMusicEnabled);
         }
 
-        public void OnMusicToggleChanged()
+        public void OnMusicToggleChanged(bool value)
         {
-            ProfileManager.IsMusicEnabled = !ProfileManager.IsMusicEnabled;
+            ProfileManager.IsMusicEnabled = value;
 
             if (ProfileManager.IsMusicEnabled)
             {
-                Debug.Log("[SoundController] Start playing background music");
+                Debug.Log("[SoundController] Music On");
             }
             else
             {
-                Debug.Log("[SoundController] Stop playing background music");
+                Debug.Log("[SoundController] Music Off");
             }
+        }
+
+        public void OnSoundsToggleChanged(bool value)
+        {
+            ProfileManager.IsSoundsEnabled = value;
+
+            if (ProfileManager.IsMusicEnabled)
+            {
+                Debug.Log("[SoundController] Sounds On");
+            }
+            else
+            {
+                Debug.Log("[SoundController] Sounds Off");
+            }
+        }
+
+        public void OpenSupportPopup()
+        {
+            Debug.Log("[SettingsPopup] Open support popup");
         }
     }
 }

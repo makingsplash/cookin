@@ -1,8 +1,8 @@
-using Core.UI.Elements.Base;
+using UnityEngine;
 
 namespace Core.UI.Elements
 {
-    public class UIRoot : UIElement
+    public class UIRoot : MonoBehaviour
     {
     }
 }

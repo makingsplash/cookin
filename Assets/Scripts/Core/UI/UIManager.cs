@@ -64,7 +64,9 @@ namespace Core.UI
                 {
                     UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
                     Container.Inject(viewBase);
-                    presenter.SetupView(viewBase);
+                    presenter.SetView(viewBase);
+                    presenter.InitializeView();
+                    viewBase.Show();
                 };
 
             return asyncOperationHandle;
