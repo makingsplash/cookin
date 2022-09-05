@@ -22,8 +22,6 @@ namespace Core.UI.Elements.Base
             View.Initialize(this);
         }
 
-        public virtual void InitializeView()
-        {
-        }
+        public abstract void InitializeView();
     }
 }

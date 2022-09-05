@@ -18,8 +18,6 @@ namespace Core.Game.UI.Popups
 
         public override void InitializeView()
         {
-            base.InitializeView();
-
             SettingsPopupView.Initialize(this, ProfileManager.IsSoundsEnabled, ProfileManager.IsMusicEnabled);
         }
 
