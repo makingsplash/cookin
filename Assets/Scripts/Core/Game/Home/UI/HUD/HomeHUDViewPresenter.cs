@@ -1,7 +1,7 @@
+using Core.Game.Home.UI.BankScreen;
 using Core.Game.Signals;
-using Core.Game.UI.Popups;
+using Core.Game.UI.Screen;
 using Core.UI.Elements.Base;
-using UnityEngine;
 using Zenject;
 
 namespace Core.Game.Home.UI.HUD
@@ -20,6 +20,13 @@ namespace Core.Game.Home.UI.HUD
 
         public override void InitializeView()
         {
+            base.InitializeView();
+        }
+
+        protected override void BindView()
+        {
+            base.BindView();
+
             HomeHUDView.SettingsButtnon.onClick.AddListener(ProcessSettingsWidgetClick);
             HomeHUDView.BankButton.onClick.AddListener(OpenBankPopup);
         }
@@ -31,9 +38,7 @@ namespace Core.Game.Home.UI.HUD
 
         private void OpenBankPopup()
         {
-            Debug.Log($"[{nameof(HomeHUDView)}]: Show bank popup");
-
-            // SignalBus.TryFire(new ShowPopupSignal(typeof(BankPopupView)));
+            SignalBus.TryFire(new ShowPopupSignal(typeof(BankScreenViewPresenter)));
         }
     }
 }

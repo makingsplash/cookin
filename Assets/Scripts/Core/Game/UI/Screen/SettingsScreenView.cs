@@ -1,8 +1,7 @@
-using Core.UI.Elements.Popup;
-using UnityEngine;
+using Core.UI.Elements.Screen;
 using UnityEngine.UI;
 
-namespace Core.Game.UI.Popups
+namespace Core.Game.UI.Screen
 {
     public class SettingsScreenView : ScreenView
     {
@@ -10,14 +9,5 @@ namespace Core.Game.UI.Popups
         public Toggle MusicToggle;
         public Button SupportButton;
         public Button CloseButton;
-
-
-        public void Initialize(SettingsScreenViewPresenter presenter, bool isSoundsOn, bool isMusicOn)
-        {
-            base.Initialize(presenter);
-
-            SoundsToggle.isOn = isSoundsOn;
-            MusicToggle.isOn = isMusicOn;
-        }
     }
 }

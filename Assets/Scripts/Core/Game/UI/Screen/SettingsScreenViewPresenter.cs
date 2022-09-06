@@ -1,8 +1,8 @@
 using Core.PlayerProfile;
-using Core.UI.Elements.Popup;
+using Core.UI.Elements.Screen;
 using UnityEngine;
 
-namespace Core.Game.UI.Popups
+namespace Core.Game.UI.Screen
 {
     public class SettingsScreenViewPresenter : ScreenViewPresenter
     {
@@ -18,7 +18,15 @@ namespace Core.Game.UI.Popups
 
         public override void InitializeView()
         {
-            SettingsScreenView.Initialize(this, ProfileManager.IsSoundsEnabled, ProfileManager.IsMusicEnabled);
+            SettingsScreenView.SoundsToggle.isOn = ProfileManager.IsSoundsEnabled;
+            SettingsScreenView.MusicToggle.isOn = ProfileManager.IsMusicEnabled;
+
+            base.InitializeView();
+        }
+
+        protected override void BindView()
+        {
+            base.BindView();
 
             SettingsScreenView.SoundsToggle.onValueChanged.AddListener(OnSoundsToggleChanged);
             SettingsScreenView.MusicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
