@@ -26,12 +26,12 @@ namespace Core.Game.UI.Screen
 
         protected override void BindView()
         {
-            base.BindView();
-
             SettingsScreenView.SoundsToggle.onValueChanged.AddListener(OnSoundsToggleChanged);
             SettingsScreenView.MusicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
             SettingsScreenView.SupportButton.onClick.AddListener(OpenSupportPopup);
             SettingsScreenView.CloseButton.onClick.AddListener(SettingsScreenView.Close);
+
+            base.BindView();
         }
 
         private void OnMusicToggleChanged(bool value)

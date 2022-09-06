@@ -25,10 +25,10 @@ namespace Core.Game.Home.UI.HUD
 
         protected override void BindView()
         {
-            base.BindView();
-
             HomeHUDView.SettingsButtnon.onClick.AddListener(ProcessSettingsWidgetClick);
             HomeHUDView.BankButton.onClick.AddListener(OpenBankPopup);
+
+            base.BindView();
         }
 
         private void ProcessSettingsWidgetClick()

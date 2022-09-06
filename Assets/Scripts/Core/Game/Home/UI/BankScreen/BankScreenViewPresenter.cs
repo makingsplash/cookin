@@ -20,9 +20,9 @@ namespace Core.Game.Home.UI.BankScreen
 
         protected override void BindView()
         {
-            base.BindView();
-
             BankScreenView.BuyButton.onClick.AddListener(GetFreeStars);
+
+            base.BindView();
         }
 
         private void GetFreeStars()
