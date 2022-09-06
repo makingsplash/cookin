@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Core.UI
 {
-    public class UIManager : IInitializable, ISignalListener, IDisposable
+    public class UIManager : IInitializable, IDisposable, ISignalListener
     {
         private DiContainer Container { get; }
 

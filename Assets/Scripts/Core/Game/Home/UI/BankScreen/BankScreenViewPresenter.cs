@@ -1,14 +1,21 @@
+using Core.Consumables;
+using Core.Game.Signals;
+using Core.Transactions;
 using Core.UI.Elements.Screen;
-using UnityEngine;
+using Zenject;
 
 namespace Core.Game.Home.UI.BankScreen
 {
     public class BankScreenViewPresenter : ScreenViewPresenter
     {
+
+        private SignalBus SignalBus { get; }
         private BankScreenView BankScreenView => ScreenView as BankScreenView;
 
-        public BankScreenViewPresenter() : base("Assets/GameAssets/Home/Prefabs/BankScreen.prefab")
+        public BankScreenViewPresenter(SignalBus signalBus)
+            : base("Assets/GameAssets/Home/Prefabs/BankScreen.prefab")
         {
+            SignalBus = signalBus;
         }
 
         public override void InitializeView()
@@ -27,7 +34,9 @@ namespace Core.Game.Home.UI.BankScreen
 
         private void GetFreeStars()
         {
-            Debug.Log($"[{nameof(BankScreenViewPresenter)}]: Get free stars");
+            var transaction = new Transaction(ConsumableType.Star, 100);
+
+            SignalBus.TryFire(new TransactionSignal(transaction));
         }
     }
 }

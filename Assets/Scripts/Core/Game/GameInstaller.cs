@@ -1,6 +1,7 @@
 using Core.Game.Context;
 using Core.Game.Signals;
 using Core.PlayerProfile;
+using Core.Transactions;
 using Zenject;
 
 namespace Core.Game
@@ -9,16 +10,18 @@ namespace Core.Game
     {
         public override void InstallBindings()
         {
-            Container.Bind<ProfileManager>().AsSingle().NonLazy();
+            Container.Bind<ProfileManager>().AsSingle();
             Container.Bind<ContextManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<TransactionManager>().AsSingle();
 
             SignalBusInstaller.Install(Container);
-            InstallSignals();
+            DeclareSignals();
         }
 
-        private void InstallSignals()
+        private void DeclareSignals()
         {
             Container.DeclareSignal<ShowPopupSignal>();
+            Container.DeclareSignal<TransactionSignal>();
         }
     }
 }

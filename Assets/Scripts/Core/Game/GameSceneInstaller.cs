@@ -12,6 +12,11 @@ namespace Core.Game
 
         public override void InstallBindings()
         {
+            InstallUI();
+        }
+
+        private void InstallUI()
+        {
             Container.BindInterfacesAndSelfTo<UICamera>().FromInstance(UICamera).AsSingle().NonLazy();
             Container.Bind<UIRoot>().FromInstance(UIRoot).AsSingle();
             Container.BindInterfacesAndSelfTo<UIManager>().AsSingle().NonLazy();
