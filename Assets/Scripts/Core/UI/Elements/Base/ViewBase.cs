@@ -1,24 +1,22 @@
+using System;
+
 namespace Core.UI.Elements.Base
 {
-    public abstract class UIViewBase : UIElement
+    public abstract class ViewBase : UIElement
     {
-        protected UIViewBasePresenter Presenter;
-
-        public virtual void Initialize(UIViewBasePresenter presenter)
-        {
-            Presenter = presenter;
-        }
+        public Action OnShow;
+        public Action OnClose;
 
         public virtual void Show()
         {
-            Presenter.OnShow?.Invoke();
+            OnShow?.Invoke();
 
             gameObject.SetActive(true);
         }
 
         public virtual void Close()
         {
-            Presenter.OnClose?.Invoke();
+            OnClose?.Invoke();
 
             gameObject.SetActive(false);
 
@@ -27,8 +25,8 @@ namespace Core.UI.Elements.Base
 
         public virtual void Clear()
         {
-            Presenter.OnShow = null;
-            Presenter.OnClose = null;
+            OnShow = null;
+            OnClose = null;
         }
 
         protected virtual void OnDestroy()

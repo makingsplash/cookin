@@ -2,7 +2,7 @@ using Core.UI.Elements.Base;
 
 namespace Core.UI.Elements.Screen
 {
-    public abstract class ScreenViewPresenter : UIViewBasePresenter
+    public abstract class ScreenViewPresenter : ViewPresenterBase
     {
         protected ScreenView ScreenView => View as ScreenView;
 

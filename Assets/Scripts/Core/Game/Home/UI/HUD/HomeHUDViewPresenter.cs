@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Core.Game.Home.UI.HUD
 {
-    public class HomeHUDViewPresenter : UIViewBasePresenter
+    public class HomeHUDViewPresenter : ViewPresenterBase
     {
         private HomeHUDView HomeHUDView => (HomeHUDView) View;
         private SignalBus SignalBus { get; }

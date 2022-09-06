@@ -14,6 +14,12 @@ namespace Core.UI.Elements.Base
         private Canvas _canvas;
         private CanvasGroup _canvasGroup;
 
+        [Inject]
+        private void Inject(UICamera uiCamera)
+        {
+            UICamera = uiCamera;
+        }
+
         public RectTransform RectTransform
         {
             get
@@ -35,12 +41,6 @@ namespace Core.UI.Elements.Base
 
                 return _canvas;
             }
-        }
-
-        [Inject]
-        private void Inject(UICamera uiCamera)
-        {
-            UICamera = uiCamera;
         }
 
         protected virtual void Start()

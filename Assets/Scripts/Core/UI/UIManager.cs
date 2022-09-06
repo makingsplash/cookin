@@ -41,7 +41,7 @@ namespace Core.UI
 
         public AsyncOperationHandle CreateUIViewPresenter<T>()
         {
-            var presenter = Container.Instantiate(typeof(T)) as UIViewBasePresenter;
+            var presenter = Container.Instantiate(typeof(T)) as ViewPresenterBase;
 
             AsyncOperationHandle asyncOperationHandle = CreateUIView(presenter);
 
@@ -50,23 +50,25 @@ namespace Core.UI
 
         private void CreateUIViewPresenter(ShowPopupSignal signal)
         {
-            var presenter = Container.Instantiate(signal.PresenterType) as UIViewBasePresenter;
+            var presenter = Container.Instantiate(signal.PresenterType) as ViewPresenterBase;
 
             CreateUIView(presenter);
         }
 
-        private AsyncOperationHandle<GameObject> CreateUIView(UIViewBasePresenter presenter)
+        private AsyncOperationHandle<GameObject> CreateUIView(ViewPresenterBase viewPresenter)
         {
-            AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.InstantiateAsync(presenter.PrefabPath, UIRoot.transform.position, Quaternion.identity, UIRoot.transform);
+            var asyncOperationHandle = Addressables.InstantiateAsync(viewPresenter.PrefabPath, UIRoot.transform.position, Quaternion.identity, UIRoot.transform);
 
             asyncOperationHandle.Completed +=
                 handle =>
                 {
-                    UIViewBase viewBase = handle.Result.GetComponent<UIViewBase>();
-                    Container.Inject(viewBase);
-                    presenter.SetView(viewBase);
-                    presenter.InitializeView();
-                    viewBase.Show();
+                    var view = handle.Result.GetComponent<ViewBase>();
+                    Container.Inject(view);
+
+                    viewPresenter.View = view;
+                    viewPresenter.InitializeView();
+
+                    view.Show();
                 };
 
             return asyncOperationHandle;
