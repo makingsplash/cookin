@@ -20,17 +20,18 @@ namespace Core.Game.Home.UI.HUD
 
         public override void InitializeView()
         {
-            HomeHUDView.Initialize();
+            HomeHUDView.SettingsButtnon.onClick.AddListener(ProcessSettingsWidgetClick);
+            HomeHUDView.BankButton.onClick.AddListener(OpenBankPopup);
         }
 
-        public void ProcessSettingsWidgetClick()
+        private void ProcessSettingsWidgetClick()
         {
-            SignalBus.TryFire(new ShowPopupSignal(typeof(SettingsPopupViewPresenter)));
+            SignalBus.TryFire(new ShowPopupSignal(typeof(SettingsScreenViewPresenter)));
         }
 
-        public void OpenBankPopup()
+        private void OpenBankPopup()
         {
-            Debug.Log($"[{typeof(HomeHUDView)}]: Show bank popup");
+            Debug.Log($"[{nameof(HomeHUDView)}]: Show bank popup");
 
             // SignalBus.TryFire(new ShowPopupSignal(typeof(BankPopupView)));
         }

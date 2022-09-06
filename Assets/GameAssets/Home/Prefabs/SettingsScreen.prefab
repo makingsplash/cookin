@@ -1763,7 +1763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754059408934767760, guid: a709ab655377445e0bb47cb7a6b4c280, type: 3}
       propertyPath: m_Name
-      value: SettingsPopup
+      value: SettingsScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3754059408934767760, guid: a709ab655377445e0bb47cb7a6b4c280, type: 3}
       propertyPath: m_Layer
@@ -1900,10 +1900,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   veil: {fileID: 5498518097681799526}
-  soundsToggle: {fileID: 1411172981681556655}
-  musicToggle: {fileID: 796166001333634173}
-  supportButton: {fileID: 1455649824082712539}
-  closeButton: {fileID: 5583301548631275627}
+  SoundsToggle: {fileID: 1411172981681556655}
+  MusicToggle: {fileID: 796166001333634173}
+  SupportButton: {fileID: 1455649824082712539}
+  CloseButton: {fileID: 5583301548631275627}
 --- !u!224 &8302754559754257532 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3990562834090406303, guid: a709ab655377445e0bb47cb7a6b4c280, type: 3}

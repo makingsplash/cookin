@@ -121,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3115632590694015039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Core.Game.UI.HUD.HomeHUDView, Assembly-CSharp
-        m_MethodName: OnWidgetSettingsClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3440729668570710078
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e975a0a4d248e6a3abc0825ac77d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsButtnon: {fileID: 3290437899809618107}
-  bankButton: {fileID: 7805238384945097851}
+  SettingsButtnon: {fileID: 3290437899809618107}
+  BankButton: {fileID: 7805238384945097851}
 --- !u!224 &3939377306930426307 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3990562834090406303, guid: a709ab655377445e0bb47cb7a6b4c280, type: 3}
