@@ -1,4 +1,5 @@
 using Core.UI.Elements.Base;
+using TMPro;
 using UnityEngine.UI;
 
 namespace Core.Game.Home.UI.HUD
@@ -7,5 +8,9 @@ namespace Core.Game.Home.UI.HUD
     {
         public Button SettingsButtnon;
         public Button BankButton;
+
+        // make class
+        public TextMeshProUGUI StarsAmount;
+        public TextMeshProUGUI DiamondsAmount;
     }
 }

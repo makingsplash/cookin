@@ -1,4 +1,5 @@
 using System;
+using Core.Consumables;
 using Core.Game.Signals;
 using Core.PlayerProfile;
 using UnityEngine;
@@ -30,7 +31,19 @@ namespace Core.Transactions
 
         private void ProcessTransaction(TransactionSignal signal)
         {
+            // check network, make purchase, etc
             Debug.Log($"[{nameof(TransactionManager)}]: Transaction of {signal.Transaction.Amount} {signal.Transaction.ConsumableType}s");
+
+
+            var consumableType = signal.Transaction.ConsumableType;
+            var changeAmount = signal.Transaction.Amount;
+
+            var oldAmount = ProfileManager.GetConsumableAmount(consumableType);
+            var newAmount = oldAmount + changeAmount;
+
+            ProfileManager.SetConsumableAmount(consumableType, newAmount);
+
+            SignalBus.TryFire(new ConsumableAmountChangedSignal(consumableType, oldAmount, newAmount));
         }
 
         public void Initialize()

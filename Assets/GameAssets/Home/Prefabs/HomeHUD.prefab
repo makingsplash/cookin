@@ -475,6 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingsButtnon: {fileID: 3290437899809618107}
   BankButton: {fileID: 7805238384945097851}
+  StarsAmount: {fileID: 558788015715309918}
+  DiamondsAmount: {fileID: 353956582141813413}
 --- !u!224 &3939377306930426307 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3990562834090406303, guid: a709ab655377445e0bb47cb7a6b4c280, type: 3}
@@ -673,3 +675,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b4b2478c70c471e879893da22087b7, type: 3}
+--- !u!114 &353956582141813413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5595938902174967122, guid: 68b4b2478c70c471e879893da22087b7, type: 3}
+  m_PrefabInstance: {fileID: 5278576562652104695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &558788015715309918 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5656648503357611689, guid: 68b4b2478c70c471e879893da22087b7, type: 3}
+  m_PrefabInstance: {fileID: 5278576562652104695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

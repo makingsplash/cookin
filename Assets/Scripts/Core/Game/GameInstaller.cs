@@ -22,6 +22,7 @@ namespace Core.Game
         {
             Container.DeclareSignal<ShowPopupSignal>();
             Container.DeclareSignal<TransactionSignal>();
+            Container.DeclareSignal<ConsumableAmountChangedSignal>();
         }
     }
 }

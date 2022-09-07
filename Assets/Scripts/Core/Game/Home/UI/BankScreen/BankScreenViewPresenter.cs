@@ -34,7 +34,9 @@ namespace Core.Game.Home.UI.BankScreen
 
         private void GetFreeStars()
         {
-            var transaction = new Transaction(ConsumableType.Star, 100);
+            // temp
+
+            var transaction = new Transaction(ConsumableType.Star, 999);
 
             SignalBus.TryFire(new TransactionSignal(transaction));
         }
