@@ -4,7 +4,7 @@ using Core.PlayerProfile;
 using Core.Transactions;
 using Zenject;
 
-namespace Core.Game
+namespace Core.Game.Installers
 {
     public class GameInstaller : MonoInstaller
     {

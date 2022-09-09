@@ -2,6 +2,7 @@ using System;
 
 namespace Core.Consumables
 {
+    [Serializable]
     public enum ConsumableType
     {
         Star = 0,

@@ -1,44 +1,71 @@
-using Core.Consumables;
+using Core.Game.Home.Configs;
 using Core.Game.Signals;
+using Core.PlayerProfile;
 using Core.Transactions;
 using Core.UI.Elements.Screen;
+using UnityEngine;
 using Zenject;
 
 namespace Core.Game.Home.UI.BankScreen
 {
     public class BankScreenViewPresenter : ScreenViewPresenter
     {
-
         private SignalBus SignalBus { get; }
+        private BankConfig BankConfig { get; }
+        private ProfileManager ProfileManager {get; }
         private BankScreenView BankScreenView => ScreenView as BankScreenView;
 
-        public BankScreenViewPresenter(SignalBus signalBus)
-            : base("Assets/GameAssets/Home/Prefabs/BankScreen.prefab")
+        public BankScreenViewPresenter(SignalBus signalBus, BankConfig bankConfig, ProfileManager profileManager)
+            : base("Assets/GameAssets/Home/Prefabs/BankScreen/BankScreen.prefab")
         {
             SignalBus = signalBus;
+            BankConfig = bankConfig;
+            ProfileManager = profileManager;
         }
 
         public override void InitializeView()
         {
-            BankScreenView.CoinsAmount.text = "999";
+            InitializeBankItems();
 
             base.InitializeView();
         }
 
-        protected override void BindView()
+        private void InitializeBankItems()
         {
-            BankScreenView.BuyButton.onClick.AddListener(GetFreeStars);
+            for (var i = 0; i < BankConfig.BankItems.Count; i++)
+            {
+                BankItem bankItemView = BankScreenView.BankItems[i];
+                BankConfigItem bankItemConfig = BankConfig.BankItems[i];
 
-            base.BindView();
+                bankItemView.ProductAmount.text = bankItemConfig.ProductAmount.ToString();
+                bankItemView.PriceAmount.text = bankItemConfig.Free ? "Free" : BankConfig.BankItems[i].PriceAmount.ToString();
+
+                int bankItemIndex = i;
+                bankItemView.BuyButton.onClick.AddListener(() => OnBuyButtonClicked(bankItemIndex));
+            }
         }
 
-        private void GetFreeStars()
+        private void OnBuyButtonClicked(int bankItemIndex)
         {
-            // temp
+            BankConfigItem bankConfigItem = BankConfig.BankItems[bankItemIndex];
 
-            var transaction = new Transaction(ConsumableType.Star, 999);
+            if (!bankConfigItem.Free)
+            {
+                if(ProfileManager.GetConsumableAmount(bankConfigItem.PriceConsumableType) >= bankConfigItem.PriceAmount)
+                {
+                    Transaction transactionPurchase = new Transaction(bankConfigItem.PriceConsumableType, -bankConfigItem.PriceAmount);
+                    SignalBus.TryFire(new TransactionSignal(transactionPurchase));
+                }
+                else
+                {
+                    Debug.Log($"[{nameof(BankScreenViewPresenter)}]: Not enough {bankConfigItem.PriceConsumableType}s to make purchase");
 
-            SignalBus.TryFire(new TransactionSignal(transaction));
+                    return;
+                }
+            }
+
+            Transaction transactionProduct = new Transaction(bankConfigItem.ProductConsumableType, bankConfigItem.ProductAmount);
+            SignalBus.TryFire(new TransactionSignal(transactionProduct));
         }
     }
 }

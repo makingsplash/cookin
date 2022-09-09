@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e6589720da476459dc6dd71624b071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 80608c38b06224045b71ae0259e4b4b5, type: 2}
   _monoInstallers:
   - {fileID: 5580448314287167474}
   _installerPrefabs: []
@@ -74,4 +75,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d9c4099f4b44259ab72f6c9f23e347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameStarter: {fileID: 7539428266291598538, guid: 4fd0f40820beb42c78f1e067d775e7c8, type: 3}

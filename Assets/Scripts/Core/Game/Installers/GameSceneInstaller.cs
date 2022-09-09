@@ -3,7 +3,7 @@ using Core.UI.Camera;
 using Core.UI.Elements;
 using Zenject;
 
-namespace Core.Game
+namespace Core.Game.Installers
 {
     public class GameSceneInstaller : MonoInstaller
     {
