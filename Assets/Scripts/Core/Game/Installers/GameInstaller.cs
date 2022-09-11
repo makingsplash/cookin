@@ -1,4 +1,5 @@
 using Core.Game.Context;
+using Core.Game.Savings;
 using Core.Game.Signals;
 using Core.PlayerProfile;
 using Core.Transactions;
@@ -10,12 +11,20 @@ namespace Core.Game.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<ProfileManager>().AsSingle();
+            InstallSavings();
+
             Container.Bind<ContextManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TransactionManager>().AsSingle();
 
             SignalBusInstaller.Install(Container);
             DeclareSignals();
+        }
+
+        private void InstallSavings()
+        {
+            Container.Bind<JsonDataManager>().AsSingle();
+            Container.Bind<SavingsManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ProfileManager>().AsSingle().NonLazy();
         }
 
         private void DeclareSignals()

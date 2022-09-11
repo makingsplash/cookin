@@ -1,3 +1,4 @@
+using Core.Game.Savings;
 using Core.PlayerProfile;
 using Core.UI.Elements.Screen;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Core.Game.UI.Screen
         private SettingsScreenView SettingsScreenView => (SettingsScreenView) View;
         private ProfileManager ProfileManager { get; }
 
+        private ProfileData ProfileData => ProfileManager.ProfileData;
+
 
         public SettingsScreenViewPresenter(ProfileManager profileManager)
             : base("Assets/GameAssets/Home/Prefabs/SettingsScreen.prefab")
@@ -18,8 +21,8 @@ namespace Core.Game.UI.Screen
 
         public override void InitializeView()
         {
-            SettingsScreenView.SoundsToggle.isOn = ProfileManager.IsSoundsEnabled;
-            SettingsScreenView.MusicToggle.isOn = ProfileManager.IsMusicEnabled;
+            SettingsScreenView.SoundsToggle.isOn = ProfileData.IsSoundsEnabled;
+            SettingsScreenView.MusicToggle.isOn = ProfileData.IsMusicEnabled;
 
             base.InitializeView();
         }
@@ -36,16 +39,16 @@ namespace Core.Game.UI.Screen
 
         private void OnMusicToggleChanged(bool value)
         {
-            ProfileManager.IsMusicEnabled = value;
+            ProfileData.IsMusicEnabled = value;
 
-            Debug.Log($"[{nameof(SettingsScreenViewPresenter)}]: Play music {ProfileManager.IsMusicEnabled}");
+            Debug.Log($"[{nameof(SettingsScreenViewPresenter)}]: Play music {ProfileData.IsMusicEnabled}");
         }
 
         private void OnSoundsToggleChanged(bool value)
         {
-            ProfileManager.IsSoundsEnabled = value;
+            ProfileData.IsSoundsEnabled = value;
 
-            Debug.Log($"[{nameof(SettingsScreenViewPresenter)}]: Play sounds {ProfileManager.IsSoundsEnabled}");
+            Debug.Log($"[{nameof(SettingsScreenViewPresenter)}]: Play sounds {ProfileData.IsSoundsEnabled}");
         }
 
         private void OpenSupportPopup()

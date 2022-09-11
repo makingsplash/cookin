@@ -1,28 +1,34 @@
 using System;
 using Core.Consumables;
+using Core.Game.Savings;
+using Zenject;
 
 namespace Core.PlayerProfile
 {
-    public class ProfileManager
+    public class ProfileManager : IInitializable
     {
-        public bool IsMusicEnabled;
-        public bool IsSoundsEnabled;
+        private SavingsManager SavingsManager { get; }
 
-        private int _starsAmount;
-        private int _diamondsAmount;
+        public ProfileData ProfileData;
 
-        public ProfileManager()
+
+        public ProfileManager(SavingsManager savingsManager)
         {
-            IsMusicEnabled = false;
-            IsSoundsEnabled = true;
+            SavingsManager = savingsManager;
+        }
+
+        public void Initialize()
+        {
+            ProfileData = SavingsManager.LoadData();
+            ProfileData.OnSave += () => SavingsManager.SaveData(ProfileData);
         }
 
         public int GetConsumableAmount(ConsumableType consumableType)
         {
             return consumableType switch
             {
-                ConsumableType.Star => _starsAmount,
-                ConsumableType.Diamond => _diamondsAmount,
+                ConsumableType.Star => ProfileData.Stars,
+                ConsumableType.Diamond => ProfileData.Diamonds,
                 _ => throw new ArgumentOutOfRangeException(nameof(consumableType), consumableType, null)
             };
         }
@@ -32,10 +38,10 @@ namespace Core.PlayerProfile
             switch(consumableType)
             {
                 case ConsumableType.Star:
-                    _starsAmount = newAmount;
+                    ProfileData.Stars = newAmount;
                     break;
                 case ConsumableType.Diamond:
-                    _diamondsAmount = newAmount;
+                    ProfileData.Diamonds = newAmount;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(consumableType), consumableType, null);
