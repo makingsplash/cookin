@@ -1,6 +1,6 @@
+using Core.Consumables;
 using Core.Game.Home.Configs;
 using Core.Game.Signals;
-using Core.PlayerProfile;
 using Core.Transactions;
 using Core.UI.Elements.Screen;
 using UnityEngine;
@@ -12,15 +12,15 @@ namespace Core.Game.Home.UI.BankScreen
     {
         private SignalBus SignalBus { get; }
         private BankConfig BankConfig { get; }
-        private ProfileManager ProfileManager {get; }
+        private ConsumablesManager ConsumablesManager {get; }
         private BankScreenView BankScreenView => ScreenView as BankScreenView;
 
-        public BankScreenViewPresenter(SignalBus signalBus, BankConfig bankConfig, ProfileManager profileManager)
+        public BankScreenViewPresenter(SignalBus signalBus, BankConfig bankConfig, ConsumablesManager consumablesManager)
             : base("Assets/GameAssets/Home/Prefabs/BankScreen/BankScreen.prefab")
         {
             SignalBus = signalBus;
             BankConfig = bankConfig;
-            ProfileManager = profileManager;
+            ConsumablesManager = consumablesManager;
         }
 
         public override void InitializeView()
@@ -51,7 +51,7 @@ namespace Core.Game.Home.UI.BankScreen
 
             if (!bankConfigItem.Free)
             {
-                if(ProfileManager.GetConsumableAmount(bankConfigItem.PriceConsumableType) >= bankConfigItem.PriceAmount)
+                if(ConsumablesManager.GetConsumableAmount(bankConfigItem.PriceConsumableType) >= bankConfigItem.PriceAmount)
                 {
                     Transaction transactionPurchase = new Transaction(bankConfigItem.PriceConsumableType, -bankConfigItem.PriceAmount);
                     SignalBus.TryFire(new TransactionSignal(transactionPurchase));

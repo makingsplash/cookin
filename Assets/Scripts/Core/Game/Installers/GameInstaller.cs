@@ -1,3 +1,4 @@
+using Core.Consumables;
 using Core.Game.Context;
 using Core.Game.Savings;
 using Core.Game.Signals;
@@ -14,6 +15,7 @@ namespace Core.Game.Installers
             InstallSavings();
 
             Container.Bind<ContextManager>().AsSingle().NonLazy();
+            Container.Bind<ConsumablesManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<TransactionManager>().AsSingle();
 
             SignalBusInstaller.Install(Container);

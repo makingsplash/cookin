@@ -1,7 +1,6 @@
 using System;
 using Core.Consumables;
 using Core.Game.Signals;
-using Core.PlayerProfile;
 using UnityEngine;
 using Zenject;
 
@@ -10,13 +9,13 @@ namespace Core.Transactions
     public class TransactionManager : IInitializable, IDisposable, ISignalListener
     {
         private SignalBus SignalBus { get; }
-        private ProfileManager ProfileManager { get; }
+        private ConsumablesManager ConsumablesManager { get; }
 
 
-        public TransactionManager(SignalBus signalBus, ProfileManager profileManager)
+        public TransactionManager(SignalBus signalBus, ConsumablesManager consumablesManager)
         {
             SignalBus = signalBus;
-            ProfileManager = profileManager;
+            ConsumablesManager = consumablesManager;
         }
 
         public void SignalsSubscribe()
@@ -38,10 +37,10 @@ namespace Core.Transactions
             var consumableType = signal.Transaction.ConsumableType;
             var changeAmount = signal.Transaction.Amount;
 
-            var oldAmount = ProfileManager.GetConsumableAmount(consumableType);
+            var oldAmount = ConsumablesManager.GetConsumableAmount(consumableType);
             var newAmount = oldAmount + changeAmount;
 
-            ProfileManager.SetConsumableAmount(consumableType, newAmount);
+            ConsumablesManager.SetConsumableAmount(consumableType, newAmount);
 
             SignalBus.TryFire(new ConsumableAmountChangedSignal(consumableType, oldAmount, newAmount));
         }

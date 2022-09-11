@@ -3,7 +3,6 @@ using Core.Consumables;
 using Core.Game.Home.UI.BankScreen;
 using Core.Game.Signals;
 using Core.Game.UI.Screen;
-using Core.PlayerProfile;
 using Core.UI.Elements.Base;
 using Zenject;
 
@@ -14,22 +13,22 @@ namespace Core.Game.Home.UI.HUD
         private HomeHUDView HomeHUDView => (HomeHUDView) View;
 
         private SignalBus SignalBus { get; }
-        private ProfileManager ProfileManager { get; }
+        private ConsumablesManager ConsumablesManager { get; }
 
 
-        public HomeHUDViewPresenter(SignalBus signalBus, ProfileManager profileManager)
+        public HomeHUDViewPresenter(SignalBus signalBus, ConsumablesManager consumablesManager)
             : base("Assets/GameAssets/Home/Prefabs/HomeHUD.prefab")
         {
             SignalBus = signalBus;
-            ProfileManager = profileManager;
+            ConsumablesManager = consumablesManager;
         }
 
         public override void InitializeView()
         {
             base.InitializeView();
 
-            HomeHUDView.StarsAmount.text = ProfileManager.GetConsumableAmount(ConsumableType.Star).ToString();
-            HomeHUDView.DiamondsAmount.text = ProfileManager.GetConsumableAmount(ConsumableType.Diamond).ToString();
+            HomeHUDView.StarsAmount.text = ConsumablesManager.GetConsumableAmount(ConsumableType.Star).ToString();
+            HomeHUDView.DiamondsAmount.text = ConsumablesManager.GetConsumableAmount(ConsumableType.Diamond).ToString();
 
             SignalsSubscribe();
 
