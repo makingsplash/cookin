@@ -25,7 +25,6 @@ namespace Core.Game.Installers
         private void InstallSavings()
         {
             Container.Bind<JsonDataManager>().AsSingle();
-            Container.Bind<SavingsManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProfileManager>().AsSingle().NonLazy();
         }
 
