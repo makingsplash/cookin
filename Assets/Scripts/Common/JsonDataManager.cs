@@ -3,7 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Core.Game.Savings
+namespace Common
 {
     public class JsonDataManager
     {

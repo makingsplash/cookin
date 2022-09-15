@@ -34,11 +34,11 @@ namespace Core.Transactions
             Debug.Log($"[{nameof(TransactionManager)}]: Transaction of {signal.Transaction.Amount} {signal.Transaction.ConsumableType}s");
 
 
-            var consumableType = signal.Transaction.ConsumableType;
-            var changeAmount = signal.Transaction.Amount;
+            ConsumableType consumableType = signal.Transaction.ConsumableType;
+            int changeAmount = signal.Transaction.Amount;
 
-            var oldAmount = ConsumablesManager.GetConsumableAmount(consumableType);
-            var newAmount = oldAmount + changeAmount;
+            int oldAmount = ConsumablesManager.GetConsumableAmount(consumableType);
+            int newAmount = oldAmount + changeAmount;
 
             ConsumablesManager.SetConsumableAmount(consumableType, newAmount);
 

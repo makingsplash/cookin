@@ -32,7 +32,7 @@ namespace Core.Game.Home.UI.BankScreen
 
         private void InitializeBankItems()
         {
-            for (var i = 0; i < BankConfig.BankItems.Count; i++)
+            for (int i = 0; i < BankConfig.BankItems.Count; i++)
             {
                 BankItem bankItemView = BankScreenView.BankItems[i];
                 BankConfigItem bankItemConfig = BankConfig.BankItems[i];

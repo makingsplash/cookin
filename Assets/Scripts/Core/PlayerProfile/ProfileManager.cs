@@ -1,5 +1,5 @@
 using System.IO;
-using Core.Game.Savings;
+using Common;
 using UnityEngine;
 using Zenject;
 
@@ -25,7 +25,7 @@ namespace Core.PlayerProfile
         public void Initialize()
         {
             ProfileData = LoadData();
-            ProfileData.OnSave += () => SaveData(ProfileData);
+            ProfileData.OnSet += () => SaveData(ProfileData);
         }
 
         private void SaveData(ProfileData profileData)

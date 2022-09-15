@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Core.Game.Savings
+namespace Core.PlayerProfile
 {
     [Serializable]
     public class ProfileData
@@ -19,7 +19,7 @@ namespace Core.Game.Savings
         private int _diamonds;
 
         [JsonIgnore]
-        public Action OnSave;
+        public Action OnSet;
 
 
         [JsonIgnore]
@@ -58,7 +58,7 @@ namespace Core.Game.Savings
             }
 
             field = value;
-            OnSave?.Invoke();
+            OnSet?.Invoke();
         }
     }
 }
