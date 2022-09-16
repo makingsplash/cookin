@@ -1,12 +1,12 @@
 using Core.Game.Home.UI.HUD;
-using Core.Game.Signals;
+using Core.Signals;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Game.Context
+namespace Core.Context
 {
-    public class HomeContext : Context
+    public class HomeContext : Game.Context.Context
     {
         public override string Scene => "Assets/GameAssets/Home/Scenes/HomeScene.unity";
 

@@ -32,6 +32,7 @@ namespace Core.Game.UI.Screen
             SettingsScreenView.MusicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
             SettingsScreenView.SupportButton.onClick.AddListener(OpenSupportPopup);
             SettingsScreenView.CloseButton.onClick.AddListener(SettingsScreenView.Close);
+            SettingsScreenView.ResetSavingsButton.onClick.AddListener(ResetSavings);
 
             base.BindView();
         }
@@ -53,6 +54,14 @@ namespace Core.Game.UI.Screen
         private void OpenSupportPopup()
         {
             Debug.Log($"[{nameof(SettingsScreenViewPresenter)}]: Open support popup");
+        }
+
+        private void ResetSavings()
+        {
+            ProfileManager.ResetData();
+
+            SettingsScreenView.MusicToggle.isOn = true;
+            SettingsScreenView.SoundsToggle.isOn = true;
         }
     }
 }

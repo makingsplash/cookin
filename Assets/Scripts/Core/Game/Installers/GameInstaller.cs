@@ -1,8 +1,8 @@
 using Common;
 using Core.Consumables;
 using Core.Game.Context;
-using Core.Game.Signals;
 using Core.PlayerProfile;
+using Core.Signals;
 using Core.Transactions;
 using Zenject;
 
@@ -33,6 +33,7 @@ namespace Core.Game.Installers
             Container.DeclareSignal<ShowPopupSignal>();
             Container.DeclareSignal<TransactionSignal>();
             Container.DeclareSignal<ConsumableAmountChangedSignal>();
+            Container.DeclareSignal<ResetDataSignal>();
         }
     }
 }

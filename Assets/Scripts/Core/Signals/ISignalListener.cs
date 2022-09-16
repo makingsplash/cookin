@@ -1,4 +1,4 @@
-namespace Core.Game.Signals
+namespace Core.Signals
 {
     public interface ISignalListener
     {

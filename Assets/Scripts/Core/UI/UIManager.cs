@@ -1,5 +1,5 @@
 using System;
-using Core.Game.Signals;
+using Core.Signals;
 using Core.UI.Elements;
 using Core.UI.Elements.Base;
 using UnityEngine;

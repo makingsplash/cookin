@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Game.Signals
+namespace Core.Signals
 {
     public class ShowPopupSignal
     {

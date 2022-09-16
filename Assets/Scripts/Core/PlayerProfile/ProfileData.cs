@@ -60,5 +60,15 @@ namespace Core.PlayerProfile
             field = value;
             OnSet?.Invoke();
         }
+
+        public void Reset()
+        {
+            // temp
+
+            Stars = 0;
+            Diamonds = 0;
+            IsMusicEnabled = true;
+            IsSoundsEnabled = true;
+        }
     }
 }

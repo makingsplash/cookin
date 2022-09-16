@@ -1,6 +1,6 @@
 using System;
 using Core.Consumables;
-using Core.Game.Signals;
+using Core.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -42,7 +42,7 @@ namespace Core.Transactions
 
             ConsumablesManager.SetConsumableAmount(consumableType, newAmount);
 
-            SignalBus.TryFire(new ConsumableAmountChangedSignal(consumableType, oldAmount, newAmount));
+            SignalBus.TryFire(new ConsumableAmountChangedSignal(consumableType, newAmount, oldAmount));
         }
 
         public void Initialize()

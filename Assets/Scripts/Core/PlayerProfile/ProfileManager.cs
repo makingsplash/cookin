@@ -1,5 +1,6 @@
 using System.IO;
 using Common;
+using Core.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -10,44 +11,48 @@ namespace Core.PlayerProfile
         private const string SAVINGS_FILE_PATH = "/profile.json";
 
         private JsonDataManager JsonDataManager { get; }
-
+        private SignalBus SignalBus { get; }
 
         public ProfileData ProfileData;
 
         private bool SavingsFileExist => File.Exists(Application.persistentDataPath + SAVINGS_FILE_PATH);
 
 
-        public ProfileManager(JsonDataManager jsonDataManager)
+        public ProfileManager(JsonDataManager jsonDataManager, SignalBus signalBus)
         {
             JsonDataManager = jsonDataManager;
+            SignalBus = signalBus;
         }
 
         public void Initialize()
         {
-            ProfileData = LoadData();
-            ProfileData.OnSet += () => SaveData(ProfileData);
+            LoadData();
+            ProfileData.OnSet += SaveData;
         }
 
-        private void SaveData(ProfileData profileData)
+        public void ResetData()
         {
-            JsonDataManager.SaveData(SAVINGS_FILE_PATH, profileData);
+            SignalBus.TryFire(new ResetDataSignal());
+
+            ProfileData.Reset();
         }
 
-        private ProfileData LoadData()
+        private void SaveData()
         {
-            ProfileData data;
+            JsonDataManager.SaveData(SAVINGS_FILE_PATH, ProfileData);
+        }
 
+        private void LoadData()
+        {
             if (SavingsFileExist)
             {
-                data = JsonDataManager.LoadData<ProfileData>(SAVINGS_FILE_PATH);
+                ProfileData = JsonDataManager.LoadData<ProfileData>(SAVINGS_FILE_PATH);
             }
             else
             {
-                data = new ProfileData();
-                SaveData(data);
+                ProfileData = new ProfileData();
+                SaveData();
             }
-
-            return data;
         }
     }
 }

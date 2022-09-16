@@ -1,6 +1,6 @@
 using Core.Consumables;
 using Core.Game.Home.Configs;
-using Core.Game.Signals;
+using Core.Signals;
 using Core.Transactions;
 using Core.UI.Elements.Screen;
 using UnityEngine;

@@ -1,6 +1,6 @@
 using Core.Transactions;
 
-namespace Core.Game.Signals
+namespace Core.Signals
 {
     public class TransactionSignal
     {

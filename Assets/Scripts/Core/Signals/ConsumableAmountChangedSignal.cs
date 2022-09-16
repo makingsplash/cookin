@@ -1,6 +1,6 @@
 using Core.Consumables;
 
-namespace Core.Game.Signals
+namespace Core.Signals
 {
     public class ConsumableAmountChangedSignal
     {
@@ -8,11 +8,11 @@ namespace Core.Game.Signals
         public readonly int OldAmount;
         public readonly int NewAmount;
 
-        public ConsumableAmountChangedSignal(ConsumableType consumableType, int oldAmount, int newAmount)
+        public ConsumableAmountChangedSignal(ConsumableType consumableType, int newAmount, int oldAmount = 0)
         {
             ConsumableType = consumableType;
-            OldAmount = oldAmount;
             NewAmount = newAmount;
+            OldAmount = oldAmount;
         }
     }
 }

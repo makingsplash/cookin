@@ -9,5 +9,6 @@ namespace Core.Game.UI.Screen
         public Toggle MusicToggle;
         public Button SupportButton;
         public Button CloseButton;
+        public Button ResetSavingsButton;
     }
 }
