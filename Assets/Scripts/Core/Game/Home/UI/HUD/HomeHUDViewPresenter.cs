@@ -13,11 +13,11 @@ namespace Core.Game.Home.UI.HUD
 {
     public class HomeHUDViewPresenter : ViewPresenterBase, ISignalListener
     {
-        private HomeHUDView HomeHUDView => (HomeHUDView) View;
-
         private SignalBus SignalBus { get; }
         private ConsumablesManager ConsumablesManager { get; }
         private ContextManager ContextManager { get; }
+
+        private HomeHUDView HomeHUDView => (HomeHUDView) View;
 
 
         public HomeHUDViewPresenter(SignalBus signalBus, ConsumablesManager consumablesManager, ContextManager contextManager)
