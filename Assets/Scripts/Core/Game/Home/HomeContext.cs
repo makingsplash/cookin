@@ -4,26 +4,27 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Context
+namespace Core.Game.Home
 {
-    public class HomeContext : Game.Context.Context
+    public class HomeContext : Core.Context.IContext
     {
-        public override string Scene => "Assets/GameAssets/Home/Scenes/HomeScene.unity";
+        public string Scene => "Assets/GameAssets/Home/Scenes/HomeScene.unity";
 
-        public SignalBus SignalBus { get; }
+        private SignalBus SignalBus { get; }
 
         public HomeContext(SignalBus signalBus)
         {
             SignalBus = signalBus;
         }
 
-        public override UniTask Setup()
+        public UniTask Setup()
         {
             Debug.Log($"[{nameof(HomeContext)}]: Setup");
 
+            // use UIManager manually, await for creation
             SignalBus.TryFire(new ShowPopupSignal(typeof(HomeHUDViewPresenter)));
 
-            return base.Setup();
+            return new UniTask();
         }
     }
 }

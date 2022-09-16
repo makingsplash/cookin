@@ -1,9 +1,12 @@
 using System;
 using Core.Consumables;
+using Core.Game.Context;
 using Core.Game.Home.UI.BankScreen;
+using Core.Game.Play;
 using Core.Game.UI.Screen;
 using Core.Signals;
 using Core.UI.Elements.Base;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 namespace Core.Game.Home.UI.HUD
@@ -14,13 +17,15 @@ namespace Core.Game.Home.UI.HUD
 
         private SignalBus SignalBus { get; }
         private ConsumablesManager ConsumablesManager { get; }
+        private ContextManager ContextManager { get; }
 
 
-        public HomeHUDViewPresenter(SignalBus signalBus, ConsumablesManager consumablesManager)
+        public HomeHUDViewPresenter(SignalBus signalBus, ConsumablesManager consumablesManager, ContextManager contextManager)
             : base("Assets/GameAssets/Home/Prefabs/HomeHUD.prefab")
         {
             SignalBus = signalBus;
             ConsumablesManager = consumablesManager;
+            ContextManager = contextManager;
         }
 
         public override void InitializeView()
@@ -38,6 +43,7 @@ namespace Core.Game.Home.UI.HUD
 
             HomeHUDView.SettingsButtnon.onClick.AddListener(ProcessSettingsWidgetClick);
             HomeHUDView.BankButton.onClick.AddListener(OpenBankPopup);
+            HomeHUDView.PlayButton.onClick.AddListener(EnterPlayContext);
 
             base.BindView();
         }
@@ -52,6 +58,11 @@ namespace Core.Game.Home.UI.HUD
         {
             SignalBus.Unsubscribe<ConsumableAmountChangedSignal>(OnConsumableAmountChanged);
             SignalBus.Unsubscribe<ResetDataSignal>(OnResetData);
+        }
+
+        private void EnterPlayContext()
+        {
+            ContextManager.Load<PlayContext>().Forget();
         }
 
         private void OnConsumableAmountChanged(ConsumableAmountChangedSignal signal)

@@ -9,7 +9,7 @@ namespace Core.Game.Context
         private DiContainer Container { get; }
         private SignalBus SignalBus { get; }
 
-        public Context Context { get; private set; }
+        public Core.Context.IContext Context { get; private set; }
 
         public ContextManager(DiContainer container, SignalBus signalBus)
         {
@@ -17,7 +17,7 @@ namespace Core.Game.Context
             SignalBus = signalBus;
         }
 
-        public async UniTask Load<TContext>() where TContext : Context
+        public async UniTask Load<TContext>() where TContext : Core.Context.IContext
         {
             Context = Container.Instantiate<TContext>();
 
