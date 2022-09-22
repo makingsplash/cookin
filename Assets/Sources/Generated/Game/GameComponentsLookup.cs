@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int CoreGamePlayMovable = 0;
 
-    public const int TotalComponents = 1;
+
+    public const int TotalComponents = 0;
 
     public static readonly string[] componentNames = {
-        "CoreGamePlayMovable"
+
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Core.Game.Play.MovableComponent)
+
     };
 }
