@@ -8,15 +8,18 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
+    public const int CoreGamePlayECSComponentsIngredient = 0;
+    public const int CoreGamePlayECSComponentsIngredientContainerView = 1;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
-
+        "CoreGamePlayECSComponentsIngredient",
+        "CoreGamePlayECSComponentsIngredientContainerView"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(Core.Game.Play.ECS.Components.IngredientComponent),
+        typeof(Core.Game.Play.ECS.Components.IngredientContainerViewComponent)
     };
 }
