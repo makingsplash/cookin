@@ -11,19 +11,19 @@ public partial class GameEntity {
     public Play.ECS.IngredientContainerViewComponent playECSIngredientContainerView { get { return (Play.ECS.IngredientContainerViewComponent)GetComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
     public bool hasPlayECSIngredientContainerView { get { return HasComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
 
-    public void AddPlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerViewBehaviour newViewBehaviour) {
+    public void AddPlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerUpdatableViewBehaviour newUpdatableViewBehaviour) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.Ingredients = newIngredients;
-        component.ViewBehaviour = newViewBehaviour;
+        component.UpdatableViewBehaviour = newUpdatableViewBehaviour;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerViewBehaviour newViewBehaviour) {
+    public void ReplacePlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerUpdatableViewBehaviour newUpdatableViewBehaviour) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.Ingredients = newIngredients;
-        component.ViewBehaviour = newViewBehaviour;
+        component.UpdatableViewBehaviour = newUpdatableViewBehaviour;
         ReplaceComponent(index, component);
     }
 

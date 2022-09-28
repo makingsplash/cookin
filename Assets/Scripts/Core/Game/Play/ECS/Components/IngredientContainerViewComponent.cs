@@ -8,6 +8,6 @@ namespace Play.ECS
     public class IngredientContainerViewComponent : IComponent
     {
         public Stack<IngredientTypes> Ingredients;
-        public IngredientsContainerViewBehaviour ViewBehaviour;
+        public IngredientsContainerUpdatableViewBehaviour UpdatableViewBehaviour;
     }
 }

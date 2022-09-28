@@ -9,7 +9,8 @@ namespace Core.Game.Play.ECS
     public class GameController : MonoBehaviour
     {
         public List<IngredientProducerViewBehaviour> IngredientProducerViews;
-        public List<IngredientsContainerViewBehaviour> IngredientsContainerViews;
+        public List<IngredientsContainerUpdatableViewBehaviour> IngredientsContainerViews;
+        public List<TimerUpdatableViewBehaviour> TimerViews;
 
         private Entitas.Systems _systems;
 
@@ -18,7 +19,10 @@ namespace Core.Game.Play.ECS
             var contexts = Contexts.sharedInstance;
 
             _systems = new Feature("Systems")
-                .Add(new GameSystems(contexts, IngredientProducerViews, IngredientsContainerViews));
+                .Add(new GameSystems(contexts,
+                    IngredientProducerViews,
+                    IngredientsContainerViews,
+                    TimerViews));
 
             _systems.Initialize();
         }

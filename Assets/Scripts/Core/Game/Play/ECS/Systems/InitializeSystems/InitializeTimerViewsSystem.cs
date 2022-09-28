@@ -4,13 +4,12 @@ using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.InitializeSystems
 {
-    public class InitializeIngredientContainerViewsSystem : IInitializeSystem
+    public class InitializeTimerViewsSystem : IInitializeSystem
     {
         private GameContext _context;
-        private List<IngredientsContainerUpdatableViewBehaviour> _views;
+        private List<TimerUpdatableViewBehaviour> _views;
 
-
-        public InitializeIngredientContainerViewsSystem(Contexts contexts, List<IngredientsContainerUpdatableViewBehaviour> views)
+        public InitializeTimerViewsSystem(Contexts contexts, List<TimerUpdatableViewBehaviour> views)
         {
             _context = contexts.game;
             _views = views;
@@ -21,7 +20,7 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             foreach (var view in _views)
             {
                 var entity = _context.CreateEntity();
-                entity.AddPlayECSIngredientContainerView(new Stack<IngredientTypes>(), view);
+                entity.AddPlayECSTimerView(10.0f, 0.0f, true, view);
                 view.Link(entity);
             }
         }

@@ -10,16 +10,19 @@ public static class GameComponentsLookup {
 
     public const int PlayECSIngredient = 0;
     public const int PlayECSIngredientContainerView = 1;
+    public const int PlayECSTimerView = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
         "PlayECSIngredient",
-        "PlayECSIngredientContainerView"
+        "PlayECSIngredientContainerView",
+        "PlayECSTimerView"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Play.ECS.IngredientComponent),
-        typeof(Play.ECS.IngredientContainerViewComponent)
+        typeof(Play.ECS.IngredientContainerViewComponent),
+        typeof(Play.ECS.TimerViewComponent)
     };
 }

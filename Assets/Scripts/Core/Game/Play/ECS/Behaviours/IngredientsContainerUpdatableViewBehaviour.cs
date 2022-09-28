@@ -8,21 +8,15 @@ using UnityEngine;
 
 namespace Play.ECS
 {
-    public class IngredientsContainerViewBehaviour : MonoBehaviour
+    public class IngredientsContainerUpdatableViewBehaviour : UpdatableViewBehaviour
     {
         [SerializeField]
         private TextMeshProUGUI _textMeshProUGUI;
 
         public List<IngredientTypes> Ingredients;
 
-        private GameEntity _gameEntity;
 
-        public void Link(IEntity entity)
-        {
-            _gameEntity = (GameEntity) entity;
-        }
-
-        public void UpdateView()
+        public override void UpdateView()
         {
             Ingredients = _gameEntity.playECSIngredientContainerView.Ingredients.ToList();
 
