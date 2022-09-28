@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Core.Game.Play.ECS.Behaviours;
 using Core.Game.Play.ECS.Systems.Features;
+using Play.ECS;
 using UnityEngine;
 
 namespace Core.Game.Play.ECS

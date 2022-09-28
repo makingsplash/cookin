@@ -16,24 +16,24 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         public void Initialize()
         {
-            viewsGroup = _context.GetGroup(GameMatcher.CoreGamePlayECSComponentsIngredientContainerView).GetEntities();
+            viewsGroup = _context.GetGroup(GameMatcher.PlayECSIngredientContainerView).GetEntities();
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.CoreGamePlayECSComponentsIngredient);
+            return context.CreateCollector(GameMatcher.PlayECSIngredient);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasCoreGamePlayECSComponentsIngredient;
+            return entity.hasPlayECSIngredient;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var e in viewsGroup)
             {
-                e.coreGamePlayECSComponentsIngredientContainerView.ViewBehaviour.UpdateView();
+                e.playECSIngredientContainerView.ViewBehaviour.UpdateView();
             }
         }
     }

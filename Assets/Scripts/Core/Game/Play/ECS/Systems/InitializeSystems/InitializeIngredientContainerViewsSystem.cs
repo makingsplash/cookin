@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Core.Game.Play.ECS.Behaviours;
 using Entitas;
+using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.InitializeSystems
 {
@@ -21,7 +21,7 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             foreach (var view in _views)
             {
                 var entity = _context.CreateEntity();
-                entity.AddCoreGamePlayECSComponentsIngredientContainerView(new Stack<IngredientTypes>(), view);
+                entity.AddPlayECSIngredientContainerView(new Stack<IngredientTypes>(), view);
                 view.Link(entity);
             }
         }

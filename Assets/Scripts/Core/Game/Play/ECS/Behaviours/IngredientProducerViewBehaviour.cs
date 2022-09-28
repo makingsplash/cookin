@@ -1,9 +1,10 @@
+using Core.Game.Play.ECS;
 using Entitas;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.Game.Play.ECS.Behaviours
+namespace Play.ECS
 {
     public class IngredientProducerViewBehaviour : MonoBehaviour
     {
@@ -32,7 +33,7 @@ namespace Core.Game.Play.ECS.Behaviours
 
         private void OnClick()
         {
-            _gameEntity.AddCoreGamePlayECSComponentsIngredient(_ingredientType);
+            _gameEntity.AddPlayECSIngredient(_ingredientType);
         }
     }
 }

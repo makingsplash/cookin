@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Core.Game.Play.ECS.Behaviours;
 using Core.Game.Play.ECS.Systems.CleanupSystems;
 using Core.Game.Play.ECS.Systems.InitializeSystems;
 using Core.Game.Play.ECS.Systems.ReactiveSystems;
+using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.Features
 {

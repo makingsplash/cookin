@@ -12,14 +12,14 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
         public CleanupProducedIngredientsSystem(Contexts contexts)
         {
             _context = contexts.game;
-            _group = _context.GetGroup(GameMatcher.CoreGamePlayECSComponentsIngredient);
+            _group = _context.GetGroup(GameMatcher.PlayECSIngredient);
         }
 
         public void Cleanup()
         {
             foreach (var e in _group.GetEntities(_buffer))
             {
-                e.RemoveCoreGamePlayECSComponentsIngredient();
+                e.RemovePlayECSIngredient();
             }
         }
     }

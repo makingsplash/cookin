@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Core.Game.Play.ECS.Behaviours;
 using Entitas;
+using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.InitializeSystems
 {

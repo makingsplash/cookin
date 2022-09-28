@@ -1,6 +1,7 @@
+using Core.Game.Play.ECS;
 using Entitas;
 
-namespace Core.Game.Play.ECS.Components
+namespace Play.ECS
 {
     [Game]
     public class IngredientComponent : IComponent

@@ -10,17 +10,17 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         public StoreIngredientsIntoContainersSystem(IContext<GameEntity> context) : base(context)
         {
             _ingredientContainers =
-                context.GetGroup(GameMatcher.CoreGamePlayECSComponentsIngredientContainerView);
+                context.GetGroup(GameMatcher.PlayECSIngredientContainerView);
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.CoreGamePlayECSComponentsIngredient);
+            return context.CreateCollector(GameMatcher.PlayECSIngredient);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasCoreGamePlayECSComponentsIngredient;
+            return entity.hasPlayECSIngredient;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -29,8 +29,8 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             {
                 foreach (var e in entities)
                 {
-                    var ingredients = ingredientsContainer.coreGamePlayECSComponentsIngredientContainerView.Ingredients;
-                    var newIngredient = e.coreGamePlayECSComponentsIngredient.IngredientType;
+                    var ingredients = ingredientsContainer.playECSIngredientContainerView.Ingredients;
+                    var newIngredient = e.playECSIngredient.IngredientType;
 
                     TryAddIngredient(ingredients, newIngredient); // return if true
                 }

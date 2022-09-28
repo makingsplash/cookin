@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.Game.Play.ECS;
 using Entitas;
 using TMPro;
 using UnityEngine;
 
-namespace Core.Game.Play.ECS.Behaviours
+namespace Play.ECS
 {
     public class IngredientsContainerViewBehaviour : MonoBehaviour
     {
@@ -23,7 +24,7 @@ namespace Core.Game.Play.ECS.Behaviours
 
         public void UpdateView()
         {
-            Ingredients = _gameEntity.coreGamePlayECSComponentsIngredientContainerView.Ingredients.ToList();
+            Ingredients = _gameEntity.playECSIngredientContainerView.Ingredients.ToList();
 
             StringBuilder stringBuilder = new StringBuilder();
 
