@@ -18,14 +18,16 @@ namespace Core.Game.Play.ECS.Systems.Features
             Add(new InitializeIngredientProducerViewsSystem(contexts, ingredientProducerViews));
             Add(new InitializeIngredientContainerViewsSystem(contexts, ingredientsContainerViews));
             Add(new InitializeTimerViewsSystem(contexts, timerViews));
+            Add(new RenameFinishedTimerViewsSystem(contexts));
 
             Add(new TimerTickSystem(contexts));
-            Add(new TimerViewUpdateSystem(contexts, timerViews));
+            Add(new TimerViewUpdateSystem(contexts));
 
             Add(new StoreIngredientsIntoContainersSystem(contexts.game));
             Add(new UpdateIngredientContainerViewSystem(contexts.game));
 
             Add(new CleanupProducedIngredientsSystem(contexts));
+            Add(new CleanupFinishedTimersSystem(contexts));
         }
     }
 }

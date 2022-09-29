@@ -20,8 +20,9 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             foreach (var view in _views)
             {
                 var entity = _context.CreateEntity();
-                entity.AddPlayECSTimerView(10.0f, 0.0f, true, view);
                 view.Link(entity);
+
+                entity.AddPlayECSTimerView(view);
             }
         }
     }

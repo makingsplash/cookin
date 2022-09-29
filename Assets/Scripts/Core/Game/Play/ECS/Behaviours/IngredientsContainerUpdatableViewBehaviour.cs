@@ -11,7 +11,7 @@ namespace Play.ECS
     public class IngredientsContainerUpdatableViewBehaviour : UpdatableViewBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _textMeshProUGUI;
+        private TextMeshProUGUI _textIngredientsDisplay;
 
         public List<IngredientTypes> Ingredients;
 
@@ -28,7 +28,7 @@ namespace Play.ECS
                 stringBuilder.Append("\n");
             }
 
-            _textMeshProUGUI.text = stringBuilder.ToString();
+            _textIngredientsDisplay.text = stringBuilder.ToString();
         }
     }
 }

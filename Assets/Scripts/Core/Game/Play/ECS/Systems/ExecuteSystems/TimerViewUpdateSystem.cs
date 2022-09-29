@@ -1,25 +1,30 @@
-using System.Collections.Generic;
 using Entitas;
-using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.ExecuteSystems
 {
-    public class TimerViewUpdateSystem : IExecuteSystem
+    public class TimerViewUpdateSystem : IInitializeSystem, IExecuteSystem
     {
         private GameContext _gameContext;
-        private List<TimerUpdatableViewBehaviour> _views;
+        private IGroup<GameEntity> _timerViewComponents;
 
-        public TimerViewUpdateSystem(Contexts contexts, List<TimerUpdatableViewBehaviour> views)
+        public TimerViewUpdateSystem(Contexts contexts)
         {
             _gameContext = contexts.game;
-            _views = views;
+        }
+
+        public void Initialize()
+        {
+            _timerViewComponents = _gameContext.GetGroup(GameMatcher.PlayECSTimerView);
         }
 
         public void Execute()
         {
-            foreach (var view in _views)
+            foreach (var entity in _timerViewComponents)
             {
-                view.UpdateView();
+                if (entity.hasPlayECSRunningTimer)
+                {
+                    entity.playECSTimerView.UpdatableView.UpdateView();
+                }
             }
         }
     }

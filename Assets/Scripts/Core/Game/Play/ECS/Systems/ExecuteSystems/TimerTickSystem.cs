@@ -14,22 +14,23 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
 
         public void Execute()
         {
-            var group = _gameContext.GetGroup(GameMatcher.PlayECSTimerView);
+            var group = _gameContext.GetGroup(GameMatcher.PlayECSRunningTimer).GetEntities();
 
             foreach (var entity in group)
             {
-                var timer = entity.playECSTimerView;
-
-                if (timer.Finished)
+                if (entity.isPlayECSFinishedTimer)
                 {
-                    entity.playECSTimerView.CurrentTime += Time.deltaTime;
+                    continue;
+                }
 
-                    if (timer.CurrentTime >= timer.MaxTime)
-                    {
-                        timer.Finished = false;
+                var timer = entity.playECSRunningTimer;
 
-                        Debug.Log("Timer finished");
-                    }
+                timer.CurrentTime += Time.deltaTime;
+
+                if (timer.CurrentTime >= timer.MaxTime)
+                {
+                    entity.RemovePlayECSRunningTimer();
+                    entity.isPlayECSFinishedTimer = true;
                 }
             }
         }

@@ -9,12 +9,13 @@ namespace Play.ECS
     public class IngredientProducerViewBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private Button _button;
-        [SerializeField]
-        private TextMeshProUGUI _textMeshProUGUI;
+        private IngredientTypes _ingredientType;
 
         [SerializeField]
-        private IngredientTypes _ingredientType;
+        private Button _button;
+        [SerializeField]
+        private TextMeshProUGUI _textIngredientDisplay;
+
 
         private GameEntity _gameEntity;
 
@@ -28,7 +29,7 @@ namespace Play.ECS
         {
             _button.onClick.AddListener(OnClick);
 
-            _textMeshProUGUI.text = _ingredientType.ToString();
+            _textIngredientDisplay.text = _ingredientType.ToString();
         }
 
         private void OnClick()

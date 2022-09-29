@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 24575
+  controlID: 31451
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 24576
+  controlID: 31452
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -417,9 +417,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.38990405, y: -0.010367247, z: 4.1135826}
+    m_Target: {x: 6.720523, y: -3.795685, z: 3.9312778}
     speed: 2
-    m_Value: {x: 0.38990405, y: -0.010367247, z: 4.1135826}
+    m_Value: {x: 6.720523, y: -3.795685, z: 3.9312778}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -470,9 +470,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.675738
+    m_Target: 24.906185
     speed: 2
-    m_Value: 6.675738
+    m_Value: 24.906185
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -554,7 +554,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 60330
+  m_LastSelectedObjectID: 73144
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -607,7 +607,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 24519
+  controlID: 31395
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -667,23 +667,23 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9e9cfefffeb0feff4204ffffec07ffff7c0effff5681ffff4882ffff4e82ffff1684ffff0285ffffa093ffff0a94ffff3c94ffff4294ffff7aa4ffff44a5fffff6beffff02bfffff50bfffff82bfffff88bfffffe0c3ffffe6c3ffffeaccffff44cdffff76cdffff7ccdffff66d2ffff72d2ffffc0d2fffff2d2fffff8d2ffff46ddffff52ddffffa0ddffffd2ddffffd8ddffff66e2ffffc0e2fffff2e2fffff8e2ffffbcf6ffff4af7ffff7cf7ffff82f7ffff18fbffff2efbffff5cfbfffff4ffffffaa8a0000d28f000052900000ec9000006891000062920000da920000d6a60000e8ad0000
+      m_ExpandedIDs: 520efeff8414feff7427feff962bfeff0a2cfeff102cfeff162cfeff482cfeff4e2cfefffc2ffeff5030feffc430feffca30feffd030feff0231feff0831feff3839feff3e39feff7039feff7639feff5041feff9849feff9e49feffd049feffd649feff9e9cfefffeb0feff4204ffffec07ffff7c0effff5681ffff4882ffff4e82ffff1684ffff0285ffffa093ffff0a94ffff3c94ffff4294ffff7aa4ffff44a5fffff6beffff02bfffff50bfffff82bfffff88bfffffe0c3ffffe6c3ffffeaccffff44cdffff76cdffff7ccdffff66d2ffff72d2ffffc0d2fffff2d2fffff8d2ffff46ddffff52ddffffa0ddffffd2ddffffd8ddffff66e2ffffc0e2fffff2e2fffff8e2ffffbcf6ffff4af7ffff7cf7ffff82f7ffff18fbffff2efbffff5cfbffffaa8a0000d28f000052900000ec9000006891000062920000da920000d6a60000e8ad0000e0340100d43b01006c3e0100e03e0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Timer
+        m_OriginalName: Timer
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 79706
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 10}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -759,21 +759,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/GameAssets/Play/Prefabs
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/GameAssets/Play/Prefabs
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/ilabogdan/Unity projects/projects/cookin
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 32.999268}
-    m_SelectedIDs: 6c6c0000
-    m_LastClickedID: 27756
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 946b0000
+    m_LastClickedID: 27540
     m_ExpandedIDs: 00000000946b0000966b0000986b00009a6b00009c6b00009e6b0000a06b0000a26b0000a46b0000a66b0000a86b0000aa6b0000ac6b0000ae6b0000b06b0000b26b00007a6c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -833,18 +833,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000ea690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: PlayHUD
+      m_OriginalName: PlayHUD
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 29500
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:

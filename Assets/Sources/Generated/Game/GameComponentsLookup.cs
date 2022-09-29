@@ -8,21 +8,27 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int PlayECSIngredient = 0;
-    public const int PlayECSIngredientContainerView = 1;
-    public const int PlayECSTimerView = 2;
+    public const int PlayECSFinishedTimer = 0;
+    public const int PlayECSIngredient = 1;
+    public const int PlayECSIngredientContainerView = 2;
+    public const int PlayECSRunningTimer = 3;
+    public const int PlayECSTimerView = 4;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
+        "PlayECSFinishedTimer",
         "PlayECSIngredient",
         "PlayECSIngredientContainerView",
+        "PlayECSRunningTimer",
         "PlayECSTimerView"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Play.ECS.FinishedTimerComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
+        typeof(Play.ECS.RunningTimerComponent),
         typeof(Play.ECS.TimerViewComponent)
     };
 }
