@@ -1,16 +1,15 @@
+using Play.ECS.Common;
 using TMPro;
 using UnityEngine.UI;
 
 namespace Play.ECS
 {
-    public class TimerUpdatableViewBehaviour : UpdatableViewBehaviour
+    public class TimerViewBehaviour : EntityView
     {
         public float MaxTime;
         public bool AutoStart;
         public TextMeshProUGUI Text;
         public Button StartButton;
-
-        public GameEntity GameEntity => _gameEntity;
 
         private void Start()
         {
@@ -24,17 +23,17 @@ namespace Play.ECS
 
         public void StartTimer()
         {
-            if (!GameEntity.hasPlayECSRunningTimer)
+            if (!Entity.hasPlayECSRunningTimer)
             {
-                GameEntity.AddPlayECSRunningTimer(MaxTime, 0.0f);
+                Entity.AddPlayECSRunningTimer(MaxTime, 0.0f);
             }
         }
 
-        public override void UpdateView()
+        public void UpdateView()
         {
-            if (!_gameEntity.isPlayECSFinishedTimer)
+            if (!Entity.isPlayECSFinishedTimer)
             {
-                Text.text = _gameEntity.playECSRunningTimer.CurrentTime.ToString("F");
+                Text.text = Entity.playECSRunningTimer.CurrentTime.ToString("F");
             }
         }
 

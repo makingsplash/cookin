@@ -23,7 +23,7 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             {
                 if (entity.hasPlayECSRunningTimer)
                 {
-                    entity.playECSTimerView.UpdatableView.UpdateView();
+                    entity.playECSTimerView.View.UpdateView();
                 }
             }
         }

@@ -7,9 +7,9 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
     public class InitializeTimerViewsSystem : IInitializeSystem
     {
         private GameContext _context;
-        private List<TimerUpdatableViewBehaviour> _views;
+        private List<TimerViewBehaviour> _views;
 
-        public InitializeTimerViewsSystem(Contexts contexts, List<TimerUpdatableViewBehaviour> views)
+        public InitializeTimerViewsSystem(Contexts contexts, List<TimerViewBehaviour> views)
         {
             _context = contexts.game;
             _views = views;
@@ -20,8 +20,8 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             foreach (var view in _views)
             {
                 var entity = _context.CreateEntity();
-                view.Link(entity);
 
+                view.Link(entity);
                 entity.AddPlayECSTimerView(view);
             }
         }

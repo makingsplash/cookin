@@ -9,16 +9,16 @@ namespace Play.ECS
         [SerializeField]
         private Button _button;
 
-        public TimerUpdatableViewBehaviour TimerView;
+        public TimerViewBehaviour TimerView;
 
         private void Start()
         {
-            if (TimerView.GameEntity.hasPlayECSRunningTimer)
+            if (TimerView.Entity.hasPlayECSRunningTimer)
             {
                 _button.interactable = false;
             }
 
-            TimerView.GameEntity.OnComponentAdded += OnComponentAdded;
+            TimerView.Entity.OnComponentAdded += OnComponentAdded;
         }
 
         private void OnComponentAdded(IEntity entity, int index, IComponent component)

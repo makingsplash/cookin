@@ -10,7 +10,7 @@ namespace Core.Game.Play.ECS
     {
         public List<IngredientProducerViewBehaviour> IngredientProducerViews;
         public List<IngredientsContainerUpdatableViewBehaviour> IngredientsContainerViews;
-        public List<TimerUpdatableViewBehaviour> TimerViews;
+        public List<TimerViewBehaviour> TimerViews;
 
         private Entitas.Systems _systems;
 
