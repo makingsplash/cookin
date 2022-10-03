@@ -21,7 +21,9 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             foreach (var view in _views)
             {
                 var entity = _context.CreateEntity();
+
                 view.Link(entity);
+                entity.AddPlayECSIngredientProducerView(view);
             }
         }
     }

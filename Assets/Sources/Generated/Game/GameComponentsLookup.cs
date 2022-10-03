@@ -12,8 +12,8 @@ public static class GameComponentsLookup {
     public const int PlayECSFinishedTimer = 1;
     public const int PlayECSIngredient = 2;
     public const int PlayECSIngredientContainerView = 3;
-    public const int PlayECSRunningTimer = 4;
-    public const int PlayECSTimer = 5;
+    public const int PlayECSIngredientProducerView = 4;
+    public const int PlayECSRunningTimer = 5;
     public const int PlayECSTimerView = 6;
 
     public const int TotalComponents = 7;
@@ -23,8 +23,8 @@ public static class GameComponentsLookup {
         "PlayECSFinishedTimer",
         "PlayECSIngredient",
         "PlayECSIngredientContainerView",
+        "PlayECSIngredientProducerView",
         "PlayECSRunningTimer",
-        "PlayECSTimer",
         "PlayECSTimerView"
     };
 
@@ -33,6 +33,7 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.FinishedTimerComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
+        typeof(Play.ECS.IngredientProducerViewComponent),
         typeof(Play.ECS.RunningTimerComponent),
         typeof(Play.ECS.TimerViewComponent)
     };

@@ -23,7 +23,7 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
                 var entity = _context.CreateEntity();
 
                 view.Link(entity);
-                entity.AddPlayECSIngredientContainerView(new Stack<IngredientTypes>(), view);
+                entity.AddPlayECSIngredientContainerView(view, new Stack<IngredientTypes>());
             }
         }
     }

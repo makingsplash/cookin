@@ -22,7 +22,6 @@ namespace Play.ECS.Common
 
         private void OnDestroyEntity(IEntity entity)
         {
-            Debug.Log($"[{nameof(EntityView)}]: On destroy entity");
             _entity.OnDestroyEntity -= OnDestroyEntity;
             gameObject.Unlink();
         }

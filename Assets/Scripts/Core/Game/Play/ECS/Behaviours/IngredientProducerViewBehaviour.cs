@@ -1,12 +1,12 @@
 using Core.Game.Play.ECS;
-using Entitas;
+using Play.ECS.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Play.ECS
 {
-    public class IngredientProducerViewBehaviour : MonoBehaviour
+    public class IngredientProducerViewBehaviour : EntityView
     {
         [SerializeField]
         private IngredientTypes _ingredientType;
@@ -17,14 +17,6 @@ namespace Play.ECS
         private TextMeshProUGUI _textIngredientDisplay;
 
 
-        private GameEntity _gameEntity;
-
-
-        public void Link(IEntity entity)
-        {
-            _gameEntity = (GameEntity) entity;
-        }
-
         private void Awake()
         {
             _button.onClick.AddListener(OnClick);
@@ -34,7 +26,14 @@ namespace Play.ECS
 
         private void OnClick()
         {
-            _gameEntity.AddPlayECSIngredient(_ingredientType);
+            // создавать сущность с компонентом ProducedIngredient ??
+            // что за сущность тут вообще используется?
+
+
+            // а, или всё ок, по идее можно ща в инспекторе добавить новый компонент на пролинкованную сущность, типо это новый ингридиент
+            // он должен быть коллектнут и удалён (компонент)
+
+            Entity.AddPlayECSIngredient(_ingredientType);
         }
     }
 }
