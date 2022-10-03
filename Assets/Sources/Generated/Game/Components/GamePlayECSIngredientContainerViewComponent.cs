@@ -11,19 +11,19 @@ public partial class GameEntity {
     public Play.ECS.IngredientContainerViewComponent playECSIngredientContainerView { get { return (Play.ECS.IngredientContainerViewComponent)GetComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
     public bool hasPlayECSIngredientContainerView { get { return HasComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
 
-    public void AddPlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerUpdatableViewBehaviour newUpdatableViewBehaviour) {
+    public void AddPlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerViewBehaviour newViewBehaviour) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.Ingredients = newIngredients;
-        component.UpdatableViewBehaviour = newUpdatableViewBehaviour;
+        component.View = newViewBehaviour;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerUpdatableViewBehaviour newUpdatableViewBehaviour) {
+    public void ReplacePlayECSIngredientContainerView(System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients, Play.ECS.IngredientsContainerViewBehaviour newViewBehaviour) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.Ingredients = newIngredients;
-        component.UpdatableViewBehaviour = newUpdatableViewBehaviour;
+        component.View = newViewBehaviour;
         ReplaceComponent(index, component);
     }
 

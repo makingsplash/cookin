@@ -33,7 +33,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         {
             foreach (var e in viewsGroup)
             {
-                e.playECSIngredientContainerView.UpdatableViewBehaviour.UpdateView();
+                e.playECSIngredientContainerView.View.UpdateView();
             }
         }
     }

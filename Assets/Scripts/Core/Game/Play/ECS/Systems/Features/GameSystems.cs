@@ -12,7 +12,7 @@ namespace Core.Game.Play.ECS.Systems.Features
         public GameSystems(
             Contexts contexts,
             List<IngredientProducerViewBehaviour> ingredientProducerViews,
-            List<IngredientsContainerUpdatableViewBehaviour> ingredientsContainerViews,
+            List<IngredientsContainerViewBehaviour> ingredientsContainerViews,
             List<TimerViewBehaviour> timerViews)
         {
             Add(new InitializeIngredientProducerViewsSystem(contexts, ingredientProducerViews));

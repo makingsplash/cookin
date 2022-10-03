@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Game.Play.ECS;
-using Entitas;
+using Play.ECS.Common;
 using TMPro;
 using UnityEngine;
 
 namespace Play.ECS
 {
-    public class IngredientsContainerUpdatableViewBehaviour : UpdatableViewBehaviour
+    public class IngredientsContainerViewBehaviour : EntityView
     {
         [SerializeField]
         private TextMeshProUGUI _textIngredientsDisplay;
@@ -16,9 +16,9 @@ namespace Play.ECS
         public List<IngredientTypes> Ingredients;
 
 
-        public override void UpdateView()
+        public void UpdateView()
         {
-            Ingredients = _gameEntity.playECSIngredientContainerView.Ingredients.ToList();
+            Ingredients = Entity.playECSIngredientContainerView.Ingredients.ToList();
 
             StringBuilder stringBuilder = new StringBuilder();
 
