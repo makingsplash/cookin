@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Play.ECS.Common
 {
-    public class EntityView : MonoBehaviour, IEntityView
+    public class EntityViewBehaviour : MonoBehaviour, IEntityView
     {
         public GameObject GameObject => gameObject;
         public GameEntity Entity => _entity;

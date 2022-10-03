@@ -8,9 +8,9 @@ namespace Core.Game.Play.ECS
 {
     public class GameController : MonoBehaviour
     {
-        public List<IngredientProducerViewBehaviour> IngredientProducerViews;
-        public List<IngredientsContainerViewBehaviour> IngredientsContainerViews;
-        public List<TimerViewBehaviour> TimerViews;
+        public List<IngredientProducerViewBehaviourBehaviour> IngredientProducerViews;
+        public List<IngredientsContainerViewBehaviourBehaviour> IngredientsContainerViews;
+        public List<TimerViewBehaviourBehaviour> TimerViews;
 
         private Entitas.Systems _systems;
 

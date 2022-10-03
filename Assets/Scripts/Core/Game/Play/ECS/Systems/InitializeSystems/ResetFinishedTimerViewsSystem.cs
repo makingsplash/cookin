@@ -28,7 +28,7 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             var gameEntity = (GameEntity) entity;
             if (gameEntity.isPlayECSFinishedTimer)
             {
-                var timerView = (TimerViewBehaviour) gameEntity.playECSTimerView.View;
+                var timerView = (TimerViewBehaviourBehaviour) gameEntity.playECSTimerView.View;
                 timerView.ResetView();
             }
         }
