@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Play.ECS
 {
-    public class IngredientsContainerViewBehaviourBehaviour : EntityViewBehaviour
+    public class IngredientsContainerViewBehaviour : EntityViewBehaviour
     {
         [SerializeField]
         private TextMeshProUGUI _textIngredientsDisplay;

@@ -7,12 +7,12 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
     public class InitializeIngredientProducerViewsSystem : IInitializeSystem
     {
         private GameContext _context;
-        private List<IngredientProducerViewBehaviourBehaviour> _views;
+        private List<IngredientProducerViewBehaviour> _views;
 
 
-        public InitializeIngredientProducerViewsSystem(Contexts contexts, List<IngredientProducerViewBehaviourBehaviour> views)
+        public InitializeIngredientProducerViewsSystem(GameContext context, List<IngredientProducerViewBehaviour> views)
         {
-            _context = contexts.game;
+            _context = context;
             _views = views;
         }
 

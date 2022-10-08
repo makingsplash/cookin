@@ -7,11 +7,12 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
     public class InitializeTimerViewsSystem : IInitializeSystem
     {
         private GameContext _context;
-        private List<TimerViewBehaviourBehaviour> _views;
+        private List<TimerViewBehaviour> _views;
 
-        public InitializeTimerViewsSystem(Contexts contexts, List<TimerViewBehaviourBehaviour> views)
+
+        public InitializeTimerViewsSystem(GameContext context, List<TimerViewBehaviour> views)
         {
-            _context = contexts.game;
+            _context = context;
             _views = views;
         }
 

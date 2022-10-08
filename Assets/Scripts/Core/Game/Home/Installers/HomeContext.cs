@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Game.Home
+namespace Core.Game.Home.Installers
 {
     public class HomeContext : Core.Context.IContext
     {

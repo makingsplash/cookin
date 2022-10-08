@@ -9,7 +9,7 @@ namespace Play.ECS
         [SerializeField]
         private Button _button;
 
-        public TimerViewBehaviourBehaviour TimerView;
+        public TimerViewBehaviour TimerView;
 
         private void Start()
         {

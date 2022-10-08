@@ -6,9 +6,10 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
     {
         private GameContext _gameContext;
 
-        public CleanupFinishedTimersSystem(Contexts contexts)
+
+        public CleanupFinishedTimersSystem(GameContext context)
         {
-            _gameContext = contexts.game;
+            _gameContext = context;
         }
 
         public void Cleanup()

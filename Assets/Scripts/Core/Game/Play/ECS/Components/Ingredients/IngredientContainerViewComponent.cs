@@ -7,7 +7,7 @@ namespace Play.ECS
     [Game]
     public class IngredientContainerViewComponent : IComponent
     {
-        public IngredientsContainerViewBehaviourBehaviour View;
+        public IngredientsContainerViewBehaviour View;
         public Stack<IngredientTypes> Ingredients;
     }
 }

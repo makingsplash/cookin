@@ -1,12 +1,10 @@
-using Core.Game.Home;
-using Core.Game.Home.UI.HUD;
 using Core.Game.Play.UI.HUD;
 using Core.Signals;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Game.Play
+namespace Core.Game.Play.Installers
 {
     public class PlayContext : Core.Context.IContext
     {

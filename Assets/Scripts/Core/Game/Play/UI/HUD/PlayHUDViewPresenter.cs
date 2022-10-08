@@ -1,5 +1,6 @@
 using Core.Game.Context;
 using Core.Game.Home;
+using Core.Game.Home.Installers;
 using Core.UI.Elements.Base;
 using Cysharp.Threading.Tasks;
 

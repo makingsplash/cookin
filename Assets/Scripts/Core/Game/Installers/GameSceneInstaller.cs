@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Core.Game.Installers
 {
-    public class GameSceneInstaller : MonoInstaller
+    public abstract class GameSceneInstaller : MonoInstaller
     {
         public UICamera UICamera;
         public UIRoot UIRoot;

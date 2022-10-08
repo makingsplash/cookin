@@ -9,9 +9,10 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
         private readonly IGroup<GameEntity> _group;
         readonly List<GameEntity> _buffer = new ();
 
-        public CleanupProducedIngredientsSystem(Contexts contexts)
+
+        public CleanupProducedIngredientsSystem(GameContext context)
         {
-            _context = contexts.game;
+            _context = context;
             _group = _context.GetGroup(GameMatcher.PlayECSIngredient);
         }
 

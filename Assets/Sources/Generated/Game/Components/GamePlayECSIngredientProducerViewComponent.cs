@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Play.ECS.IngredientProducerViewComponent playECSIngredientProducerView { get { return (Play.ECS.IngredientProducerViewComponent)GetComponent(GameComponentsLookup.PlayECSIngredientProducerView); } }
     public bool hasPlayECSIngredientProducerView { get { return HasComponent(GameComponentsLookup.PlayECSIngredientProducerView); } }
 
-    public void AddPlayECSIngredientProducerView(Play.ECS.IngredientProducerViewBehaviourBehaviour newView) {
+    public void AddPlayECSIngredientProducerView(Play.ECS.IngredientProducerViewBehaviour newView) {
         var index = GameComponentsLookup.PlayECSIngredientProducerView;
         var component = (Play.ECS.IngredientProducerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientProducerViewComponent));
         component.View = newView;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSIngredientProducerView(Play.ECS.IngredientProducerViewBehaviourBehaviour newView) {
+    public void ReplacePlayECSIngredientProducerView(Play.ECS.IngredientProducerViewBehaviour newView) {
         var index = GameComponentsLookup.PlayECSIngredientProducerView;
         var component = (Play.ECS.IngredientProducerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientProducerViewComponent));
         component.View = newView;

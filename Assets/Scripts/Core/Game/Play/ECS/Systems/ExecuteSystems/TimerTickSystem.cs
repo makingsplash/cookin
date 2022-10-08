@@ -7,9 +7,10 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
     {
         private GameContext _gameContext;
 
-        public TimerTickSystem(Contexts contexts)
+
+        public TimerTickSystem(GameContext context)
         {
-            _gameContext = contexts.game;
+            _gameContext = context;
         }
 
         public void Execute()

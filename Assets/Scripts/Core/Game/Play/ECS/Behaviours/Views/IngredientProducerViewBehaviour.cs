@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Play.ECS
 {
-    public class IngredientProducerViewBehaviourBehaviour : EntityViewBehaviour
+    public class IngredientProducerViewBehaviour : EntityViewBehaviour
     {
         [SerializeField]
         private IngredientTypes _ingredientType;

@@ -2,14 +2,15 @@ using Entitas;
 
 namespace Core.Game.Play.ECS.Systems.ExecuteSystems
 {
-    public class TimerViewUpdateSystem : IInitializeSystem, IExecuteSystem
+    public class TimerUpdateViewSystem : IInitializeSystem, IExecuteSystem
     {
         private GameContext _gameContext;
         private IGroup<GameEntity> _timerViewComponents;
 
-        public TimerViewUpdateSystem(Contexts contexts)
+
+        public TimerUpdateViewSystem(GameContext context)
         {
-            _gameContext = contexts.game;
+            _gameContext = context;
         }
 
         public void Initialize()

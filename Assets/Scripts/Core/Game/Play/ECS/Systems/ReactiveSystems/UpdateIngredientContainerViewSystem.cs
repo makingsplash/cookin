@@ -9,9 +9,10 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         private GameEntity[] viewsGroup;
 
-        public UpdateIngredientContainerViewSystem(IContext<GameEntity> context) : base(context)
+
+        public UpdateIngredientContainerViewSystem(GameContext context) : base(context)
         {
-            _context = (GameContext) context;
+            _context = context;
         }
 
         public void Initialize()

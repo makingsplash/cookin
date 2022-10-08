@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Play.ECS
 {
-    public class TimerViewBehaviourBehaviour : EntityViewBehaviour
+    public class TimerViewBehaviour : EntityViewBehaviour
     {
         public float MaxTime;
         public bool AutoStart;

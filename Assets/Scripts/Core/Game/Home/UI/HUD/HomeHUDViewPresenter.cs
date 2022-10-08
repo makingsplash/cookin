@@ -3,6 +3,7 @@ using Core.Consumables;
 using Core.Game.Context;
 using Core.Game.Home.UI.BankScreen;
 using Core.Game.Play;
+using Core.Game.Play.Installers;
 using Core.Game.UI.Screen;
 using Core.Signals;
 using Core.UI.Elements.Base;

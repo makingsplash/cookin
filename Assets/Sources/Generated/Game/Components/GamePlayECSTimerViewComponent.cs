@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Play.ECS.TimerViewComponent playECSTimerView { get { return (Play.ECS.TimerViewComponent)GetComponent(GameComponentsLookup.PlayECSTimerView); } }
     public bool hasPlayECSTimerView { get { return HasComponent(GameComponentsLookup.PlayECSTimerView); } }
 
-    public void AddPlayECSTimerView(Play.ECS.TimerViewBehaviourBehaviour newView) {
+    public void AddPlayECSTimerView(Play.ECS.TimerViewBehaviour newView) {
         var index = GameComponentsLookup.PlayECSTimerView;
         var component = (Play.ECS.TimerViewComponent)CreateComponent(index, typeof(Play.ECS.TimerViewComponent));
         component.View = newView;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSTimerView(Play.ECS.TimerViewBehaviourBehaviour newView) {
+    public void ReplacePlayECSTimerView(Play.ECS.TimerViewBehaviour newView) {
         var index = GameComponentsLookup.PlayECSTimerView;
         var component = (Play.ECS.TimerViewComponent)CreateComponent(index, typeof(Play.ECS.TimerViewComponent));
         component.View = newView;

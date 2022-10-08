@@ -7,7 +7,8 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
     {
         private IGroup<GameEntity> _ingredientContainers;
 
-        public StoreIngredientsIntoContainersSystem(IContext<GameEntity> context) : base(context)
+
+        public StoreIngredientsIntoContainersSystem(GameContext context) : base(context)
         {
             _ingredientContainers =
                 context.GetGroup(GameMatcher.PlayECSIngredientContainerView);

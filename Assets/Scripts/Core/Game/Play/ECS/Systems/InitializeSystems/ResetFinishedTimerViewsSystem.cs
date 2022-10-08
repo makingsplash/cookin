@@ -1,16 +1,16 @@
 using Entitas;
-using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.InitializeSystems
 {
-    public class RenameFinishedTimerViewsSystem : IInitializeSystem
+    public class ResetFinishedTimerViewsSystem : IInitializeSystem
     {
         private GameContext _gameContext;
         private IGroup<GameEntity> _group;
 
-        public RenameFinishedTimerViewsSystem(Contexts contexts)
+
+        public ResetFinishedTimerViewsSystem(GameContext context)
         {
-            _gameContext = contexts.game;
+            _gameContext = context;
         }
 
         public void Initialize()
@@ -28,7 +28,7 @@ namespace Core.Game.Play.ECS.Systems.InitializeSystems
             var gameEntity = (GameEntity) entity;
             if (gameEntity.isPlayECSFinishedTimer)
             {
-                var timerView = (TimerViewBehaviourBehaviour) gameEntity.playECSTimerView.View;
+                var timerView = gameEntity.playECSTimerView.View;
                 timerView.ResetView();
             }
         }
