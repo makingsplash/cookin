@@ -35,7 +35,7 @@ namespace Play.ECS
 
         public void ResetView()
         {
-            Text.text = string.Empty;
+            Text.text = "Timer";
         }
 
         private void Start()
