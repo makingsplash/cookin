@@ -12,6 +12,12 @@ namespace Play.ECS.Common
         private GameEntity _entity;
 
 
+        public virtual void Initialize(GameContext context)
+        {
+            var entity = context.CreateEntity();
+            Link(entity);
+        }
+
         public void Link(IEntity entity)
         {
             _entity = (GameEntity) entity;

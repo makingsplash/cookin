@@ -5,7 +5,7 @@ using Core.Game.Play.ECS.Systems.ExecuteSystems;
 using Core.Game.Play.ECS.Systems.InitializeSystems;
 using Core.Game.Play.ECS.Systems.ReactiveSystems;
 using Entitas;
-using Play.ECS;
+using Play.ECS.Common;
 using UnityEngine;
 using Zenject;
 
@@ -13,18 +13,8 @@ namespace Core.Game.Play.Installers
 {
     public class PlayEcsInstaller : MonoInstaller
     {
-        [Header("Ingredients")]
         [SerializeField]
-        private List<IngredientProducerViewBehaviour> _ingredientProducerViewBehaviours;
-
-        [Header("Ingredients")]
-        [SerializeField]
-        private List<IngredientsContainerViewBehaviour> _ingredientsContainerViewBehaviours;
-
-
-        [Header("Timers")]
-        [SerializeField]
-        private List<TimerViewBehaviour> _timerViewBehaviours;
+        private List<EntityViewBehaviour> _entityViewBehaviours;
 
 
         public override void InstallBindings()
@@ -48,12 +38,6 @@ namespace Core.Game.Play.Installers
 
         private void BindSystems()
         {
-            // абстрактный класс View? чтобы можно было сложить все вьюшки в один лист
-            // а лист будет лежать прям тут, тут и биндиться в контейнер?
-            // если забиндить так вьюшки, при резолве зависимостей в класс будут поступать нужные классы
-            // или всё ещё абстрактный?
-
-
             BindViewBehaviours();
             BindInitializeViewsSystems();
             BindExecutableSystems();
@@ -63,16 +47,12 @@ namespace Core.Game.Play.Installers
 
         private void BindViewBehaviours()
         {
-            Container.BindInstances(_timerViewBehaviours);
-            Container.BindInstances(_ingredientProducerViewBehaviours);
-            Container.BindInstances(_ingredientsContainerViewBehaviours);
+            Container.BindInstances(_entityViewBehaviours);
         }
 
         private void BindInitializeViewsSystems()
         {
-            Container.BindInterfacesAndSelfTo<InitializeIngredientProducerViewsSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<InitializeIngredientContainerViewsSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<InitializeTimerViewsSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InitializeViewBehavioursSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ResetFinishedTimerViewsSystem>().AsSingle();
         }
 

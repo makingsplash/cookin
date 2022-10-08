@@ -16,6 +16,12 @@ namespace Play.ECS
         public List<IngredientTypes> Ingredients;
 
 
+        public override void Initialize(GameContext context)
+        {
+            base.Initialize(context);
+            Entity.AddPlayECSIngredientContainerView(this, new Stack<IngredientTypes>());
+        }
+
         public void UpdateView()
         {
             Ingredients = Entity.playECSIngredientContainerView.Ingredients.ToList();

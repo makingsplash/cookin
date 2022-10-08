@@ -1093,6 +1093,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9d44e91a044cb585f99f64d0975846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityViewBehaviours:
+  - {fileID: 494874754}
+  - {fileID: 544462375}
+  - {fileID: 1908968893}
+  - {fileID: 1528960333}
+  - {fileID: 494874753}
+  - {fileID: 544462374}
+  - {fileID: 1491262531}
+  - {fileID: 75825306}
+  - {fileID: 165095472}
+  - {fileID: 1398689801}
+  - {fileID: 1971142233}
   _ingredientProducerViewBehaviours:
   - {fileID: 494874754}
   - {fileID: 544462375}

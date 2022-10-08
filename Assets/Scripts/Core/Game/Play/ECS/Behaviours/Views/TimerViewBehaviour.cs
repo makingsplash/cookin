@@ -11,14 +11,10 @@ namespace Play.ECS
         public TextMeshProUGUI Text;
         public Button StartButton;
 
-        private void Start()
+        public override void Initialize(GameContext context)
         {
-            StartButton?.onClick.AddListener(StartTimer);
-
-            if (AutoStart)
-            {
-                StartTimer();
-            }
+            base.Initialize(context);
+            Entity.AddPlayECSTimerView(this);
         }
 
         public void StartTimer()
@@ -40,6 +36,16 @@ namespace Play.ECS
         public void ResetView()
         {
             Text.text = string.Empty;
+        }
+
+        private void Start()
+        {
+            StartButton?.onClick.AddListener(StartTimer);
+
+            if (AutoStart)
+            {
+                StartTimer();
+            }
         }
     }
 }

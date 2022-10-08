@@ -17,6 +17,12 @@ namespace Play.ECS
         private TextMeshProUGUI _textIngredientDisplay;
 
 
+        public override void Initialize(GameContext context)
+        {
+            base.Initialize(context);
+            Entity.AddPlayECSIngredientProducerView(this);
+        }
+
         private void Awake()
         {
             _button.onClick.AddListener(OnClick);
