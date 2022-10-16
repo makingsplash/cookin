@@ -7,7 +7,8 @@ namespace Core.Game.Installers
     [CreateAssetMenu(fileName = "GameSettingsInstaller", menuName = "Installers/GameSettingsInstaller")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
-        public BankConfig BankConfig;
+        [SerializeField]
+        private BankConfig BankConfig;
 
         public override void InstallBindings()
         {

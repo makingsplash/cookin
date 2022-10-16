@@ -29,7 +29,11 @@ namespace Play.ECS.Common
         private void OnDestroyEntity(IEntity entity)
         {
             _entity.OnDestroyEntity -= OnDestroyEntity;
-            gameObject.Unlink();
+
+            if (gameObject != null)
+            {
+                gameObject.Unlink();
+            }
         }
     }
 }

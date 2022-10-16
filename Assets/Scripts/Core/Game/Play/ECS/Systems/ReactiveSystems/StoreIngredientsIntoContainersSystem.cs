@@ -38,13 +38,12 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             }
         }
 
-        private bool TryAddIngredient(Stack<IngredientTypes> ingredients, IngredientTypes newIngredient)
+        private bool TryAddIngredient(List<IngredientTypes> ingredients, IngredientTypes newIngredient)
         {
-            if (ingredients.Contains(newIngredient) ||
-                ingredients.Count > 0 && ingredients.Peek() == IngredientTypes.UpperBun)
+            if (ingredients.Contains(newIngredient))
                 return false;
 
-            ingredients.Push(newIngredient);
+            ingredients.Add(newIngredient);
 
             return true;
         }

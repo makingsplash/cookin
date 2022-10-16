@@ -11,7 +11,7 @@ public partial class GameEntity {
     public Play.ECS.IngredientContainerViewComponent playECSIngredientContainerView { get { return (Play.ECS.IngredientContainerViewComponent)GetComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
     public bool hasPlayECSIngredientContainerView { get { return HasComponent(GameComponentsLookup.PlayECSIngredientContainerView); } }
 
-    public void AddPlayECSIngredientContainerView(Play.ECS.IngredientsContainerViewBehaviour newView, System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients) {
+    public void AddPlayECSIngredientContainerView(Play.ECS.IngredientsContainerViewBehaviour newView, System.Collections.Generic.List<Core.Game.Play.ECS.IngredientTypes> newIngredients) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.View = newView;
@@ -19,7 +19,7 @@ public partial class GameEntity {
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSIngredientContainerView(Play.ECS.IngredientsContainerViewBehaviour newView, System.Collections.Generic.Stack<Core.Game.Play.ECS.IngredientTypes> newIngredients) {
+    public void ReplacePlayECSIngredientContainerView(Play.ECS.IngredientsContainerViewBehaviour newView, System.Collections.Generic.List<Core.Game.Play.ECS.IngredientTypes> newIngredients) {
         var index = GameComponentsLookup.PlayECSIngredientContainerView;
         var component = (Play.ECS.IngredientContainerViewComponent)CreateComponent(index, typeof(Play.ECS.IngredientContainerViewComponent));
         component.View = newView;
