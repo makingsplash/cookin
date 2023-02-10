@@ -1,6 +1,6 @@
 namespace Core.Game.Play.ECS
 {
-    public enum IngredientTypes
+    public enum IngredientType
     {
         LowerBun,
         UpperBun,

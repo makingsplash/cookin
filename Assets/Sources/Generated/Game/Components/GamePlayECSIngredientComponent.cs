@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Play.ECS.IngredientComponent playECSIngredient { get { return (Play.ECS.IngredientComponent)GetComponent(GameComponentsLookup.PlayECSIngredient); } }
     public bool hasPlayECSIngredient { get { return HasComponent(GameComponentsLookup.PlayECSIngredient); } }
 
-    public void AddPlayECSIngredient(Core.Game.Play.ECS.IngredientTypes newIngredientType) {
+    public void AddPlayECSIngredient(Core.Game.Play.ECS.IngredientType newIngredientType) {
         var index = GameComponentsLookup.PlayECSIngredient;
         var component = (Play.ECS.IngredientComponent)CreateComponent(index, typeof(Play.ECS.IngredientComponent));
         component.IngredientType = newIngredientType;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSIngredient(Core.Game.Play.ECS.IngredientTypes newIngredientType) {
+    public void ReplacePlayECSIngredient(Core.Game.Play.ECS.IngredientType newIngredientType) {
         var index = GameComponentsLookup.PlayECSIngredient;
         var component = (Play.ECS.IngredientComponent)CreateComponent(index, typeof(Play.ECS.IngredientComponent));
         component.IngredientType = newIngredientType;

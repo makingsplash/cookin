@@ -6,6 +6,6 @@ namespace Play.ECS
     [Game]
     public class IngredientComponent : IComponent
     {
-        public IngredientTypes IngredientType;
+        public IngredientType IngredientType;
     }
 }

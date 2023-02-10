@@ -14,6 +14,6 @@ namespace Core.Game.Play.Configs
     [Serializable]
     public class Dish
     {
-        public List<IngredientTypes> Ingredients;
+        public List<IngredientType> Ingredients;
     }
 }

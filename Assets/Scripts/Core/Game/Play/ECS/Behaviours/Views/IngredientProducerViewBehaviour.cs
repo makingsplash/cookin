@@ -9,7 +9,7 @@ namespace Play.ECS
     public class IngredientProducerViewBehaviour : EntityViewBehaviour
     {
         [SerializeField]
-        private IngredientTypes _ingredientType;
+        private IngredientType ingredientType;
 
         [SerializeField]
         private Button _button;
@@ -27,12 +27,12 @@ namespace Play.ECS
         {
             _button.onClick.AddListener(OnClick);
 
-            _textIngredientDisplay.text = _ingredientType.ToString();
+            _textIngredientDisplay.text = ingredientType.ToString();
         }
 
         private void OnClick()
         {
-            Entity.AddPlayECSIngredient(_ingredientType);
+            Entity.AddPlayECSIngredient(ingredientType);
         }
     }
 }

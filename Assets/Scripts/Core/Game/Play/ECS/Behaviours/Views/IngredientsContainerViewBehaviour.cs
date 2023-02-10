@@ -13,13 +13,13 @@ namespace Play.ECS
         [SerializeField]
         private TextMeshProUGUI _textIngredientsDisplay;
 
-        public List<IngredientTypes> Ingredients;
+        public List<IngredientType> Ingredients;
 
 
         public override void Initialize(GameContext context)
         {
             base.Initialize(context);
-            Entity.AddPlayECSIngredientContainerView(this, new List<IngredientTypes>());
+            Entity.AddPlayECSIngredientContainerView(this, new List<IngredientType>());
         }
 
         public void UpdateView()
