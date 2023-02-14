@@ -1,42 +1,32 @@
 using System.Collections.Generic;
 using Core.Game.Play.Configs;
 using Entitas;
+using Play.ECS;
 using UnityEngine;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
-    public class StoreIngredientsIntoContainersSystem : ReactiveSystem<GameEntity>
+    public class StoreIngredientsIntoContainersSystem : ReactiveSystem<GameEntity>, IInitializeSystem
     {
         private IGroup<GameEntity> _ingredientContainers;
         private LevelDishesConfig _dishesConfig;
-        private List<List<IngredientType>> _possibleIngredientVariations = new ();
+
+        private Dictionary<IngredientContainerViewComponent, List<IngredientType>> _containerToPossibleIngredients;
 
 
         public StoreIngredientsIntoContainersSystem(GameContext context, LevelDishesConfig dishesConfig) : base(context)
         {
             _dishesConfig = dishesConfig;
-            FillPossibleIngredientVariations();
-
-            _ingredientContainers =
-                context.GetGroup(GameMatcher.PlayECSIngredientContainerView);
+            _ingredientContainers = context.GetGroup(GameMatcher.PlayECSIngredientContainerView);
         }
 
-        private void FillPossibleIngredientVariations()
+        public void Initialize()
         {
-            foreach (var dish in _dishesConfig.Dishes)
-            {
-                for (int i = 0; i < dish.Ingredients.Count; i++)
-                {
-                    if (_possibleIngredientVariations.Count - 1 < i || !_possibleIngredientVariations[i].Contains(dish.Ingredients[i]))
-                    {
-                        if (_possibleIngredientVariations.Count - 1 < i)
-                        {
-                            _possibleIngredientVariations.Add(new List<IngredientType>());
-                        }
+            _containerToPossibleIngredients = new Dictionary<IngredientContainerViewComponent, List<IngredientType>>();
 
-                        _possibleIngredientVariations[i].Add(dish.Ingredients[i]);
-                    }
-                }
+            foreach(var container in _ingredientContainers)
+            {
+                UpdatePossibleIngredientsForContainer(container.playECSIngredientContainerView);
             }
         }
 
@@ -52,49 +42,70 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var ingredientsContainer in _ingredientContainers)
+            foreach (var containerToPossibleIngredient in _containerToPossibleIngredients)
             {
-                foreach (var e in entities)
+                IngredientType ingredient = entities[0].playECSIngredient.IngredientType;
+                if (containerToPossibleIngredient.Value.Contains(entities[0].playECSIngredient.IngredientType))
                 {
-                    var ingredients = ingredientsContainer.playECSIngredientContainerView.Ingredients;
-                    var newIngredient = e.playECSIngredient.IngredientType;
+                    IngredientContainerViewComponent container = containerToPossibleIngredient.Key;
 
-                    TryAddIngredient(ingredients, newIngredient); // return if true
+                    container.Ingredients.Add(ingredient);
+                    container.View.UpdateView();
+
+                    UpdatePossibleIngredientsForContainer(container);
+
+                    entities[0].AddPlayECSCollectedIngredient(ingredient);
+
+                    break;
                 }
             }
         }
 
-        private bool TryAddIngredient(List<IngredientType> ingredients, IngredientType newIngredient)
+        private void UpdatePossibleIngredientsForContainer(IngredientContainerViewComponent container)
         {
-            // может быть ситуация когда мы положим булочку сыр сыр
-            // хоть это будут допустимые ингридиенты, это не будет рецептурной сборкой
-
-            /*
-             * у каждого контейнера есть список доступных ему блюд
-             * каждый раз при появлении ингридиента мы проверяем можем ли мы положить ингридиент (свойство NextPossibleIngredient)
-             * когда кладём в него ингридиент, уменьшаем список доступных блюд
-             */
-
-             /*
-              * у каждого контейнера есть DishType который он принимает
-              * каждый рецепт в конфиге имеет поле DishType и список ингридиентов
-              */
-
-            if (ingredients.Count >= _possibleIngredientVariations.Count)
+            if (!_containerToPossibleIngredients.ContainsKey(container))
             {
-                Debug.Log("Для этого контейнера больше нет доступных ингредиентов??");
-                return false;
+                _containerToPossibleIngredients[container] = new List<IngredientType>();
+
+                foreach (var dish in _dishesConfig.Dishes)
+                {
+                    if (!_containerToPossibleIngredients[container].Contains(dish.Ingredients[0]))
+                    {
+                        _containerToPossibleIngredients[container].Add(dish.Ingredients[0]);
+                    }
+                }
+            }
+            else
+            {
+                _containerToPossibleIngredients[container].Clear();
+
+                int containerNextIndex = container.Ingredients.Count;
+
+                foreach (var dish in _dishesConfig.Dishes)
+                {
+                    if (dish.Ingredients.Count <= containerNextIndex)
+                    {
+                        break;
+                    }
+
+                    bool result = true;
+                    for (int i = 0; i < containerNextIndex; i++)
+                    {
+                        if (dish.Ingredients[i] != container.Ingredients[i])
+                        {
+                            result = false;
+                            break;;
+                        }
+                    }
+
+                    if (result)
+                    {
+                        _containerToPossibleIngredients[container].Add(dish.Ingredients[containerNextIndex]);
+                    }
+                }
             }
 
-            if (!_possibleIngredientVariations[ingredients.Count].Contains(newIngredient))
-            {
-                Debug.Log("Не подходящий ингредиент для этого контейнера");
-                return false;
-            }
-
-            ingredients.Add(newIngredient);
-
-            return true;
+            Debug.Log("Container next ingr: " + string.Join(", ", _containerToPossibleIngredients[container]));
         }
     }
 }
