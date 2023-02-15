@@ -68,13 +68,18 @@ namespace Core.Game.Play.Installers
             // Container.BindInterfacesAndSelfTo<CollectCompletedDish>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<UpdateIngredientContainerViewSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollectCompletedDishSystem>().AsSingle();
         }
 
         private void BindCleanupSystems()
         {
             // Container.BindInterfacesAndSelfTo<CleanupFinishedTimersSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<CleanupProducedIngredientsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedIngredientsSystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<CleanupCompletedDishSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CleanupCollectedDishSystem>().AsSingle();
         }
     }
 }

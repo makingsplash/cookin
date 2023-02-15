@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.Game.Play.Configs;
 using Core.Game.Play.ECS;
 using Play.ECS.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Play.ECS
 {
@@ -13,6 +15,9 @@ namespace Play.ECS
         [SerializeField]
         private TextMeshProUGUI _textIngredientsDisplay;
 
+        [SerializeField]
+        private Button _collectButton;
+
         public List<IngredientType> Ingredients;
 
 
@@ -20,6 +25,11 @@ namespace Play.ECS
         {
             base.Initialize(context);
             Entity.AddPlayECSIngredientContainerView(this, new List<IngredientType>());
+        }
+
+        private void Awake()
+        {
+            _collectButton.onClick.AddListener(OnCollect);
         }
 
         public void UpdateView()
@@ -35,6 +45,19 @@ namespace Play.ECS
             }
 
             _textIngredientsDisplay.text = stringBuilder.ToString();
+        }
+
+        public void Reset()
+        {
+            _textIngredientsDisplay.text = string.Empty;
+        }
+
+        private void OnCollect()
+        {
+            if (Ingredients.Any())
+            {
+                Entity.AddPlayECSDishesCompletedDish(new Dish{Ingredients = Ingredients});
+            }
         }
     }
 }

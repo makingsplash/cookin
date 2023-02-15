@@ -9,18 +9,22 @@
 public static class GameComponentsLookup {
 
     public const int PlayECSCollectedIngredient = 0;
-    public const int PlayECSEntityView = 1;
-    public const int PlayECSFinishedTimer = 2;
-    public const int PlayECSIngredient = 3;
-    public const int PlayECSIngredientContainerView = 4;
-    public const int PlayECSIngredientProducerView = 5;
-    public const int PlayECSRunningTimer = 6;
-    public const int PlayECSTimerView = 7;
+    public const int PlayECSDishesCollectedDish = 1;
+    public const int PlayECSDishesCompletedDish = 2;
+    public const int PlayECSEntityView = 3;
+    public const int PlayECSFinishedTimer = 4;
+    public const int PlayECSIngredient = 5;
+    public const int PlayECSIngredientContainerView = 6;
+    public const int PlayECSIngredientProducerView = 7;
+    public const int PlayECSRunningTimer = 8;
+    public const int PlayECSTimerView = 9;
 
-    public const int TotalComponents = 8;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
         "PlayECSCollectedIngredient",
+        "PlayECSDishesCollectedDish",
+        "PlayECSDishesCompletedDish",
         "PlayECSEntityView",
         "PlayECSFinishedTimer",
         "PlayECSIngredient",
@@ -32,6 +36,8 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(Play.ECS.CollectedIngredientComponent),
+        typeof(Play.ECS.Dishes.CollectedDishComponent),
+        typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
         typeof(Play.ECS.FinishedTimerComponent),
         typeof(Play.ECS.IngredientComponent),

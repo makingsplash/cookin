@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dishes:
   - Ingredients: 000000000200000001000000
-  - Ingredients: 000000000300000001000000
-  - Ingredients: 0300000001000000
+  - Ingredients: 020000000300000000000000
+  - Ingredients: 000000000200000001000000
+  - Ingredients: 0300000002000000

@@ -2,21 +2,21 @@ using System.Collections.Generic;
 using Core.Game.Play.Configs;
 using Entitas;
 using Play.ECS;
-using UnityEngine;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
     public class StoreIngredientsIntoContainersSystem : ReactiveSystem<GameEntity>, IInitializeSystem
     {
         private IGroup<GameEntity> _ingredientContainers;
-        private LevelDishesConfig _dishesConfig;
+        private Dish[] _levelDishes;
 
         private Dictionary<IngredientContainerViewComponent, List<IngredientType>> _containerToPossibleIngredients;
 
 
         public StoreIngredientsIntoContainersSystem(GameContext context, LevelDishesConfig dishesConfig) : base(context)
         {
-            _dishesConfig = dishesConfig;
+            _levelDishes = new Dish[dishesConfig.Dishes.Count];
+            dishesConfig.Dishes.CopyTo(_levelDishes);
             _ingredientContainers = context.GetGroup(GameMatcher.PlayECSIngredientContainerView);
         }
 
@@ -61,13 +61,13 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             }
         }
 
-        private void UpdatePossibleIngredientsForContainer(IngredientContainerViewComponent container)
+        public void UpdatePossibleIngredientsForContainer(IngredientContainerViewComponent container)
         {
             if (!_containerToPossibleIngredients.ContainsKey(container))
             {
                 _containerToPossibleIngredients[container] = new List<IngredientType>();
 
-                foreach (var dish in _dishesConfig.Dishes)
+                foreach (var dish in _levelDishes)
                 {
                     if (!_containerToPossibleIngredients[container].Contains(dish.Ingredients[0]))
                     {
@@ -81,7 +81,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 int containerNextIndex = container.Ingredients.Count;
 
-                foreach (var dish in _dishesConfig.Dishes)
+                foreach (var dish in _levelDishes)
                 {
                     if (dish.Ingredients.Count <= containerNextIndex)
                     {
@@ -104,8 +104,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                     }
                 }
             }
-
-            Debug.Log("Container next ingr: " + string.Join(", ", _containerToPossibleIngredients[container]));
         }
     }
 }
