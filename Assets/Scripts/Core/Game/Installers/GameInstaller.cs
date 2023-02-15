@@ -33,7 +33,7 @@ namespace Core.Game.Installers
             Container.DeclareSignal<ShowPopupSignal>();
             Container.DeclareSignal<TransactionSignal>();
             Container.DeclareSignal<ConsumableAmountChangedSignal>();
-            Container.DeclareSignal<ResetDataSignal>();
+            Container.DeclareSignal<ResetPlayerDataSignal>();
         }
     }
 }

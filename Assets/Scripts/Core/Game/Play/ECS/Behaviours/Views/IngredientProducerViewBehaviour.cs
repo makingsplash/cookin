@@ -46,19 +46,21 @@ namespace Play.ECS
         private void Awake()
         {
             _ingredientName.text = _ingredientType.ToString();
-            _collectButton.interactable = false;
+            _collectButton.gameObject.SetActive(false);
             _ingredientImage.color = STATE_EMPTY;
 
             _produceButton.onClick.AddListener(OnPrepare);
             _collectButton.onClick.AddListener(OnCollect);
+
+            _collectButton.gameObject.SetActive(false);
+            _produceButton.gameObject.SetActive(true);
         }
 
         private void OnPrepare()
         {
             _prepareCoroutine = StartCoroutine(Prepare());
 
-            _collectButton.interactable = false;
-            _produceButton.interactable = false;
+            _produceButton.gameObject.SetActive(false);
         }
 
         private void OnCollect()
@@ -83,6 +85,8 @@ namespace Play.ECS
                 yield return null;
             }
 
+            _textPrepareTimer.text = string.Empty;
+
             CompleteIngredient();
         }
 
@@ -90,16 +94,16 @@ namespace Play.ECS
         {
             _ingredientImage.color = STATE_READY;
 
-            _collectButton.interactable = true;
-            _produceButton.interactable = false;
+            _collectButton.gameObject.SetActive(true);
+            _produceButton.gameObject.SetActive(false);
         }
 
         public void ResetView()
         {
             _ingredientImage.color = STATE_EMPTY;
 
-            _collectButton.interactable = false;
-            _produceButton.interactable = true;
+            _collectButton.gameObject.SetActive(false);
+            _produceButton.gameObject.SetActive(true);
         }
     }
 }

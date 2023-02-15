@@ -52,13 +52,13 @@ namespace Core.Game.Home.UI.HUD
         public void SignalsSubscribe()
         {
             SignalBus.Subscribe<ConsumableAmountChangedSignal>(OnConsumableAmountChanged);
-            SignalBus.Subscribe<ResetDataSignal>(OnResetData);
+            SignalBus.Subscribe<ResetPlayerDataSignal>(OnResetData);
         }
 
         public void SignalsUnsubscribe()
         {
             SignalBus.Unsubscribe<ConsumableAmountChangedSignal>(OnConsumableAmountChanged);
-            SignalBus.Unsubscribe<ResetDataSignal>(OnResetData);
+            SignalBus.Unsubscribe<ResetPlayerDataSignal>(OnResetData);
         }
 
         private void EnterPlayContext()

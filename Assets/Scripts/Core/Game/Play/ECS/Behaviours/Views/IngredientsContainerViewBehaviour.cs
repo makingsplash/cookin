@@ -18,7 +18,10 @@ namespace Play.ECS
         [SerializeField]
         private Button _collectButton;
 
-        public List<IngredientType> Ingredients;
+        [SerializeField]
+        private Button _resetButton;
+
+        private List<IngredientType> _ingredients => Entity.playECSIngredientContainerView.Ingredients;
 
 
         public override void Initialize(GameContext context)
@@ -30,15 +33,14 @@ namespace Play.ECS
         private void Awake()
         {
             _collectButton.onClick.AddListener(OnCollect);
+            _resetButton.onClick.AddListener(OnReset);
         }
 
         public void UpdateView()
         {
-            Ingredients = Entity.playECSIngredientContainerView.Ingredients.ToList();
-
             StringBuilder stringBuilder = new StringBuilder();
 
-            foreach (var ingredient in Ingredients)
+            foreach (var ingredient in _ingredients)
             {
                 stringBuilder.Append(ingredient.ToString());
                 stringBuilder.Append("\n");
@@ -47,16 +49,19 @@ namespace Play.ECS
             _textIngredientsDisplay.text = stringBuilder.ToString();
         }
 
-        public void Reset()
+        public void OnReset()
         {
+            _ingredients.Clear();
             _textIngredientsDisplay.text = string.Empty;
+
+            Entity.AddPlayECSClearedContainer(Entity.playECSIngredientContainerView);
         }
 
         private void OnCollect()
         {
-            if (Ingredients.Any())
+            if (_ingredients.Any())
             {
-                Entity.AddPlayECSDishesCompletedDish(new Dish{Ingredients = Ingredients});
+                Entity.AddPlayECSDishesCompletedDish(new Dish{Ingredients = _ingredients});
             }
         }
     }

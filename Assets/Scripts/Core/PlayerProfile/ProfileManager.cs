@@ -32,7 +32,7 @@ namespace Core.PlayerProfile
 
         public void ResetData()
         {
-            SignalBus.TryFire(new ResetDataSignal());
+            SignalBus.TryFire(new ResetPlayerDataSignal());
 
             ProfileData.Reset();
         }

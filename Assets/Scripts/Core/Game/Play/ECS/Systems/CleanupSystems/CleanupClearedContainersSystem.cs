@@ -4,17 +4,17 @@ using Entitas;
 
 namespace Core.Game.Play.ECS.Systems.CleanupSystems
 {
-    public class CleanupCollectedDishSystem : ICleanupSystem
+    public class CleanupClearedContainersSystem : ICleanupSystem
     {
         private readonly GameContext _context;
         private readonly IGroup<GameEntity> _group;
         private readonly List<GameEntity> _buffer = new ();
         private readonly StoreIngredientsIntoContainersSystem _storingSystem;
 
-        public CleanupCollectedDishSystem(GameContext context, StoreIngredientsIntoContainersSystem storingSystem)
+        public CleanupClearedContainersSystem(GameContext context, StoreIngredientsIntoContainersSystem storingSystem)
         {
             _context = context;
-            _group = _context.GetGroup(GameMatcher.PlayECSDishesCollectedDish);
+            _group = _context.GetGroup(GameMatcher.PlayECSClearedContainer);
             _storingSystem = storingSystem;
         }
 
@@ -24,12 +24,9 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
             {
                 var container = e.playECSIngredientContainerView;
 
-                container.Ingredients.Clear();
-                container.View.OnReset();
-
                 _storingSystem.UpdatePossibleIngredientsForContainer(container);
 
-                e.RemovePlayECSDishesCollectedDish();
+                e.RemovePlayECSClearedContainer();
             }
         }
     }

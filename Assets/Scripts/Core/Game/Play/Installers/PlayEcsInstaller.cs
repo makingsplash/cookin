@@ -80,6 +80,8 @@ namespace Core.Game.Play.Installers
 
             Container.BindInterfacesAndSelfTo<CleanupCompletedDishSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedDishSystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<CleanupClearedContainersSystem>().AsSingle();
         }
     }
 }
