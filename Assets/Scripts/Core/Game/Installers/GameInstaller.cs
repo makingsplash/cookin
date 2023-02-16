@@ -34,6 +34,8 @@ namespace Core.Game.Installers
             Container.DeclareSignal<TransactionSignal>();
             Container.DeclareSignal<ConsumableAmountChangedSignal>();
             Container.DeclareSignal<ResetPlayerDataSignal>();
+
+            Container.DeclareSignal<LevelDishesUpdatedSignal>();
         }
     }
 }

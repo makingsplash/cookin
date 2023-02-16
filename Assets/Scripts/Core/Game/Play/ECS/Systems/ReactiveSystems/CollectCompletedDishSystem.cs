@@ -7,11 +7,11 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
     public class CollectCompletedDishSystem : ReactiveSystem<GameEntity>
     {
-        private List<Dish> _levelDishes;
+        private readonly LevelDishes _levelDishes;
 
-        public CollectCompletedDishSystem(GameContext context, LevelDishesConfig dishesConfig) : base(context)
+        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes) : base(context)
         {
-            _levelDishes = new List<Dish>(dishesConfig.Dishes);
+            _levelDishes = levelDishes;
 
             DebugPrint();
         }
@@ -30,10 +30,8 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         {
             Dish completedDish = entities[0].playECSDishesCompletedDish.Dish;
 
-            for (int i = 0; i < _levelDishes.Count; i++)
+            foreach(var requiredDish in _levelDishes.LevelDishesToCollect)
             {
-                Dish requiredDish = _levelDishes[i];
-
                 if (requiredDish.Ingredients.Count != completedDish.Ingredients.Count)
                 {
                     continue;
@@ -53,7 +51,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 if (validDish)
                 {
                     entities[0].AddPlayECSDishesCollectedDish(completedDish);
-                    _levelDishes.RemoveAt(i);
+                    _levelDishes.CompleteDish(requiredDish);
 
                     DebugPrint();
 
@@ -65,7 +63,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         private void DebugPrint()
         {
             Debug.LogWarning("<<< Required dishes");
-            foreach (var dish in _levelDishes)
+            foreach (var dish in _levelDishes.LevelDishesToCollect)
             {
                 Debug.LogWarning(string.Join(", ", dish.Ingredients));
             }
