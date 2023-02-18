@@ -53,13 +53,10 @@ namespace Core.Game.Play.Installers
         private void BindInitializeViewsSystems()
         {
             Container.BindInterfacesAndSelfTo<InitializeViewBehavioursSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ResetFinishedTimerViewsSystem>().AsSingle();
         }
 
         private void BindExecutableSystems()
         {
-            Container.BindInterfacesAndSelfTo<TimerTickSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<TimerUpdateViewSystem>().AsSingle();
         }
 
         private void BindReactSystems()

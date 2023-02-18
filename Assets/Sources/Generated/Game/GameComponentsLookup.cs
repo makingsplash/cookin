@@ -42,11 +42,8 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.Dishes.CollectedDishComponent),
         typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
-        typeof(Play.ECS.FinishedTimerComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
         typeof(Play.ECS.IngredientProducerViewComponent),
-        typeof(Play.ECS.RunningTimerComponent),
-        typeof(Play.ECS.TimerViewComponent)
     };
 }

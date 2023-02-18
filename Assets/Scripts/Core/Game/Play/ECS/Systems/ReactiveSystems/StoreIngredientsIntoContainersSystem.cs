@@ -49,6 +49,8 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 {
                     IngredientContainerViewComponent container = containerToPossibleIngredient.Key;
 
+                    // а, нельзя же дважды добавлять компонент одного типа
+
                     container.Ingredients.Add(ingredient);
                     container.View.UpdateView();
 
