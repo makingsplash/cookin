@@ -57,21 +57,22 @@ namespace Core.Game.Play.Installers
 
         private void BindExecutableSystems()
         {
+            Container.BindInterfacesAndSelfTo<SpawnGuestsSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WalkGuestSystem>().AsSingle();
         }
 
         private void BindReactSystems()
         {
-            Container.BindInterfacesAndSelfTo<StoreIngredientsIntoContainersSystem>().AsSingle();
-            // Container.BindInterfacesAndSelfTo<CollectCompletedDish>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CreateOrderForArrivedGuestsSystem>().AsSingle();
 
+            Container.BindInterfacesAndSelfTo<StoreIngredientsIntoContainersSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateIngredientContainerViewSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<CollectCompletedDishSystem>().AsSingle();
         }
 
         private void BindCleanupSystems()
         {
-            // Container.BindInterfacesAndSelfTo<CleanupFinishedTimersSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<CleanupProducedIngredientsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedIngredientsSystem>().AsSingle();
 

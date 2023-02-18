@@ -8,11 +8,11 @@ namespace Core.Game.Play.Installers
     public class PlaySettingsInstaller : ScriptableObjectInstaller<PlaySettingsInstaller>
     {
         [SerializeField]
-        private LevelDishesConfig levelDishesConfig;
+        private LevelConfig levelConfig;
 
         public override void InstallBindings()
         {
-            Container.Bind<LevelDishesConfig>().FromInstance(levelDishesConfig);
+            Container.Bind<LevelConfig>().FromInstance(levelConfig);
         }
     }
 }

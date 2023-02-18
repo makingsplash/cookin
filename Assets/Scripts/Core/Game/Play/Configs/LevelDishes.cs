@@ -13,9 +13,9 @@ namespace Core.Game.Play.Configs
 
         private SignalBus SignalBus { get; }
 
-        public LevelDishes(LevelDishesConfig dishesConfig, SignalBus signalBus)
+        public LevelDishes(LevelConfig config, SignalBus signalBus)
         {
-            LevelDishesToCollect = new List<Dish>(dishesConfig.Dishes);
+            LevelDishesToCollect = new List<Dish>(config.Dishes);
             SignalBus = signalBus;
         }
 

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b16098dfe24ae8a460fdd91e7fb836, type: 3}
   m_Name: PlaySettingsInstaller
   m_EditorClassIdentifier: 
-  levelDishesConfig: {fileID: 11400000, guid: 23c423918b4c840629c79e40e90f0be6, type: 2}
+  levelConfig: {fileID: 11400000, guid: 23c423918b4c840629c79e40e90f0be6, type: 2}

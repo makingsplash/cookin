@@ -13,10 +13,10 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         private Dictionary<IngredientContainerViewComponent, List<IngredientType>> _containerToPossibleIngredients;
 
 
-        public StoreIngredientsIntoContainersSystem(GameContext context, LevelDishesConfig dishesConfig) : base(context)
+        public StoreIngredientsIntoContainersSystem(GameContext context, LevelConfig config) : base(context)
         {
-            _levelDishes = new Dish[dishesConfig.Dishes.Count];
-            dishesConfig.Dishes.CopyTo(_levelDishes);
+            _levelDishes = new Dish[config.Dishes.Count];
+            config.Dishes.CopyTo(_levelDishes);
             _ingredientContainers = context.GetGroup(GameMatcher.PlayECSIngredientContainerView);
         }
 

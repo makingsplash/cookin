@@ -8,42 +8,48 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int PlayECSClearedContainer = 0;
-    public const int PlayECSCollectedIngredient = 1;
-    public const int PlayECSDishesCollectedDish = 2;
-    public const int PlayECSDishesCompletedDish = 3;
-    public const int PlayECSEntityView = 4;
-    public const int PlayECSFinishedTimer = 5;
-    public const int PlayECSIngredient = 6;
-    public const int PlayECSIngredientContainerView = 7;
-    public const int PlayECSIngredientProducerView = 8;
-    public const int PlayECSRunningTimer = 9;
-    public const int PlayECSTimerView = 10;
+    public const int PlayECSArrivedGuest = 0;
+    public const int PlayECSClearedContainer = 1;
+    public const int PlayECSCollectedIngredient = 2;
+    public const int PlayECSDishesCollectedDish = 3;
+    public const int PlayECSDishesCompletedDish = 4;
+    public const int PlayECSEntityView = 5;
+    public const int PlayECSGuestView = 6;
+    public const int PlayECSIngredient = 7;
+    public const int PlayECSIngredientContainerView = 8;
+    public const int PlayECSIngredientProducerView = 9;
+    public const int PlayECSOrderedGuest = 10;
+    public const int PlayECSWalkingGuest = 11;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 12;
 
     public static readonly string[] componentNames = {
+        "PlayECSArrivedGuest",
         "PlayECSClearedContainer",
         "PlayECSCollectedIngredient",
         "PlayECSDishesCollectedDish",
         "PlayECSDishesCompletedDish",
         "PlayECSEntityView",
-        "PlayECSFinishedTimer",
+        "PlayECSGuestView",
         "PlayECSIngredient",
         "PlayECSIngredientContainerView",
         "PlayECSIngredientProducerView",
-        "PlayECSRunningTimer",
-        "PlayECSTimerView"
+        "PlayECSOrderedGuest",
+        "PlayECSWalkingGuest"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Play.ECS.ArrivedGuestComponent),
         typeof(Play.ECS.ClearedContainerComponent),
         typeof(Play.ECS.CollectedIngredientComponent),
         typeof(Play.ECS.Dishes.CollectedDishComponent),
         typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
+        typeof(Play.ECS.GuestViewComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
         typeof(Play.ECS.IngredientProducerViewComponent),
+        typeof(Play.ECS.OrderedGuestComponent),
+        typeof(Play.ECS.WalkingGuestComponent)
     };
 }
