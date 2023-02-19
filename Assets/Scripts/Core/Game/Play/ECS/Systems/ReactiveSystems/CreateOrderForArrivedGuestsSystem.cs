@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Game.Play.Configs;
 using Entitas;
+using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
@@ -31,7 +32,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             {
                 if (guestEntity.hasPlayECSWalkingGuest)
                 {
-                    guestEntity.playECSWalkingGuest.View.SetWalkingAnimation(false);
                     guestEntity.RemovePlayECSWalkingGuest();
                 }
 
@@ -40,7 +40,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 _levelDishes.DishesToAssign.Remove(dish);
 
                 guestEntity.AddPlayECSOrderedGuest(dish);
-                guestEntity.playECSArrivedGuest.View.DisplayOrder();
+                guestEntity.playECSArrivedGuest.View.SetState(GuestState.Arrived);
             }
         }
     }

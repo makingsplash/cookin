@@ -63,14 +63,13 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                     SignalBus.TryFire(new TransactionSignal(earnedStars));
 
                     GuestViewBehaviour guestView = guest.playECSGuestView.View;
-                    guestView.SetWalkOutState();
+                    guestView.SetState(GuestState.WalkOut);
 
                     Vector3 startPos = guestView.gameObject.transform.localPosition;
                     Vector3 endPos = new Vector3(-2000, -312, 0);
                     int direction = -1;
                     float speed = 300f;
                     float walkingTime = Mathf.Abs((endPos - startPos).x) / speed;
-                    guestView.SetWalkingAnimation(true);
 
                     guest.AddPlayECSWalkingGuest(guestView, direction, speed, walkingTime);
 

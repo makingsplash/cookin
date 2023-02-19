@@ -63,7 +63,7 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             GuestViewBehaviour viewBehaviour = guestGO.GetComponent<GuestViewBehaviour>();
             viewBehaviour.Initialize(_context);
             guestGO.GetComponent<RectTransform>().localPosition = startPos;
-            viewBehaviour.SetWalkingAnimation(true);
+            viewBehaviour.SetState(GuestState.WalkIn);
 
             GameEntity guestEntity = (GameEntity) guestGO.GetEntityLink().entity;
             guestEntity.AddPlayECSWalkingGuest(viewBehaviour, direction, speed, walkingTime);
