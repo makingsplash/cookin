@@ -30,11 +30,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         {
             foreach (var guestEntity in entities)
             {
-                if (guestEntity.hasPlayECSWalkingGuest)
-                {
-                    guestEntity.RemovePlayECSWalkingGuest();
-                }
-
                 Dish dish = _levelDishes.DishesToAssign.First();
                 _levelDishes.ActiveOrders.Add(guestEntity, dish);
                 _levelDishes.DishesToAssign.Remove(dish);

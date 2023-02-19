@@ -12,13 +12,16 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
     public class CollectCompletedDishSystem : ReactiveSystem<GameEntity>
     {
-        private readonly LevelDishes _levelDishes;
+        private LevelDishes LevelDishes { get; }
         private SignalBus SignalBus { get; }
+        private LevelConfig LevelConfig { get; }
 
-        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes, SignalBus signalBus) : base(context)
+        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes, SignalBus signalBus, LevelConfig levelconfig, LevelConfig levelConfig)
+            : base(context)
         {
-            _levelDishes = levelDishes;
+            LevelDishes = levelDishes;
             SignalBus = signalBus;
+            LevelConfig = levelConfig;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -36,7 +39,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             GameEntity container = entities[0];
             Dish completedDish = container.playECSDishesCompletedDish.Dish;
 
-            foreach(var (guest, order) in _levelDishes.ActiveOrders)
+            foreach(var (guestEntity, order) in LevelDishes.ActiveOrders)
             {
                 if (order.Ingredients.Count != completedDish.Ingredients.Count)
                 {
@@ -56,26 +59,44 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 if (validDish)
                 {
-                    container.AddPlayECSDishesCollectedDish(completedDish);
-                    _levelDishes.CompleteOrder(guest);
-
-                    Transaction earnedStars = new Transaction(ConsumableType.Star, 6);
-                    SignalBus.TryFire(new TransactionSignal(earnedStars));
-
-                    GuestViewBehaviour guestView = guest.playECSGuestView.View;
-                    guestView.SetState(GuestState.WalkOut);
-
-                    Vector3 startPos = guestView.gameObject.transform.localPosition;
-                    Vector3 endPos = new Vector3(-2000, -312, 0);
-                    int direction = -1;
-                    float speed = 300f;
-                    float walkingTime = Mathf.Abs((endPos - startPos).x) / speed;
-
-                    guest.AddPlayECSWalkingGuest(guestView, direction, speed, walkingTime);
+                    MarkDishAsCompleted(container, completedDish, guestEntity);
+                    ApplyDishReward();
+                    MoveOutGuest(guestEntity);
 
                     break;
                 }
             }
+        }
+
+        private void MarkDishAsCompleted(GameEntity container, Dish completedDish, GameEntity guestEntity)
+        {
+            container.AddPlayECSDishesCollectedDish(completedDish);
+            LevelDishes.CompleteOrder(guestEntity);
+        }
+
+        private void ApplyDishReward()
+        {
+            Transaction earnedStars = new Transaction(ConsumableType.Star, 6);
+            SignalBus.TryFire(new TransactionSignal(earnedStars));
+        }
+
+        private void MoveOutGuest(GameEntity guestEntity)
+        {
+            GuestViewBehaviour guestView = guestEntity.playECSGuestView.View;
+            guestView.SetState(GuestState.WalkOut);
+
+            Vector3 startPos = guestView.transform.localPosition;
+            Vector3 endPos = new Vector3(LevelConfig.HorizontalStartingPointLeft, -312, 0);
+            int direction = startPos.x > 0 ? -1 : 1;
+            float speed = LevelConfig.GuestsSpeed;
+            float movingTime = Mathf.Abs((endPos - startPos).x) / speed;
+
+            guestEntity.RemovePlayECSUnservedGuest();
+            guestEntity.AddPlayECSHorizontalMoving(
+                guestView.transform, direction, speed, movingTime, () =>
+                {
+                    Object.Destroy(guestView.gameObject);
+                });
         }
     }
 }

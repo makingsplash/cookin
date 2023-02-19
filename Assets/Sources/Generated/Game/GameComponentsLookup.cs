@@ -15,13 +15,14 @@ public static class GameComponentsLookup {
     public const int PlayECSDishesCompletedDish = 4;
     public const int PlayECSEntityView = 5;
     public const int PlayECSGuestView = 6;
-    public const int PlayECSIngredient = 7;
-    public const int PlayECSIngredientContainerView = 8;
-    public const int PlayECSIngredientProducerView = 9;
-    public const int PlayECSOrderedGuest = 10;
-    public const int PlayECSWalkingGuest = 11;
+    public const int PlayECSHorizontalMoving = 7;
+    public const int PlayECSIngredient = 8;
+    public const int PlayECSIngredientContainerView = 9;
+    public const int PlayECSIngredientProducerView = 10;
+    public const int PlayECSOrderedGuest = 11;
+    public const int PlayECSUnservedGuest = 12;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "PlayECSArrivedGuest",
@@ -31,11 +32,12 @@ public static class GameComponentsLookup {
         "PlayECSDishesCompletedDish",
         "PlayECSEntityView",
         "PlayECSGuestView",
+        "PlayECSHorizontalMoving",
         "PlayECSIngredient",
         "PlayECSIngredientContainerView",
         "PlayECSIngredientProducerView",
         "PlayECSOrderedGuest",
-        "PlayECSWalkingGuest"
+        "PlayECSUnservedGuest"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -46,10 +48,11 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
         typeof(Play.ECS.GuestViewComponent),
+        typeof(Play.ECS.HorizontalMovingComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
         typeof(Play.ECS.IngredientProducerViewComponent),
         typeof(Play.ECS.OrderedGuestComponent),
-        typeof(Play.ECS.WalkingGuestComponent)
+        typeof(Play.ECS.UnservedGuestComponent)
     };
 }

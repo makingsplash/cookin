@@ -10,9 +10,13 @@ namespace Core.Game.Play.Configs
     public class LevelConfig : ScriptableObject
     {
         public List<Dish> Dishes;
+        public AssetReference GuestViewPrefab;
         public int GuestsSpawnAmount;
         public float GuestsSpawnRate;
-        public AssetReference GuestViewPrefab;
+        public float GuestsSpeed;
+        public float HorizontalStartingPointLeft;
+        public float HorizontalStartingPointRight;
+        public float GuestHorizontalOrderPosition;
     }
 
     [Serializable]

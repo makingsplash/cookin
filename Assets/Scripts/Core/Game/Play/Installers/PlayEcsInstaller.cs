@@ -58,7 +58,7 @@ namespace Core.Game.Play.Installers
         private void BindExecutableSystems()
         {
             Container.BindInterfacesAndSelfTo<SpawnGuestsSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<WalkGuestSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HorizontalMoveSystem>().AsSingle();
         }
 
         private void BindReactSystems()

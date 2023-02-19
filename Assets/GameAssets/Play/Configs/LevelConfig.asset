@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dishes:
   - Ingredients: 04000000050000000600000007000000
-  - Ingredients: 020000000300000000000000
+  - Ingredients: 0200000003000000
   - Ingredients: 000000000200000001000000
   - Ingredients: 0300000002000000
-  GuestsSpawnAmount: 1
-  GuestsSpawnRate: 1.5
   GuestViewPrefab:
     m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  GuestsSpawnAmount: 1
+  GuestsSpawnRate: 0.1
+  GuestsSpeed: 300
+  HorizontalStartingPointLeft: -2000
+  HorizontalStartingPointRight: 2000
+  GuestHorizontalOrderPosition: 100

@@ -32,6 +32,7 @@ namespace Play.ECS
         {
             base.Initialize(context);
             Entity.AddPlayECSGuestView(this);
+            Entity.AddPlayECSUnservedGuest(this);
         }
 
         public void SetState(GuestState state)

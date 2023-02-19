@@ -15,6 +15,7 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
         private readonly LevelConfig _levelConfig;
         private readonly Transform _guestsRoot;
 
+        private readonly IGroup<GameEntity> _group;
         private int _spawnedGuestsAmount;
         private float _timeToSpawn;
 
@@ -23,6 +24,19 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             _context = context;
             _levelConfig = levelConfig;
             _guestsRoot = uiRoot.GuestsRoot;
+            _group = _context.GetGroup(GameMatcher.PlayECSUnservedGuest);
+            _group.OnEntityAdded += IncreaseSpawnedGuestsAmount;
+            _group.OnEntityRemoved += DecreaseSpawnedGuestsAmount;
+        }
+
+        private void IncreaseSpawnedGuestsAmount(IGroup<GameEntity> @group, GameEntity entity, int index, IComponent component)
+        {
+            _spawnedGuestsAmount++;
+        }
+
+        private void DecreaseSpawnedGuestsAmount(IGroup<GameEntity> @group, GameEntity entity, int index, IComponent component)
+        {
+            _spawnedGuestsAmount--;
         }
 
         public void Execute()
@@ -36,7 +50,6 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
                 if (_spawnedGuestsAmount < _levelConfig.GuestsSpawnAmount)
                 {
                     _timeToSpawn = _levelConfig.GuestsSpawnRate;
-                    _spawnedGuestsAmount++;
 
                     SpawnWalkingGuest().Forget();
                 }
@@ -49,24 +62,29 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             await asyncOperationHandle;
             GameObject guestGO = asyncOperationHandle.Result;
 
-            MakeWalking(guestGO);
+            GuestViewBehaviour guestView = guestGO.GetComponent<GuestViewBehaviour>();
+            guestView.Initialize(_context);
+
+            MakeMoving(guestGO, guestView);
         }
 
-        private void MakeWalking(GameObject guestGO)
+        private void MakeMoving(GameObject guestGO, GuestViewBehaviour guestView)
         {
-            Vector3 startPos = new Vector3(-1500, -312, 0); // get from some SpawningPositions
-            Vector3 endPos = new Vector3(100, -312, 0); // get from some WalkingToPositions
+            Vector3 startPos = new Vector3(_levelConfig.HorizontalStartingPointLeft, -312, 0);
+            Vector3 endPos = new Vector3(_levelConfig.GuestHorizontalOrderPosition, -312, 0);
             int direction = startPos.x > 0 ? -1 : 1;
-            float speed = 300f;                               // get from config
-            float walkingTime = Mathf.Abs((endPos - startPos).x) / speed;
+            float speed = _levelConfig.GuestsSpeed;
+            float movingTime = Mathf.Abs((endPos - startPos).x) / speed;
 
-            GuestViewBehaviour viewBehaviour = guestGO.GetComponent<GuestViewBehaviour>();
-            viewBehaviour.Initialize(_context);
             guestGO.GetComponent<RectTransform>().localPosition = startPos;
-            viewBehaviour.SetState(GuestState.WalkIn);
+            guestView.SetState(GuestState.WalkIn);
 
             GameEntity guestEntity = (GameEntity) guestGO.GetEntityLink().entity;
-            guestEntity.AddPlayECSWalkingGuest(viewBehaviour, direction, speed, walkingTime);
+            guestEntity.AddPlayECSHorizontalMoving(
+                guestGO.transform, direction, speed, movingTime, () =>
+                {
+                    guestEntity.AddPlayECSArrivedGuest(guestView);
+                });
         }
     }
 }
