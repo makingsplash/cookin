@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
   Dishes:
-  - Ingredients: 000000000200000001000000
+  - Ingredients: 04000000050000000600000007000000
   - Ingredients: 020000000300000000000000
   - Ingredients: 000000000200000001000000
   - Ingredients: 0300000002000000

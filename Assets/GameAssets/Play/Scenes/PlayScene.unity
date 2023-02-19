@@ -164,7 +164,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 302.822, y: 247.245}
+  m_SizeDelta: {x: 437.327, y: 247.245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93647022
 MonoBehaviour:
@@ -413,7 +413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -193}
+  m_AnchoredPosition: {x: -103, y: -193}
   m_SizeDelta: {x: 193.735, y: 75.784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &312686644
@@ -2093,7 +2093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 492, y: -1177}
+  m_AnchoredPosition: {x: 492, y: -1095}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640818454
@@ -2128,8 +2128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70030cd342e410991fd74fb1fc020a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 1
-  _prepareTime: 0
+  _ingredientType: 5
+  _prepareTime: 1
   _ingredientImage: {fileID: 1836662426}
   _produceButton: {fileID: 1982125574}
   _collectButton: {fileID: 560532536}
@@ -2391,7 +2391,7 @@ GameObject:
   - component: {fileID: 798105495}
   - component: {fileID: 798105494}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2414,7 +2414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.52108765, y: -211.156}
+  m_AnchoredPosition: {x: 0.52108765, y: -523.36}
   m_SizeDelta: {x: 2008.014, y: 90.391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &798105494
@@ -2430,7 +2430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2891,8 +2891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70030cd342e410991fd74fb1fc020a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 3
-  _prepareTime: 0
+  _ingredientType: 4
+  _prepareTime: 7
   _ingredientImage: {fileID: 372271207}
   _produceButton: {fileID: 577587895}
   _collectButton: {fileID: 2001326318}
@@ -4287,8 +4287,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 611, y: -409}
-  m_SizeDelta: {x: 721.054, y: 679.141}
+  m_AnchoredPosition: {x: 406, y: 419}
+  m_SizeDelta: {x: 956.06, y: 679.141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1738336531
 MonoBehaviour:
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70030cd342e410991fd74fb1fc020a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 2
+  _ingredientType: 6
   _prepareTime: 1
   _ingredientImage: {fileID: 1713674580}
   _produceButton: {fileID: 752239101}
@@ -5106,7 +5106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 199}
+  m_AnchoredPosition: {x: -103, y: 199}
   m_SizeDelta: {x: 193.735, y: 75.784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1967767285
@@ -5898,7 +5898,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 302.822, y: 247.245}
+  m_SizeDelta: {x: 421.023, y: 247.245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &5334046880348795646
 RectTransform:
@@ -6035,8 +6035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70030cd342e410991fd74fb1fc020a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 0
-  _prepareTime: 0
+  _ingredientType: 7
+  _prepareTime: 5
   _ingredientImage: {fileID: 2062624301}
   _produceButton: {fileID: 760458641}
   _collectButton: {fileID: 350573555}

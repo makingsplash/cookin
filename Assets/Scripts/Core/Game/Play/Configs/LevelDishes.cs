@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Core.Signals;
 using Zenject;
 
 namespace Core.Game.Play.Configs
 {
     public class LevelDishes
     {
-        public readonly List<Dish> LevelDishesToCollect;
+        public readonly List<Dish> DishesToAssign;
+        public readonly Dictionary<GameEntity, Dish> ActiveOrders = new ();
 
         // Блюда которые прямо сейчас заказаны, в дальнейшем можно отдавать только их
         // public List<Dish> OrderedDishes;
@@ -15,15 +15,13 @@ namespace Core.Game.Play.Configs
 
         public LevelDishes(LevelConfig config, SignalBus signalBus)
         {
-            LevelDishesToCollect = new List<Dish>(config.Dishes);
+            DishesToAssign = new List<Dish>(config.Dishes);
             SignalBus = signalBus;
         }
 
-        public void CompleteDish(Dish dish)
+        public void CompleteOrder(GameEntity guest)
         {
-            LevelDishesToCollect.Remove(dish);
-
-            SignalBus.TryFire(new LevelDishesUpdatedSignal());
+            ActiveOrders.Remove(guest);
         }
     }
 }

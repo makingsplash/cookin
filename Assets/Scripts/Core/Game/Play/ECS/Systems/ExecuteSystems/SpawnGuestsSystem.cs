@@ -54,8 +54,8 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
 
         private void MakeWalking(GameObject guestGO)
         {
-            Vector3 startPos = new Vector3(-1500, 0, 0); // get from some SpawningPositions
-            Vector3 endPos = new Vector3(100, 0, 0); // get from some WalkingToPositions
+            Vector3 startPos = new Vector3(-1500, -312, 0); // get from some SpawningPositions
+            Vector3 endPos = new Vector3(100, -312, 0); // get from some WalkingToPositions
             int direction = startPos.x > 0 ? -1 : 1;
             float speed = 300f;                               // get from config
             float walkingTime = Mathf.Abs((endPos - startPos).x) / speed;

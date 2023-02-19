@@ -6,5 +6,9 @@ namespace Core.Game.Play.ECS
         UpperBun,
         Patty,
         Cheese,
+        Экспрессо,
+        СиропПеченька,
+        Молоко,
+        ВзбитьМолоко
     }
 }

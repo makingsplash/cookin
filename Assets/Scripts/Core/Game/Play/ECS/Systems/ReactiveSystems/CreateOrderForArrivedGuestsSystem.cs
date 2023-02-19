@@ -27,16 +27,20 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var e in entities)
+            foreach (var guestEntity in entities)
             {
-                if (e.hasPlayECSWalkingGuest)
+                if (guestEntity.hasPlayECSWalkingGuest)
                 {
-                    e.playECSWalkingGuest.View.SetWalkingAnimation(false);
-                    e.RemovePlayECSWalkingGuest();
+                    guestEntity.playECSWalkingGuest.View.SetWalkingAnimation(false);
+                    guestEntity.RemovePlayECSWalkingGuest();
                 }
 
-                e.AddPlayECSOrderedGuest(_levelDishes.LevelDishesToCollect.First());
-                e.playECSArrivedGuest.View.DisplayOrder();
+                Dish dish = _levelDishes.DishesToAssign.First();
+                _levelDishes.ActiveOrders.Add(guestEntity, dish);
+                _levelDishes.DishesToAssign.Remove(dish);
+
+                guestEntity.AddPlayECSOrderedGuest(dish);
+                guestEntity.playECSArrivedGuest.View.DisplayOrder();
             }
         }
     }

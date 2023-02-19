@@ -1,19 +1,24 @@
 using System.Collections.Generic;
+using Core.Consumables;
 using Core.Game.Play.Configs;
+using Core.Signals;
+using Core.Transactions;
 using Entitas;
+using Play.ECS;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
     public class CollectCompletedDishSystem : ReactiveSystem<GameEntity>
     {
         private readonly LevelDishes _levelDishes;
+        private SignalBus SignalBus { get; }
 
-        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes) : base(context)
+        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes, SignalBus signalBus) : base(context)
         {
             _levelDishes = levelDishes;
-
-            DebugPrint();
+            SignalBus = signalBus;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -28,19 +33,20 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            Dish completedDish = entities[0].playECSDishesCompletedDish.Dish;
+            GameEntity container = entities[0];
+            Dish completedDish = container.playECSDishesCompletedDish.Dish;
 
-            foreach(var requiredDish in _levelDishes.LevelDishesToCollect)
+            foreach(var (guest, order) in _levelDishes.ActiveOrders)
             {
-                if (requiredDish.Ingredients.Count != completedDish.Ingredients.Count)
+                if (order.Ingredients.Count != completedDish.Ingredients.Count)
                 {
                     continue;
                 }
 
                 bool validDish = true;
-                for (int j = 0; j < requiredDish.Ingredients.Count; j++)
+                for (int j = 0; j < order.Ingredients.Count; j++)
                 {
-                    if (requiredDish.Ingredients[j] != completedDish.Ingredients[j])
+                    if (order.Ingredients[j] != completedDish.Ingredients[j])
                     {
                         validDish = false;
 
@@ -50,24 +56,27 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 if (validDish)
                 {
-                    entities[0].AddPlayECSDishesCollectedDish(completedDish);
-                    _levelDishes.CompleteDish(requiredDish);
+                    container.AddPlayECSDishesCollectedDish(completedDish);
+                    _levelDishes.CompleteOrder(guest);
 
-                    DebugPrint();
+                    Transaction earnedStars = new Transaction(ConsumableType.Star, 6);
+                    SignalBus.TryFire(new TransactionSignal(earnedStars));
+
+                    GuestViewBehaviour guestView = guest.playECSGuestView.View;
+                    guestView.SetWalkOutState();
+
+                    Vector3 startPos = guestView.gameObject.transform.localPosition;
+                    Vector3 endPos = new Vector3(-2000, -312, 0);
+                    int direction = -1;
+                    float speed = 300f;
+                    float walkingTime = Mathf.Abs((endPos - startPos).x) / speed;
+                    guestView.SetWalkingAnimation(true);
+
+                    guest.AddPlayECSWalkingGuest(guestView, direction, speed, walkingTime);
 
                     break;
                 }
             }
-        }
-
-        private void DebugPrint()
-        {
-            Debug.LogWarning("<<< Required dishes");
-            foreach (var dish in _levelDishes.LevelDishesToCollect)
-            {
-                Debug.LogWarning(string.Join(", ", dish.Ingredients));
-            }
-            Debug.LogWarning(">>>");
         }
     }
 }

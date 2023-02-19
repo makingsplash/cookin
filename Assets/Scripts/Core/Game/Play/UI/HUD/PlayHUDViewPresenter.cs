@@ -62,7 +62,7 @@ namespace Core.Game.Play.UI.HUD
         {
             StringBuilder dishesList = new StringBuilder();
 
-            foreach (var dish in LevelDishes.LevelDishesToCollect)
+            foreach (var dish in LevelDishes.DishesToAssign)
             {
                 dishesList.Append(string.Join(", ", dish.Ingredients));
                 dishesList.Append("\n");
