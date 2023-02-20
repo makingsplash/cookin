@@ -22,12 +22,14 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             foreach (var e in _group.GetEntities(_buffer))
             {
                 HorizontalMovingComponent movingComponent = e.playECSHorizontalMoving;
+                HorizontalMovableComponent movableComponent = e.playECSHorizontalMovable;
 
                 if (movingComponent.MovingTimeLeft > 0)
                 {
                     movingComponent.MovingTimeLeft -= Time.deltaTime;
 
-                    movingComponent.Transform.localPosition += new Vector3(movingComponent.Direction * movingComponent.Speed * Time.deltaTime, 0, 0);
+                    movableComponent.Transform.localPosition +=
+                        new Vector3(movingComponent.Direction * movableComponent.Speed * Time.deltaTime, 0, 0);
                 }
                 else
                 {

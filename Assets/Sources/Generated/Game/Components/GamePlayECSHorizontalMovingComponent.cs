@@ -11,23 +11,19 @@ public partial class GameEntity {
     public Play.ECS.HorizontalMovingComponent playECSHorizontalMoving { get { return (Play.ECS.HorizontalMovingComponent)GetComponent(GameComponentsLookup.PlayECSHorizontalMoving); } }
     public bool hasPlayECSHorizontalMoving { get { return HasComponent(GameComponentsLookup.PlayECSHorizontalMoving); } }
 
-    public void AddPlayECSHorizontalMoving(UnityEngine.Transform newTransform, int newDirection, float newSpeed, float newMovingTimeLeft, System.Action newCallback) {
+    public void AddPlayECSHorizontalMoving(int newDirection, float newMovingTimeLeft, System.Action newCallback) {
         var index = GameComponentsLookup.PlayECSHorizontalMoving;
         var component = (Play.ECS.HorizontalMovingComponent)CreateComponent(index, typeof(Play.ECS.HorizontalMovingComponent));
-        component.Transform = newTransform;
         component.Direction = newDirection;
-        component.Speed = newSpeed;
         component.MovingTimeLeft = newMovingTimeLeft;
         component.Callback = newCallback;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSHorizontalMoving(UnityEngine.Transform newTransform, int newDirection, float newSpeed, float newMovingTimeLeft, System.Action newCallback) {
+    public void ReplacePlayECSHorizontalMoving(int newDirection, float newMovingTimeLeft, System.Action newCallback) {
         var index = GameComponentsLookup.PlayECSHorizontalMoving;
         var component = (Play.ECS.HorizontalMovingComponent)CreateComponent(index, typeof(Play.ECS.HorizontalMovingComponent));
-        component.Transform = newTransform;
         component.Direction = newDirection;
-        component.Speed = newSpeed;
         component.MovingTimeLeft = newMovingTimeLeft;
         component.Callback = newCallback;
         ReplaceComponent(index, component);

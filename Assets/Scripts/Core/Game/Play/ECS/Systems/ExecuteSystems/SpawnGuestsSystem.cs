@@ -65,23 +65,24 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             GuestViewBehaviour guestView = guestGO.GetComponent<GuestViewBehaviour>();
             guestView.Initialize(_context);
 
+            SetInitialHorizontalPosition(guestGO.transform);
             MakeMoving(guestGO, guestView);
+        }
+
+        private void SetInitialHorizontalPosition(Transform transform)
+        {
+            var localPosition = transform.localPosition;
+            localPosition = new Vector3(-1500, localPosition.y, localPosition.z);
+            transform.localPosition = localPosition;
         }
 
         private void MakeMoving(GameObject guestGO, GuestViewBehaviour guestView)
         {
-            Vector3 startPos = new Vector3(_levelConfig.HorizontalStartingPointLeft, -312, 0);
-            Vector3 endPos = new Vector3(_levelConfig.GuestHorizontalOrderPosition, -312, 0);
-            int direction = startPos.x > 0 ? -1 : 1;
-            float speed = _levelConfig.GuestsSpeed;
-            float movingTime = Mathf.Abs((endPos - startPos).x) / speed;
-
-            guestGO.GetComponent<RectTransform>().localPosition = startPos;
             guestView.SetState(GuestState.WalkIn);
 
             GameEntity guestEntity = (GameEntity) guestGO.GetEntityLink().entity;
-            guestEntity.AddPlayECSHorizontalMoving(
-                guestGO.transform, direction, speed, movingTime, () =>
+            guestEntity.AddPlayECSStartHorizontalMovement(
+                100, () =>
                 {
                     guestEntity.AddPlayECSArrivedGuest(guestView);
                 });

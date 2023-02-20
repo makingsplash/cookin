@@ -85,15 +85,9 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             GuestViewBehaviour guestView = guestEntity.playECSGuestView.View;
             guestView.SetState(GuestState.WalkOut);
 
-            Vector3 startPos = guestView.transform.localPosition;
-            Vector3 endPos = new Vector3(LevelConfig.HorizontalStartingPointLeft, -312, 0);
-            int direction = startPos.x > 0 ? -1 : 1;
-            float speed = LevelConfig.GuestsSpeed;
-            float movingTime = Mathf.Abs((endPos - startPos).x) / speed;
-
             guestEntity.RemovePlayECSUnservedGuest();
-            guestEntity.AddPlayECSHorizontalMoving(
-                guestView.transform, direction, speed, movingTime, () =>
+            guestEntity.AddPlayECSStartHorizontalMovement(
+                LevelConfig.HorizontalStartingPointLeft, () =>
                 {
                     Object.Destroy(guestView.gameObject);
                 });

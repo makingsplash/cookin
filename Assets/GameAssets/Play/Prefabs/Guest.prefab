@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6098505853776161461}
-  _orderRoot: {fileID: 960530746719646725}
   _characterTransform: {fileID: 5343398175327653610}
+  _orderRoot: {fileID: 960530746719646725}
   _orderText: {fileID: 6373249752774914236}
+  _movingSpeed: 300

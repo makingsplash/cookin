@@ -15,14 +15,16 @@ public static class GameComponentsLookup {
     public const int PlayECSDishesCompletedDish = 4;
     public const int PlayECSEntityView = 5;
     public const int PlayECSGuestView = 6;
-    public const int PlayECSHorizontalMoving = 7;
-    public const int PlayECSIngredient = 8;
-    public const int PlayECSIngredientContainerView = 9;
-    public const int PlayECSIngredientProducerView = 10;
-    public const int PlayECSOrderedGuest = 11;
-    public const int PlayECSUnservedGuest = 12;
+    public const int PlayECSHorizontalMovable = 7;
+    public const int PlayECSHorizontalMoving = 8;
+    public const int PlayECSIngredient = 9;
+    public const int PlayECSIngredientContainerView = 10;
+    public const int PlayECSIngredientProducerView = 11;
+    public const int PlayECSOrderedGuest = 12;
+    public const int PlayECSStartHorizontalMovement = 13;
+    public const int PlayECSUnservedGuest = 14;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
         "PlayECSArrivedGuest",
@@ -32,11 +34,13 @@ public static class GameComponentsLookup {
         "PlayECSDishesCompletedDish",
         "PlayECSEntityView",
         "PlayECSGuestView",
+        "PlayECSHorizontalMovable",
         "PlayECSHorizontalMoving",
         "PlayECSIngredient",
         "PlayECSIngredientContainerView",
         "PlayECSIngredientProducerView",
         "PlayECSOrderedGuest",
+        "PlayECSStartHorizontalMovement",
         "PlayECSUnservedGuest"
     };
 
@@ -48,11 +52,13 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
         typeof(Play.ECS.GuestViewComponent),
+        typeof(Play.ECS.HorizontalMovableComponent),
         typeof(Play.ECS.HorizontalMovingComponent),
         typeof(Play.ECS.IngredientComponent),
         typeof(Play.ECS.IngredientContainerViewComponent),
         typeof(Play.ECS.IngredientProducerViewComponent),
         typeof(Play.ECS.OrderedGuestComponent),
+        typeof(Play.ECS.StartHorizontalMovementComponent),
         typeof(Play.ECS.UnservedGuestComponent)
     };
 }

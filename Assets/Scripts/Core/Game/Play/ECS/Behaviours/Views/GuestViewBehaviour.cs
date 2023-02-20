@@ -18,13 +18,16 @@ namespace Play.ECS
         private Animator _animator;
 
         [SerializeField]
-        private GameObject _orderRoot;
-
-        [SerializeField]
         private Transform _characterTransform;
 
         [SerializeField]
+        private GameObject _orderRoot;
+
+        [SerializeField]
         private TextMeshProUGUI _orderText;
+
+        [SerializeField]
+        private float _movingSpeed;
 
         private static readonly int Walking = Animator.StringToHash("Walking");
 
@@ -33,6 +36,7 @@ namespace Play.ECS
             base.Initialize(context);
             Entity.AddPlayECSGuestView(this);
             Entity.AddPlayECSUnservedGuest(this);
+            Entity.AddPlayECSHorizontalMovable(transform, _movingSpeed);
         }
 
         public void SetState(GuestState state)
