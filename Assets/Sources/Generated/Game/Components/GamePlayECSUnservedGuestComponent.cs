@@ -11,17 +11,17 @@ public partial class GameEntity {
     public Play.ECS.UnservedGuestComponent playECSUnservedGuest { get { return (Play.ECS.UnservedGuestComponent)GetComponent(GameComponentsLookup.PlayECSUnservedGuest); } }
     public bool hasPlayECSUnservedGuest { get { return HasComponent(GameComponentsLookup.PlayECSUnservedGuest); } }
 
-    public void AddPlayECSUnservedGuest(Play.ECS.GuestViewBehaviour newView) {
+    public void AddPlayECSUnservedGuest(GameEntity newGuestEntity) {
         var index = GameComponentsLookup.PlayECSUnservedGuest;
         var component = (Play.ECS.UnservedGuestComponent)CreateComponent(index, typeof(Play.ECS.UnservedGuestComponent));
-        component.View = newView;
+        component.GuestEntity = newGuestEntity;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSUnservedGuest(Play.ECS.GuestViewBehaviour newView) {
+    public void ReplacePlayECSUnservedGuest(GameEntity newGuestEntity) {
         var index = GameComponentsLookup.PlayECSUnservedGuest;
         var component = (Play.ECS.UnservedGuestComponent)CreateComponent(index, typeof(Play.ECS.UnservedGuestComponent));
-        component.View = newView;
+        component.GuestEntity = newGuestEntity;
         ReplaceComponent(index, component);
     }
 

@@ -4,8 +4,6 @@ using Core.Game.Play.Configs;
 using Core.Signals;
 using Core.Transactions;
 using Entitas;
-using Play.ECS;
-using UnityEngine;
 using Zenject;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
@@ -61,7 +59,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 {
                     MarkDishAsCompleted(container, completedDish, guestEntity);
                     ApplyDishReward();
-                    MoveOutGuest(guestEntity);
+                    MakeGuestServed(guestEntity);
 
                     break;
                 }
@@ -80,17 +78,10 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             SignalBus.TryFire(new TransactionSignal(earnedStars));
         }
 
-        private void MoveOutGuest(GameEntity guestEntity)
+        private void MakeGuestServed(GameEntity guestEntity)
         {
-            GuestViewBehaviour guestView = guestEntity.playECSGuestView.View;
-            guestView.SetState(GuestState.WalkOut);
-
             guestEntity.RemovePlayECSUnservedGuest();
-            guestEntity.AddPlayECSStartHorizontalMovement(
-                LevelConfig.HorizontalStartingPointLeft, () =>
-                {
-                    Object.Destroy(guestView.gameObject);
-                });
+            guestEntity.AddPlayECSServedGuest(guestEntity);
         }
     }
 }

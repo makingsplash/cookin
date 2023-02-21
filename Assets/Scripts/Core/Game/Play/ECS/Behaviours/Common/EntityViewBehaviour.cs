@@ -26,13 +26,14 @@ namespace Play.ECS.Common
             _entity.OnDestroyEntity += OnDestroyEntity;
         }
 
-        private void OnDestroyEntity(IEntity entity)
+        protected virtual void OnDestroyEntity(IEntity entity)
         {
             _entity.OnDestroyEntity -= OnDestroyEntity;
 
             if (gameObject != null)
             {
                 gameObject.Unlink();
+                Destroy(gameObject);
             }
         }
     }

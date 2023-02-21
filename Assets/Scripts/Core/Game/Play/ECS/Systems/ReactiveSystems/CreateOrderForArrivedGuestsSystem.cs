@@ -35,7 +35,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 _levelDishes.DishesToAssign.Remove(dish);
 
                 guestEntity.AddPlayECSOrderedGuest(dish);
-                guestEntity.playECSArrivedGuest.View.SetState(GuestState.Arrived);
             }
         }
     }

@@ -33,8 +33,8 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
                 }
                 else
                 {
-                    movingComponent.Callback?.Invoke();
                     e.RemovePlayECSHorizontalMoving();
+                    movingComponent.Callback?.Invoke();
                 }
             }
         }

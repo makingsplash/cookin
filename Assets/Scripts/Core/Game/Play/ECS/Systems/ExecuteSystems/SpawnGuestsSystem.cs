@@ -2,7 +2,6 @@ using Core.Game.Play.Configs;
 using Core.UI.Elements;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using Entitas.Unity;
 using Play.ECS;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -51,12 +50,12 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
                 {
                     _timeToSpawn = _levelConfig.GuestsSpawnRate;
 
-                    SpawnWalkingGuest().Forget();
+                    SpawnGuest().Forget();
                 }
             }
         }
 
-        private async UniTaskVoid SpawnWalkingGuest()
+        private async UniTaskVoid SpawnGuest()
         {
             var asyncOperationHandle = Addressables.InstantiateAsync(_levelConfig.GuestViewPrefab, _guestsRoot);
             await asyncOperationHandle;
@@ -66,7 +65,6 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             guestView.Initialize(_context);
 
             SetInitialHorizontalPosition(guestGO.transform);
-            MakeMoving(guestGO, guestView);
         }
 
         private void SetInitialHorizontalPosition(Transform transform)
@@ -74,18 +72,6 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
             var localPosition = transform.localPosition;
             localPosition = new Vector3(-1500, localPosition.y, localPosition.z);
             transform.localPosition = localPosition;
-        }
-
-        private void MakeMoving(GameObject guestGO, GuestViewBehaviour guestView)
-        {
-            guestView.SetState(GuestState.WalkIn);
-
-            GameEntity guestEntity = (GameEntity) guestGO.GetEntityLink().entity;
-            guestEntity.AddPlayECSStartHorizontalMovement(
-                100, () =>
-                {
-                    guestEntity.AddPlayECSArrivedGuest(guestView);
-                });
         }
     }
 }

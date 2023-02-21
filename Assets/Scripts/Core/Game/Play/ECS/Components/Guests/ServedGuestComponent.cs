@@ -3,7 +3,7 @@ using Entitas;
 namespace Play.ECS
 {
     [Game]
-    public class UnservedGuestComponent : IComponent
+    public class ServedGuestComponent : IComponent
     {
         public GameEntity GuestEntity;
     }

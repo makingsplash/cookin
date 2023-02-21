@@ -21,10 +21,11 @@ public static class GameComponentsLookup {
     public const int PlayECSIngredientContainerView = 10;
     public const int PlayECSIngredientProducerView = 11;
     public const int PlayECSOrderedGuest = 12;
-    public const int PlayECSStartHorizontalMovement = 13;
-    public const int PlayECSUnservedGuest = 14;
+    public const int PlayECSServedGuest = 13;
+    public const int PlayECSStartHorizontalMovement = 14;
+    public const int PlayECSUnservedGuest = 15;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 16;
 
     public static readonly string[] componentNames = {
         "PlayECSArrivedGuest",
@@ -40,6 +41,7 @@ public static class GameComponentsLookup {
         "PlayECSIngredientContainerView",
         "PlayECSIngredientProducerView",
         "PlayECSOrderedGuest",
+        "PlayECSServedGuest",
         "PlayECSStartHorizontalMovement",
         "PlayECSUnservedGuest"
     };
@@ -58,6 +60,7 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.IngredientContainerViewComponent),
         typeof(Play.ECS.IngredientProducerViewComponent),
         typeof(Play.ECS.OrderedGuestComponent),
+        typeof(Play.ECS.ServedGuestComponent),
         typeof(Play.ECS.StartHorizontalMovementComponent),
         typeof(Play.ECS.UnservedGuestComponent)
     };

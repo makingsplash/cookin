@@ -1,4 +1,5 @@
 using System;
+using Entitas;
 using Play.ECS.Common;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Play.ECS
     public enum GuestState
     {
         WalkIn,
-        Arrived,
+        Ordered,
         WalkOut
     }
 
@@ -35,18 +36,21 @@ namespace Play.ECS
         {
             base.Initialize(context);
             Entity.AddPlayECSGuestView(this);
-            Entity.AddPlayECSUnservedGuest(this);
+            Entity.AddPlayECSUnservedGuest(Entity);
             Entity.AddPlayECSHorizontalMovable(transform, _movingSpeed);
+
+            Entity.OnComponentAdded += OnMoving;
+            Entity.OnComponentAdded += OnOrdered;
         }
 
-        public void SetState(GuestState state)
+        private void SetState(GuestState state)
         {
             switch (state)
             {
                 case GuestState.WalkIn:
                     SetWalkingAnimation(true);
                     break;
-                case GuestState.Arrived:
+                case GuestState.Ordered:
                     SetOrderText("Привет, педики!\nМне нада капучину:\n" + string.Join("\n", Entity.playECSOrderedGuest.Order.Ingredients));
                     SetOrderTextActive(true);
                     SetWalkingAnimation(false);
@@ -58,6 +62,22 @@ namespace Play.ECS
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
+            }
+        }
+
+        private void OnMoving(IEntity entity, int index, IComponent component)
+        {
+            if (component is HorizontalMovingComponent movingComponent)
+            {
+                SetState(movingComponent.Direction > 0 ? GuestState.WalkIn : GuestState.WalkOut);
+            }
+        }
+
+        private void OnOrdered(IEntity entity, int index, IComponent component)
+        {
+            if (component is OrderedGuestComponent)
+            {
+                SetState(GuestState.Ordered);
             }
         }
 
@@ -74,6 +94,13 @@ namespace Play.ECS
         private void SetOrderText(string text)
         {
             _orderText.text = text;
+        }
+
+        protected override void OnDestroyEntity(IEntity entity)
+        {
+            Entity.OnComponentAdded -= OnMoving;
+            Entity.OnComponentAdded -= OnOrdered;
+            base.OnDestroyEntity(entity);
         }
     }
 }

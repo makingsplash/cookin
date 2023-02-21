@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
-    public class StartHorizontalMovementSystem : ReactiveSystem<GameEntity>
+    public class ApplyHorizontalMovementSystem : ReactiveSystem<GameEntity>
     {
-        public StartHorizontalMovementSystem(GameContext context) : base(context)
+        public ApplyHorizontalMovementSystem(GameContext context) : base(context)
         {
         }
 
