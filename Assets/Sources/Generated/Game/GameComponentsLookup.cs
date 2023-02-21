@@ -11,26 +11,28 @@ public static class GameComponentsLookup {
     public const int PlayECSArrivedGuest = 0;
     public const int PlayECSClearedContainer = 1;
     public const int PlayECSCollectedIngredient = 2;
-    public const int PlayECSDishesCollectedDish = 3;
-    public const int PlayECSDishesCompletedDish = 4;
-    public const int PlayECSEntityView = 5;
-    public const int PlayECSGuestView = 6;
-    public const int PlayECSHorizontalMovable = 7;
-    public const int PlayECSHorizontalMoving = 8;
-    public const int PlayECSIngredient = 9;
-    public const int PlayECSIngredientContainerView = 10;
-    public const int PlayECSIngredientProducerView = 11;
-    public const int PlayECSOrderedGuest = 12;
-    public const int PlayECSServedGuest = 13;
-    public const int PlayECSStartHorizontalMovement = 14;
-    public const int PlayECSUnservedGuest = 15;
+    public const int PlayECSDishesAssembledDish = 3;
+    public const int PlayECSDishesCollectedDish = 4;
+    public const int PlayECSDishesCompletedDish = 5;
+    public const int PlayECSEntityView = 6;
+    public const int PlayECSGuestView = 7;
+    public const int PlayECSHorizontalMovable = 8;
+    public const int PlayECSHorizontalMoving = 9;
+    public const int PlayECSIngredient = 10;
+    public const int PlayECSIngredientContainerView = 11;
+    public const int PlayECSIngredientProducerView = 12;
+    public const int PlayECSOrderedGuest = 13;
+    public const int PlayECSServedGuest = 14;
+    public const int PlayECSStartHorizontalMovement = 15;
+    public const int PlayECSUnservedGuest = 16;
 
-    public const int TotalComponents = 16;
+    public const int TotalComponents = 17;
 
     public static readonly string[] componentNames = {
         "PlayECSArrivedGuest",
         "PlayECSClearedContainer",
         "PlayECSCollectedIngredient",
+        "PlayECSDishesAssembledDish",
         "PlayECSDishesCollectedDish",
         "PlayECSDishesCompletedDish",
         "PlayECSEntityView",
@@ -50,8 +52,8 @@ public static class GameComponentsLookup {
         typeof(Play.ECS.ArrivedGuestComponent),
         typeof(Play.ECS.ClearedContainerComponent),
         typeof(Play.ECS.CollectedIngredientComponent),
+        typeof(Play.ECS.Dishes.AssembledDishComponent),
         typeof(Play.ECS.Dishes.CollectedDishComponent),
-        typeof(Play.ECS.Dishes.CompletedDishComponent),
         typeof(Play.ECS.EntityViewComponent),
         typeof(Play.ECS.GuestViewComponent),
         typeof(Play.ECS.HorizontalMovableComponent),

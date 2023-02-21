@@ -4,7 +4,7 @@ using Entitas;
 namespace Play.ECS.Dishes
 {
     [Game]
-    public class CompletedDishComponent : IComponent
+    public class AssembledDishComponent : IComponent
     {
         public Dish Dish;
     }

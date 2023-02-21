@@ -8,13 +8,13 @@ using Zenject;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
-    public class CollectCompletedDishSystem : ReactiveSystem<GameEntity>
+    public class CollectAssembledDishSystem : ReactiveSystem<GameEntity>
     {
         private LevelDishes LevelDishes { get; }
         private SignalBus SignalBus { get; }
         private LevelConfig LevelConfig { get; }
 
-        public CollectCompletedDishSystem(GameContext context, LevelDishes levelDishes, SignalBus signalBus, LevelConfig levelconfig, LevelConfig levelConfig)
+        public CollectAssembledDishSystem(GameContext context, LevelDishes levelDishes, SignalBus signalBus, LevelConfig levelconfig, LevelConfig levelConfig)
             : base(context)
         {
             LevelDishes = levelDishes;
@@ -24,22 +24,22 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.PlayECSDishesCompletedDish);
+            return context.CreateCollector(GameMatcher.PlayECSDishesAssembledDish);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasPlayECSDishesCompletedDish;
+            return entity.hasPlayECSDishesAssembledDish;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             GameEntity container = entities[0];
-            Dish completedDish = container.playECSDishesCompletedDish.Dish;
+            Dish assembledDish = container.playECSDishesAssembledDish.Dish;
 
             foreach(var (guestEntity, order) in LevelDishes.ActiveOrders)
             {
-                if (order.Ingredients.Count != completedDish.Ingredients.Count)
+                if (order.Ingredients.Count != assembledDish.Ingredients.Count)
                 {
                     continue;
                 }
@@ -47,7 +47,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 bool validDish = true;
                 for (int j = 0; j < order.Ingredients.Count; j++)
                 {
-                    if (order.Ingredients[j] != completedDish.Ingredients[j])
+                    if (order.Ingredients[j] != assembledDish.Ingredients[j])
                     {
                         validDish = false;
 
@@ -57,7 +57,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 if (validDish)
                 {
-                    MarkDishAsCompleted(container, completedDish, guestEntity);
+                    MarkDishAsCompleted(container, assembledDish, guestEntity);
                     ApplyDishReward();
                     MakeGuestServed(guestEntity);
 

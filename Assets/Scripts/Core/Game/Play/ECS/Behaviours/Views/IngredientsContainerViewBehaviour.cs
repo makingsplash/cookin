@@ -61,7 +61,7 @@ namespace Play.ECS
         {
             if (_ingredients.Any())
             {
-                Entity.AddPlayECSDishesCompletedDish(new Dish{Ingredients = _ingredients});
+                Entity.AddPlayECSDishesAssembledDish(new Dish{Ingredients = _ingredients});
             }
         }
     }

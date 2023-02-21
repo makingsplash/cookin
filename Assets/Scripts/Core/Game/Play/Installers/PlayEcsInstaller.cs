@@ -70,7 +70,7 @@ namespace Core.Game.Play.Installers
             Container.BindInterfacesAndSelfTo<StoreIngredientsIntoContainersSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateIngredientContainerViewSystem>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<CollectCompletedDishSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollectAssembledDishSystem>().AsSingle();
         }
 
         private void BindCleanupSystems()
@@ -78,7 +78,7 @@ namespace Core.Game.Play.Installers
             Container.BindInterfacesAndSelfTo<CleanupProducedIngredientsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedIngredientsSystem>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<CleanupCompletedDishSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CleanupAssembledDishSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedDishSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<CleanupClearedContainersSystem>().AsSingle();
