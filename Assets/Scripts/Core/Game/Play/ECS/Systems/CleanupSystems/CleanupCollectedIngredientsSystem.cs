@@ -20,7 +20,6 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
             foreach (var e in _group.GetEntities(_buffer))
             {
                 e.RemovePlayECSCollectedIngredient();
-                e.playECSIngredientProducerView.View.ResetView();
             }
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Game.Play.ECS;
+using Entitas;
 using Play.ECS.Common;
 using TMPro;
 using UnityEngine;
@@ -41,12 +42,20 @@ namespace Play.ECS
         {
             base.Initialize(context);
             Entity.AddPlayECSIngredientProducerView(this);
+            Entity.OnComponentRemoved += OnCollectedIngredientRemoved;
+        }
+
+        private void OnCollectedIngredientRemoved(IEntity entity, int index, IComponent component)
+        {
+            if (component is CollectedIngredientComponent)
+            {
+                ResetView();
+            }
         }
 
         private void Awake()
         {
             _ingredientName.text = _ingredientType.ToString();
-            _collectButton.gameObject.SetActive(false);
             _ingredientImage.color = STATE_EMPTY;
 
             _produceButton.onClick.AddListener(OnPrepare);
@@ -98,12 +107,17 @@ namespace Play.ECS
             _produceButton.gameObject.SetActive(false);
         }
 
-        public void ResetView()
+        private void ResetView()
         {
             _ingredientImage.color = STATE_EMPTY;
 
             _collectButton.gameObject.SetActive(false);
             _produceButton.gameObject.SetActive(true);
+        }
+
+        protected override void OnDestroyEntity(IEntity entity)
+        {
+            Entity.OnComponentRemoved -= OnCollectedIngredientRemoved;
         }
     }
 }
