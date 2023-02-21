@@ -5,6 +5,7 @@ using Core.Game.Play.Configs;
 using Core.Game.Play.ECS;
 using Play.ECS.Common;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,10 @@ namespace Play.ECS
         public override void Initialize(GameContext context)
         {
             base.Initialize(context);
+
             Entity.AddPlayECSIngredientContainerView(this, new List<IngredientType>());
+            Entity.playECSIngredientContainerView.Ingredients
+                .ObserveEveryValueChanged(x => x.Count).Subscribe(x => OnIngredientsChanged());
         }
 
         private void Awake()
@@ -36,25 +40,31 @@ namespace Play.ECS
             _resetButton.onClick.AddListener(OnReset);
         }
 
-        public void UpdateView()
+        private void OnIngredientsChanged()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (var ingredient in _ingredients)
+            if (_ingredients.Any())
             {
-                stringBuilder.Append(ingredient.ToString());
-                stringBuilder.Append("\n");
-            }
+                StringBuilder stringBuilder = new StringBuilder();
 
-            _textIngredientsDisplay.text = stringBuilder.ToString();
+                foreach (var ingredient in _ingredients)
+                {
+                    stringBuilder.Append(ingredient.ToString());
+                    stringBuilder.Append("\n");
+                }
+
+                _textIngredientsDisplay.text = stringBuilder.ToString();
+            }
+            else
+            {
+                _textIngredientsDisplay.text = string.Empty;
+
+                Entity.AddPlayECSClearedContainer(Entity.playECSIngredientContainerView);
+            }
         }
 
-        public void OnReset()
+        private void OnReset()
         {
             _ingredients.Clear();
-            _textIngredientsDisplay.text = string.Empty;
-
-            Entity.AddPlayECSClearedContainer(Entity.playECSIngredientContainerView);
         }
 
         private void OnCollect()

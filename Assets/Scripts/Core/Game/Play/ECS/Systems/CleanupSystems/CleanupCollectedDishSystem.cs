@@ -25,7 +25,6 @@ namespace Core.Game.Play.ECS.Systems.CleanupSystems
                 var container = e.playECSIngredientContainerView;
 
                 container.Ingredients.Clear();
-                container.View.OnReset();
 
                 _storingSystem.UpdatePossibleIngredientsForContainer(container);
 

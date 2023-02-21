@@ -44,19 +44,16 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         {
             foreach (var containerToPossibleIngredient in _containerToPossibleIngredients)
             {
-                IngredientType ingredient = entities[0].playECSIngredient.IngredientType;
-                if (containerToPossibleIngredient.Value.Contains(entities[0].playECSIngredient.IngredientType))
+                GameEntity producerEntity = entities[0];
+                IngredientType ingredient = producerEntity.playECSIngredient.IngredientType;
+
+                if (containerToPossibleIngredient.Value.Contains(producerEntity.playECSIngredient.IngredientType))
                 {
                     IngredientContainerViewComponent container = containerToPossibleIngredient.Key;
-
-                    // а, нельзя же дважды добавлять компонент одного типа
-
                     container.Ingredients.Add(ingredient);
-                    container.View.UpdateView();
-
                     UpdatePossibleIngredientsForContainer(container);
 
-                    entities[0].AddPlayECSCollectedIngredient(ingredient);
+                    producerEntity.AddPlayECSCollectedIngredient(ingredient);
 
                     break;
                 }
@@ -87,7 +84,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 {
                     if (dish.Ingredients.Count <= containerNextIndex)
                     {
-                        break;
+                        continue;
                     }
 
                     bool result = true;
