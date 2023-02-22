@@ -67,8 +67,9 @@ namespace Core.Game.Play.Installers
             Container.BindInterfacesAndSelfTo<ApplyHorizontalMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CreateOrderForArrivedGuestsSystem>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<StoreIngredientsIntoContainersSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollectSingleIngredientDishSystem>().AsSingle();
 
+            Container.BindInterfacesAndSelfTo<StoreIngredientsIntoContainersSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CollectAssembledDishSystem>().AsSingle();
         }
 

@@ -37,7 +37,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             GameEntity container = entities[0];
             Dish assembledDish = container.playECSDishesAssembledDish.Dish;
 
-            foreach(var (guestEntity, order) in LevelDishes.ActiveOrders)
+            foreach(var (guestEntity, order) in LevelDishes.ActiveMultipleIngredientOrders)
             {
                 if (order.Ingredients.Count != assembledDish.Ingredients.Count)
                 {
@@ -69,7 +69,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         private void MarkDishAsCompleted(GameEntity container, Dish completedDish, GameEntity guestEntity)
         {
             container.AddPlayECSDishesCollectedDish(completedDish);
-            LevelDishes.CompleteOrder(guestEntity);
+            LevelDishes.CompleteMultipleIngredientsOrder(guestEntity);
         }
 
         private void ApplyDishReward()

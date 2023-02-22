@@ -8037,7 +8037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70030cd342e410991fd74fb1fc020a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingredientType: 7
+  _ingredientType: 8
   _prepareTime: 1
   _ingredientImage: {fileID: 2062624301}
   _produceButton: {fileID: 760458641}

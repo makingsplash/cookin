@@ -31,7 +31,15 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             foreach (var guestEntity in entities)
             {
                 Dish dish = _levelDishes.DishesToAssign.First();
-                _levelDishes.ActiveOrders.Add(guestEntity, dish);
+                if (dish.Ingredients.Count > 1)
+                {
+                    _levelDishes.ActiveMultipleIngredientOrders.Add(guestEntity, dish);
+                }
+                else
+                {
+                    _levelDishes.ActiveSingleIngredientOrders.Add(guestEntity, dish);
+                }
+
                 _levelDishes.DishesToAssign.Remove(dish);
 
                 guestEntity.AddPlayECSOrderedGuest(dish);

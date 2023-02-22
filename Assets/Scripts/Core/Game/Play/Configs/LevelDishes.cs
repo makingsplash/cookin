@@ -6,7 +6,8 @@ namespace Core.Game.Play.Configs
     public class LevelDishes
     {
         public readonly List<Dish> DishesToAssign;
-        public readonly Dictionary<GameEntity, Dish> ActiveOrders = new ();
+        public readonly Dictionary<GameEntity, Dish> ActiveSingleIngredientOrders = new ();
+        public readonly Dictionary<GameEntity, Dish> ActiveMultipleIngredientOrders = new ();
 
         private SignalBus SignalBus { get; }
 
@@ -16,9 +17,14 @@ namespace Core.Game.Play.Configs
             SignalBus = signalBus;
         }
 
-        public void CompleteOrder(GameEntity guest)
+        public void CompleteMultipleIngredientsOrder(GameEntity guest)
         {
-            ActiveOrders.Remove(guest);
+            ActiveMultipleIngredientOrders.Remove(guest);
+        }
+
+        public void CompleteSingleIngredientsOrder(GameEntity guest)
+        {
+            ActiveSingleIngredientOrders.Remove(guest);
         }
     }
 }

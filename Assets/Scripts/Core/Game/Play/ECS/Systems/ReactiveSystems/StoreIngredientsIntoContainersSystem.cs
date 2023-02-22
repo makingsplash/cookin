@@ -32,7 +32,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.PlayECSIngredient);
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.PlayECSIngredient));
         }
 
         protected override bool Filter(GameEntity entity)
@@ -42,20 +42,23 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var containerToPossibleIngredient in _containerToPossibleIngredients)
+            GameEntity producerEntity = entities[0];
+            IngredientType ingredient = producerEntity.playECSIngredient.IngredientType;
+
+            if (!producerEntity.hasPlayECSCollectedIngredient)
             {
-                GameEntity producerEntity = entities[0];
-                IngredientType ingredient = producerEntity.playECSIngredient.IngredientType;
-
-                if (containerToPossibleIngredient.Value.Contains(producerEntity.playECSIngredient.IngredientType))
+                foreach (var containerToPossibleIngredient in _containerToPossibleIngredients)
                 {
-                    IngredientContainerViewComponent container = containerToPossibleIngredient.Key;
-                    container.Ingredients.Add(ingredient);
-                    UpdatePossibleIngredientsForContainer(container);
+                    if (containerToPossibleIngredient.Value.Contains(producerEntity.playECSIngredient.IngredientType))
+                    {
+                        IngredientContainerViewComponent container = containerToPossibleIngredient.Key;
+                        container.Ingredients.Add(ingredient);
+                        UpdatePossibleIngredientsForContainer(container);
 
-                    producerEntity.AddPlayECSCollectedIngredient(ingredient);
+                        producerEntity.AddPlayECSCollectedIngredient(ingredient);
 
-                    break;
+                        break;
+                    }
                 }
             }
         }
@@ -68,7 +71,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 foreach (var dish in _levelDishes)
                 {
-                    if (!_containerToPossibleIngredients[container].Contains(dish.Ingredients[0]))
+                    if (dish.Ingredients.Count > 1 && !_containerToPossibleIngredients[container].Contains(dish.Ingredients[0]))
                     {
                         _containerToPossibleIngredients[container].Add(dish.Ingredients[0]);
                     }
@@ -82,7 +85,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
                 foreach (var dish in _levelDishes)
                 {
-                    if (dish.Ingredients.Count <= containerNextIndex)
+                    if (dish.Ingredients.Count <= containerNextIndex || dish.Ingredients.Count == 1)
                     {
                         continue;
                     }
