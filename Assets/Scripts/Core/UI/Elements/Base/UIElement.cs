@@ -50,9 +50,9 @@ namespace Core.UI.Elements.Base
 
         private void SetCamera()
         {
-            Canvas.renderMode = RenderMode.ScreenSpaceCamera;
             Canvas.worldCamera = UICamera.Camera;
             Canvas.planeDistance = UICamera.UI_PLANE_DISTANCE;
+            Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         }
     }
 }

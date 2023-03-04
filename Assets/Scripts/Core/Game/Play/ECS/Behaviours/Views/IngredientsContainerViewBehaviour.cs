@@ -31,7 +31,9 @@ namespace Play.ECS
 
             Entity.AddPlayECSIngredientContainerView(this, new List<IngredientType>());
             Entity.playECSIngredientContainerView.Ingredients
-                .ObserveEveryValueChanged(x => x.Count).Subscribe(x => OnIngredientsChanged());
+                .ObserveEveryValueChanged(x => x.Count)
+                .Subscribe(x => OnIngredientsChanged())
+                .AddTo(this);
         }
 
         private void Awake()

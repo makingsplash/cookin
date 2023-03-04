@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
   Dishes:
-  - Ingredients: 08000000
-  - Ingredients: 040000000500000006000000
-  - Ingredients: 0300000002000000
+  - Ingredients: 000000000100000002000000
+  - Ingredients: 000000000100000003000000
   GuestViewPrefab:
     m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
     m_SubObjectName: 

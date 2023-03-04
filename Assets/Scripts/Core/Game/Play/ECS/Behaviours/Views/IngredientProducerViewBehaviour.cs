@@ -1,27 +1,27 @@
 using System.Collections;
 using Core.Game.Play.ECS;
+using Core.Game.UI.Common;
 using Entitas;
 using Play.ECS.Common;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Play.ECS
 {
+    public enum IngredientProducerState
+    {
+        Empty,
+        Prepare,
+        Done
+    }
+
     public class IngredientProducerViewBehaviour : EntityViewBehaviour
     {
-        private static readonly Color STATE_EMPTY = Color.gray;
-        private static readonly Color STATE_IN_PROCESS = Color.yellow;
-        private static readonly Color STATE_READY = Color.green;
-
         [SerializeField]
         private IngredientType _ingredientType;
 
         [SerializeField]
         private float _prepareTime;
-
-        [SerializeField]
-        private Image _ingredientImage;
 
         [SerializeField]
         private Button _produceButton;
@@ -30,10 +30,10 @@ namespace Play.ECS
         private Button _collectButton;
 
         [SerializeField]
-        private TextMeshProUGUI _textPrepareTimer;
+        private Image _timerFill;
 
         [SerializeField]
-        private TextMeshProUGUI _ingredientName;
+        private StateViewContainer _stateViewContainer;
 
         private Coroutine _prepareCoroutine;
 
@@ -55,14 +55,10 @@ namespace Play.ECS
 
         private void Awake()
         {
-            _ingredientName.text = _ingredientType.ToString();
-            _ingredientImage.color = STATE_EMPTY;
+            ResetView();
 
             _produceButton.onClick.AddListener(OnPrepare);
             _collectButton.onClick.AddListener(OnCollect);
-
-            _collectButton.gameObject.SetActive(false);
-            _produceButton.gameObject.SetActive(true);
         }
 
         private void OnPrepare()
@@ -77,31 +73,36 @@ namespace Play.ECS
             Entity.AddPlayECSIngredient(_ingredientType);
         }
 
+
+        // to UniTask
         private IEnumerator Prepare()
         {
-            float prepareTime = _prepareTime;
-
-            if (prepareTime > 0)
+            if (_prepareTime > 0)
             {
-                _ingredientImage.color = STATE_IN_PROCESS;
+                yield return StartCoroutine(TimerCoroutine(_prepareTime));
             }
+
+            CompleteIngredient();
+        }
+
+        private IEnumerator TimerCoroutine(float prepareTime)
+        {
+            _stateViewContainer.State = IngredientProducerState.Prepare.ToString();
 
             while (prepareTime > 0)
             {
-                _textPrepareTimer.text = $"{prepareTime:F}";
+                _timerFill.fillAmount = (_prepareTime - prepareTime) / _prepareTime;
 
                 prepareTime -= Time.deltaTime;
                 yield return null;
             }
 
-            _textPrepareTimer.text = string.Empty;
-
-            CompleteIngredient();
+            _timerFill.fillAmount = 1;
         }
 
         private void CompleteIngredient()
         {
-            _ingredientImage.color = STATE_READY;
+            _stateViewContainer.State = IngredientProducerState.Done.ToString();
 
             _collectButton.gameObject.SetActive(true);
             _produceButton.gameObject.SetActive(false);
@@ -109,10 +110,21 @@ namespace Play.ECS
 
         private void ResetView()
         {
-            _ingredientImage.color = STATE_EMPTY;
+            if (_prepareTime == 0)
+            {
+                _stateViewContainer.State = IngredientProducerState.Done.ToString();
+                _collectButton.gameObject.SetActive(true);
+                _produceButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                _stateViewContainer.State = IngredientProducerState.Empty.ToString();
 
-            _collectButton.gameObject.SetActive(false);
-            _produceButton.gameObject.SetActive(true);
+                _timerFill.fillAmount = 0;
+
+                _collectButton.gameObject.SetActive(false);
+                _produceButton.gameObject.SetActive(true);
+            }
         }
 
         protected override void OnDestroyEntity(IEntity entity)
