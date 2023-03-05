@@ -12,9 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e2976d1100414fbdb67cd791c9251e, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
+  IngredientViews:
+  - Type: 0
+    Prefab:
+      m_AssetGUID: a5d093968ceb640c5a34e64c37c38468
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Type: 1
+    Prefab:
+      m_AssetGUID: 98f08324680384c5892c923c01d43c2f
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Type: 2
+    Prefab:
+      m_AssetGUID: effd223a1bd1e4218ac49cb60e2deed0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Type: 3
+    Prefab:
+      m_AssetGUID: 8769bac8533ec47a6aec76407857a2ab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   Dishes:
-  - Ingredients: 000000000100000002000000
-  - Ingredients: 000000000100000003000000
+  - Ingredients: 0000000001000000
+  - Ingredients: 00000000010000000200000003000000
   GuestViewPrefab:
     m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
     m_SubObjectName: 
@@ -22,7 +47,5 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   GuestsSpawnAmount: 1
   GuestsSpawnRate: 0.1
-  GuestsSpeed: 300
   HorizontalStartingPointLeft: -2000
   HorizontalStartingPointRight: 2000
-  GuestHorizontalOrderPosition: 100

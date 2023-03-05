@@ -66,6 +66,7 @@ namespace Core.Game.Play.Installers
             Container.BindInterfacesAndSelfTo<MakeGuestMovingSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ApplyHorizontalMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CreateOrderForArrivedGuestsSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnIngredientViewSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<CollectSingleIngredientDishSystem>().AsSingle();
 
@@ -75,6 +76,7 @@ namespace Core.Game.Play.Installers
 
         private void BindCleanupSystems()
         {
+            Container.BindInterfacesAndSelfTo<CleanupSpawnIngredientViewsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupProducedIngredientsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedIngredientsSystem>().AsSingle();
 

@@ -1,5 +1,6 @@
 using Core.Game.Installers;
 using Core.Game.Play.Configs;
+using Core.Game.Play.UI;
 
 namespace Core.Game.Play.Installers
 {
@@ -10,6 +11,7 @@ namespace Core.Game.Play.Installers
             base.InstallBindings();
 
             Container.Bind<LevelDishes>().AsSingle();
+            Container.Bind<IngredientViewSpawner>().AsSingle();
         }
     }
 }

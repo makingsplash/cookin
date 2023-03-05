@@ -30,6 +30,9 @@ namespace Play.ECS
         [SerializeField]
         private float _movingSpeed;
 
+        [SerializeField]
+        private Transform _ingrevientsViewRoot;
+
         private static readonly int Walking = Animator.StringToHash("Walking");
 
         public override void Initialize(GameContext context)
@@ -51,11 +54,12 @@ namespace Play.ECS
                     SetWalkingAnimation(true);
                     break;
                 case GuestState.Ordered:
-                    SetOrderText("Привет, педики!\nМне нада капучину:\n" + string.Join("\n", Entity.playECSOrderedGuest.Order.Ingredients));
+                    SpawnOrder();
                     SetOrderTextActive(true);
                     SetWalkingAnimation(false);
                     break;
                 case GuestState.WalkOut:
+                    _ingrevientsViewRoot.gameObject.SetActive(false);
                     SetOrderText("Спасибо, пока педики!");
                     SetWalkingAnimation(true);
                     _characterTransform.localScale = new Vector3(-1, 1, 1);
@@ -63,6 +67,11 @@ namespace Play.ECS
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
+        }
+
+        private void SpawnOrder()
+        {
+            Entity.AddPlayECSSpawnIngredientViews(Entity.playECSOrderedGuest.Order.Ingredients, _ingrevientsViewRoot);
         }
 
         private void OnMoving(IEntity entity, int index, IComponent component)

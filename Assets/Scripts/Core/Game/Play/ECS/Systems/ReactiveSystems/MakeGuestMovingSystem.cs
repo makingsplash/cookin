@@ -35,7 +35,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 if (e.hasPlayECSUnservedGuest)
                 {
                     e.AddPlayECSStartHorizontalMovement(
-                        100, () =>
+                        -120, () =>
                         {
                             e.AddPlayECSArrivedGuest(guestView);
                         });

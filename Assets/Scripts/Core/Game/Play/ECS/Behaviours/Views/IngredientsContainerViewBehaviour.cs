@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Core.Game.Play.Configs;
 using Core.Game.Play.ECS;
 using Play.ECS.Common;
-using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,13 +12,13 @@ namespace Play.ECS
     public class IngredientsContainerViewBehaviour : EntityViewBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _textIngredientsDisplay;
-
-        [SerializeField]
         private Button _collectButton;
 
         [SerializeField]
         private Button _resetButton;
+
+        [SerializeField]
+        private Transform _ingrevientsViewRoot;
 
         private List<IngredientType> _ingredients => Entity.playECSIngredientContainerView.Ingredients;
 
@@ -46,22 +44,22 @@ namespace Play.ECS
         {
             if (_ingredients.Any())
             {
-                StringBuilder stringBuilder = new StringBuilder();
-
-                foreach (var ingredient in _ingredients)
-                {
-                    stringBuilder.Append(ingredient.ToString());
-                    stringBuilder.Append("\n");
-                }
-
-                _textIngredientsDisplay.text = stringBuilder.ToString();
+                SpawnIngredient(_ingredients.Last());
             }
             else
             {
-                _textIngredientsDisplay.text = string.Empty;
+                foreach (Transform t in _ingrevientsViewRoot)
+                {
+                    Destroy(t.gameObject);
+                }
 
                 Entity.AddPlayECSClearedContainer(Entity.playECSIngredientContainerView);
             }
+        }
+
+        private void SpawnIngredient(IngredientType ingredient)
+        {
+            Entity.AddPlayECSSpawnIngredientViews(new List<IngredientType>{ingredient}, _ingrevientsViewRoot);
         }
 
         private void OnReset()
