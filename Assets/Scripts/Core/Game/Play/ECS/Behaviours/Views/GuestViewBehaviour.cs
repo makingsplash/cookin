@@ -42,7 +42,7 @@ namespace Play.ECS
         {
             base.Initialize(context);
             Entity.AddPlayECSGuestView(this, null);
-            Entity.AddPlayECSUnservedGuest(Entity);
+            Entity.AddPlayECSGuestOrder(null);
             Entity.AddPlayECSHorizontalMovable(transform, _movingSpeed);
 
             Entity.OnComponentAdded += OnMoving;

@@ -55,7 +55,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         private void MarkDishAsCompleted(GameEntity guestEntity)
         {
-            // container.AddPlayECSDishesCollectedDish(completedDish);
             LevelDishes.CompleteSingleIngredientsOrder(guestEntity);
         }
 
@@ -67,7 +66,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         private void MakeGuestServed(GameEntity guestEntity)
         {
-            guestEntity.RemovePlayECSUnservedGuest();
+            guestEntity.RemovePlayECSGuestOrder();
             guestEntity.AddPlayECSServedGuest(guestEntity);
         }
     }

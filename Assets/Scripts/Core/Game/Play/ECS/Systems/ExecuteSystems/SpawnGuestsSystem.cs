@@ -2,7 +2,6 @@
 using System.Linq;
 using Core.Game.Play.Configs;
 using Core.Game.Play.UI;
-using Core.UI.Elements;
 using Cysharp.Threading.Tasks;
 using Entitas;
 using Play.ECS;

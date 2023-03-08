@@ -23,12 +23,12 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.AnyOf(
-                GameMatcher.PlayECSUnservedGuest, GameMatcher.PlayECSServedGuest));
+                GameMatcher.PlayECSGuestOrder, GameMatcher.PlayECSServedGuest));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasPlayECSUnservedGuest || entity.hasPlayECSServedGuest;
+            return entity.hasPlayECSGuestOrder || entity.hasPlayECSServedGuest;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -37,7 +37,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
             {
                 GuestViewComponent guestViewComponent = e.playECSGuestView;
 
-                if (e.hasPlayECSUnservedGuest)
+                if (e.hasPlayECSGuestOrder)
                 {
                     AssignSeat(guestViewComponent);
 

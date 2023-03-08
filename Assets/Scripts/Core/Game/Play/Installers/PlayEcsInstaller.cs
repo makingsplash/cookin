@@ -63,9 +63,10 @@ namespace Core.Game.Play.Installers
 
         private void BindReactSystems()
         {
+            Container.BindInterfacesAndSelfTo<AssignOrderToGuestSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<GuestSeatingSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ApplyHorizontalMovementSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CreateOrderForArrivedGuestsSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RegisterGuestOrderSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnIngredientViewSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<CollectSingleIngredientDishSystem>().AsSingle();
@@ -76,6 +77,7 @@ namespace Core.Game.Play.Installers
 
         private void BindCleanupSystems()
         {
+            Container.BindInterfacesAndSelfTo<CleanupArrivedGuestSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupSpawnIngredientViewsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupProducedIngredientsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CleanupCollectedIngredientsSystem>().AsSingle();

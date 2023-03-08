@@ -1,17 +1,15 @@
 using System.Collections.Generic;
-using System.Linq;
 using Core.Game.Play.Configs;
 using Entitas;
-using Play.ECS;
 
 namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 {
-    public class CreateOrderForArrivedGuestsSystem : ReactiveSystem<GameEntity>
+    public class RegisterGuestOrderSystem : ReactiveSystem<GameEntity>
     {
         private LevelDishes _levelDishes;
 
 
-        public CreateOrderForArrivedGuestsSystem(GameContext context, LevelDishes levelDishes) : base(context)
+        public RegisterGuestOrderSystem(GameContext context, LevelDishes levelDishes) : base(context)
         {
             _levelDishes = levelDishes;
         }
@@ -30,7 +28,7 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
         {
             foreach (var guestEntity in entities)
             {
-                Dish dish = _levelDishes.DishesToAssign.First();
+                Dish dish = guestEntity.playECSGuestOrder.Order;
                 if (dish.Ingredients.Count > 1)
                 {
                     _levelDishes.ActiveMultipleIngredientOrders.Add(guestEntity, dish);
@@ -39,8 +37,6 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
                 {
                     _levelDishes.ActiveSingleIngredientOrders.Add(guestEntity, dish);
                 }
-
-                _levelDishes.DishesToAssign.Remove(dish);
 
                 guestEntity.AddPlayECSOrderedGuest(dish);
             }
