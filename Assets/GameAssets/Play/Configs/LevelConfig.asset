@@ -33,12 +33,21 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Type: 3
     Prefab:
+      m_AssetGUID: 0eb673d101ee94db181f00f74cf7944b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Type: 4
+    Prefab:
       m_AssetGUID: 8769bac8533ec47a6aec76407857a2ab
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   Dishes:
   - Ingredients: 0000000001000000
+  - Ingredients: 000000000100000003000000
+  - Ingredients: 000000000100000002000000
+  - Ingredients: 00000000010000000200000004000000
   - Ingredients: 00000000010000000200000003000000
   GuestViewPrefab:
     m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
