@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Entitas;
 using Play.ECS.Common;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Play.ECS
 {
@@ -15,6 +17,13 @@ namespace Play.ECS
 
     public class GuestViewBehaviour : EntityViewBehaviour
     {
+        private static readonly List<int> WalkingAnimationHashes = new List<int>
+        {
+            Animator.StringToHash("Walking1"),
+            Animator.StringToHash("Walking2"),
+            Animator.StringToHash("Walking3"),
+        };
+
         [SerializeField]
         private Canvas _canvas;
 
@@ -36,7 +45,8 @@ namespace Play.ECS
         [SerializeField]
         private Transform _ingrevientsViewRoot;
 
-        private static readonly int Walking = Animator.StringToHash("Walking");
+        private int _currentWalkingAnimationHash;
+
 
         public override void Initialize(GameContext context)
         {
@@ -56,17 +66,17 @@ namespace Play.ECS
             switch (state)
             {
                 case GuestState.WalkIn:
-                    SetWalkingAnimation(true);
+                    SetWalkInAnimation();
                     break;
                 case GuestState.Ordered:
                     SpawnOrder();
                     SetOrderRootActive(true);
-                    SetWalkingAnimation(false);
+                    StopWalkingAnimation();
                     break;
                 case GuestState.WalkOut:
                     SetOrderRootActive(false);
                     SetFadeColor();
-                    SetWalkingAnimation(true);
+                    SetWalkOutAnimation();
                     _characterTransform.localScale = new Vector3(-1, 1, 1);
                     _canvas.sortingOrder = 6;
                     break;
@@ -96,9 +106,23 @@ namespace Play.ECS
             }
         }
 
-        private void SetWalkingAnimation(bool value)
+        private void SetWalkInAnimation()
         {
-            _animator.SetBool(Walking, value);
+            int animIndex = Random.Range(0, WalkingAnimationHashes.Count);
+
+            _currentWalkingAnimationHash = WalkingAnimationHashes[animIndex];
+
+            _animator.SetBool(_currentWalkingAnimationHash, true);
+        }
+
+        private void StopWalkingAnimation()
+        {
+            _animator.SetBool(_currentWalkingAnimationHash, false);
+        }
+
+        private void SetWalkOutAnimation()
+        {
+            _animator.SetBool(WalkingAnimationHashes[0], true);
         }
 
         private void SetOrderRootActive(bool active)
