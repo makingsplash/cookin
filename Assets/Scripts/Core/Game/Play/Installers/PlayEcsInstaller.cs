@@ -63,7 +63,7 @@ namespace Core.Game.Play.Installers
 
         private void BindReactSystems()
         {
-            Container.BindInterfacesAndSelfTo<MakeGuestMovingSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GuestSeatingSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ApplyHorizontalMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CreateOrderForArrivedGuestsSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnIngredientViewSystem>().AsSingle();

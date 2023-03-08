@@ -1,3 +1,4 @@
+using Core.Game.Play.UI;
 using Entitas;
 
 namespace Play.ECS
@@ -6,5 +7,6 @@ namespace Play.ECS
     public class GuestViewComponent : IComponent
     {
         public GuestViewBehaviour View;
+        public GuestSeat Seat;
     }
 }

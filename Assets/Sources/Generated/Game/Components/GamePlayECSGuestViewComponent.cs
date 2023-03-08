@@ -11,17 +11,19 @@ public partial class GameEntity {
     public Play.ECS.GuestViewComponent playECSGuestView { get { return (Play.ECS.GuestViewComponent)GetComponent(GameComponentsLookup.PlayECSGuestView); } }
     public bool hasPlayECSGuestView { get { return HasComponent(GameComponentsLookup.PlayECSGuestView); } }
 
-    public void AddPlayECSGuestView(Play.ECS.GuestViewBehaviour newView) {
+    public void AddPlayECSGuestView(Play.ECS.GuestViewBehaviour newView, Core.Game.Play.UI.GuestSeat newSeat) {
         var index = GameComponentsLookup.PlayECSGuestView;
         var component = (Play.ECS.GuestViewComponent)CreateComponent(index, typeof(Play.ECS.GuestViewComponent));
         component.View = newView;
+        component.Seat = newSeat;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayECSGuestView(Play.ECS.GuestViewBehaviour newView) {
+    public void ReplacePlayECSGuestView(Play.ECS.GuestViewBehaviour newView, Core.Game.Play.UI.GuestSeat newSeat) {
         var index = GameComponentsLookup.PlayECSGuestView;
         var component = (Play.ECS.GuestViewComponent)CreateComponent(index, typeof(Play.ECS.GuestViewComponent));
         component.View = newView;
+        component.Seat = newSeat;
         ReplaceComponent(index, component);
     }
 

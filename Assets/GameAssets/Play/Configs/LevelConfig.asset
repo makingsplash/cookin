@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e2976d1100414fbdb67cd791c9251e, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
+  _guestsSpawnRateFrom: 0.5
+  _guestsSpawnRateTo: 7
+  GuestViewPrefab:
+    m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   IngredientViews:
   - Type: 0
     Prefab:
@@ -49,12 +56,5 @@ MonoBehaviour:
   - Ingredients: 000000000100000002000000
   - Ingredients: 00000000010000000200000004000000
   - Ingredients: 00000000010000000200000003000000
-  GuestViewPrefab:
-    m_AssetGUID: 6b1b99fece88d49b59cf7794468df8fa
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  GuestsSpawnAmount: 1
-  GuestsSpawnRate: 0.1
-  HorizontalStartingPointLeft: -2000
-  HorizontalStartingPointRight: 2000
+  - Ingredients: 000000000100000002000000
+  - Ingredients: 000000000100000002000000

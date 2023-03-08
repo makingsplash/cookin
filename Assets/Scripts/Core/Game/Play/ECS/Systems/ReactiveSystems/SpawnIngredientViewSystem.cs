@@ -40,14 +40,10 @@ namespace Core.Game.Play.ECS.Systems.ReactiveSystems
 
         private async UniTask SpawnIngredients(SpawnIngredientViewsComponent component)
         {
-            component.Root.gameObject.SetActive(false);
-
             foreach (var ingredient in component.Ingredients)
             {
                 await Spawner.SpawnIngredient(ingredient, component.Root);
             }
-
-            component.Root.gameObject.SetActive(true);
         }
     }
 }

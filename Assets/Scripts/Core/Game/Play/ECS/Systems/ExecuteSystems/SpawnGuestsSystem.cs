@@ -1,5 +1,7 @@
+    using System.Collections.Generic;
 using System.Linq;
 using Core.Game.Play.Configs;
+using Core.Game.Play.UI;
 using Core.UI.Elements;
 using Cysharp.Threading.Tasks;
 using Entitas;
@@ -13,37 +15,25 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
     {
         private readonly GameContext _context;
         private readonly LevelConfig _levelConfig;
+        private readonly PlayUIRoot _playUIRoot;
         private readonly Transform _guestsRoot;
         private readonly LevelDishes _levelDishes;
 
-        private readonly IGroup<GameEntity> _group;
-        private int _spawnedGuestsAmount;
         private float _timeToSpawn;
 
-        public SpawnGuestsSystem(GameContext context, LevelConfig levelConfig, UIRoot uiRoot, LevelDishes levelDishes)
+
+        public SpawnGuestsSystem(GameContext context, LevelConfig levelConfig, PlayUIRoot playUIRoot, LevelDishes levelDishes)
         {
             _context = context;
             _levelConfig = levelConfig;
-            _guestsRoot = uiRoot.GuestsRoot;
             _levelDishes = levelDishes;
-            _group = _context.GetGroup(GameMatcher.PlayECSUnservedGuest);
-            _group.OnEntityAdded += IncreaseSpawnedGuestsAmount;
-            _group.OnEntityRemoved += DecreaseSpawnedGuestsAmount;
-        }
-
-        private void IncreaseSpawnedGuestsAmount(IGroup<GameEntity> @group, GameEntity entity, int index, IComponent component)
-        {
-            _spawnedGuestsAmount++;
-        }
-
-        private void DecreaseSpawnedGuestsAmount(IGroup<GameEntity> @group, GameEntity entity, int index, IComponent component)
-        {
-            _spawnedGuestsAmount--;
+            _playUIRoot = playUIRoot;
+            _guestsRoot = playUIRoot.GuestsRoot;
         }
 
         public void Execute()
         {
-            if (_levelDishes.DishesToAssign.Any())
+            if (_levelDishes.DishesToAssign.Any() && _playUIRoot.GuestsSeats.Any(seat => seat.Available))
             {
                 if (_timeToSpawn > 0)
                 {
@@ -51,12 +41,9 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
                 }
                 else
                 {
-                    if (_spawnedGuestsAmount < _levelConfig.GuestsSpawnAmount)
-                    {
-                        _timeToSpawn = _levelConfig.GuestsSpawnRate;
+                    _timeToSpawn = _levelConfig.GuestsSpawnRate;
 
-                        SpawnGuest().Forget();
-                    }
+                    SpawnGuest().Forget();
                 }
             }
         }
@@ -76,7 +63,7 @@ namespace Core.Game.Play.ECS.Systems.ExecuteSystems
         private void SetInitialHorizontalPosition(Transform transform)
         {
             var localPosition = transform.localPosition;
-            localPosition = new Vector3(-1500, localPosition.y, localPosition.z);
+            localPosition = new Vector3(_playUIRoot.GuestSpawnPoint.x, localPosition.y, localPosition.z);
             transform.localPosition = localPosition;
         }
     }

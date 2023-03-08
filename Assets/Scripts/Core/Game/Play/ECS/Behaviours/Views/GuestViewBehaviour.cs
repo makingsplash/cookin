@@ -1,8 +1,8 @@
 using System;
 using Entitas;
 using Play.ECS.Common;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Play.ECS
 {
@@ -16,16 +16,19 @@ namespace Play.ECS
     public class GuestViewBehaviour : EntityViewBehaviour
     {
         [SerializeField]
+        private Canvas _canvas;
+
+        [SerializeField]
         private Animator _animator;
 
         [SerializeField]
         private Transform _characterTransform;
 
         [SerializeField]
-        private GameObject _orderRoot;
+        private Image _characterImage;
 
         [SerializeField]
-        private TextMeshProUGUI _orderText;
+        private GameObject _speechBubble;
 
         [SerializeField]
         private float _movingSpeed;
@@ -38,12 +41,14 @@ namespace Play.ECS
         public override void Initialize(GameContext context)
         {
             base.Initialize(context);
-            Entity.AddPlayECSGuestView(this);
+            Entity.AddPlayECSGuestView(this, null);
             Entity.AddPlayECSUnservedGuest(Entity);
             Entity.AddPlayECSHorizontalMovable(transform, _movingSpeed);
 
             Entity.OnComponentAdded += OnMoving;
             Entity.OnComponentAdded += OnOrdered;
+
+            SetOrderRootActive(false);
         }
 
         private void SetState(GuestState state)
@@ -55,14 +60,15 @@ namespace Play.ECS
                     break;
                 case GuestState.Ordered:
                     SpawnOrder();
-                    SetOrderTextActive(true);
+                    SetOrderRootActive(true);
                     SetWalkingAnimation(false);
                     break;
                 case GuestState.WalkOut:
-                    _ingrevientsViewRoot.gameObject.SetActive(false);
-                    SetOrderText("Спасибо, пока педики!");
+                    SetOrderRootActive(false);
+                    SetFadeColor();
                     SetWalkingAnimation(true);
                     _characterTransform.localScale = new Vector3(-1, 1, 1);
+                    _canvas.sortingOrder = 6;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
@@ -95,14 +101,15 @@ namespace Play.ECS
             _animator.SetBool(Walking, value);
         }
 
-        private void SetOrderTextActive(bool active)
+        private void SetOrderRootActive(bool active)
         {
-            _orderRoot.SetActive(active);
+            _speechBubble.SetActive(active);
         }
 
-        private void SetOrderText(string text)
+        private void SetFadeColor()
         {
-            _orderText.text = text;
+            ColorUtility.TryParseHtmlString("#595959", out Color fadeColor);
+            _characterImage.color = fadeColor;
         }
 
         protected override void OnDestroyEntity(IEntity entity)
